@@ -18,18 +18,12 @@ BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool
+BuildRequires:	gail-devel
 BuildRequires:	gettext-devel
-BuildRequires:	gtk+2-devel >= 2.0.6
-BuildRequires:	ncurses-devel >= 5.2
-BuildRequires:	gail-devel >= 0.17
-BuildRequires:	libgnomeui-devel >= 2.0.5
-BuildRequires:	glib2-devel >= 2.0.6
-BuildRequires:	esound-devel >= 0.2.29
-BuildRequires:	ORBit2-devel >= 2.4.3
-BuildRequires:	scrollkeeper >= 0.3.11
+BuildRequires:	libgnomeui-devel
+BuildRequires:	libtool
+BuildRequires:	scrollkeeper
 Prereq:		scrollkeeper
-Requires:	gail >= 0.17
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	gnome
 Obsoletes:	grecord
@@ -58,6 +52,8 @@ Programy multimedialne GNOME'a.
 Summary:	gnome-media devel files
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{version}
+Requires:	gail-devel
+Requires:	libgnomeui-devel
 
 %description devel
 gnome-media devel files.

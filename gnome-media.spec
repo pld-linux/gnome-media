@@ -96,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
-mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets/*.desktop
+mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -120,7 +120,7 @@ scrollkeeper-update
 %attr(755,root,root) %{_libdir}/CDDBSlave2
 %attr(755,root,root) %{_libdir}/cddb-track-editor
 %{_libdir}/bonobo/servers/*
-%{_datadir}/capplets/*
+%{_datadir}/gnome/capplets/*
 %{_datadir}/idl/*
 %{_datadir}/gnome-sound-recorder
 %{_datadir}/%{name}-2.0

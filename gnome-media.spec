@@ -6,7 +6,7 @@ Release:	3
 License:	GPL
 Group:		X11/GNOME
 Group(pl):	X11/GNOME
-Source:		ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/%{name}-%{version}.tar.gz
 Source1:	gtcd.idl
 Source2:	gtcd.goad
 URL:		http://www.gnome.org/
@@ -31,9 +31,10 @@ Obsoletes:	gnome
 %define		_sysconfdir	/etc/X11/GNOME
 
 %description
-GNOME media programs.  GNOME is the GNU Network Object Model Environment.
-That's a fancy name but really GNOME is a nice GUI desktop environment. It
-makes using your computer easy, powerful, and easy to configure.
+GNOME media programs. GNOME is the GNU Network Object Model
+Environment. That's a fancy name but really GNOME is a nice GUI
+desktop environment. It makes using your computer easy, powerful, and
+easy to configure.
 
 %description -l pl
 Programy multimedialne GNOME'a

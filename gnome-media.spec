@@ -7,7 +7,8 @@ Copyright:   LGPL
 Group:       X11/Libraries
 Source:      ftp://ftp.gnome.org/pub/GNOME/sources/%{name}-%{version}.tar.gz
 URL:         http://www.gnome.org/
-Requires:    gsl, esound
+Icon:        foot.gif
+Requires:    esound
 BuildRoot:   /tmp/%{name}-%{version}-root
 Obsoletes:   gnome
 
@@ -25,41 +26,43 @@ Programy multimedialne GNOME'a
 %setup -q
 
 %build
-# Needed for snapshot releases.
-if [ ! -f configure ]; then
-  CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=/usr
-else
-  CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=/usr
-fi
+CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=/usr/X11R6
 
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make prefix=$RPM_BUILD_ROOT/usr install
+make prefix=$RPM_BUILD_ROOT/usr/X11R6 install
 
-strip $RPM_BUILD_ROOT/usr/bin/*
+strip $RPM_BUILD_ROOT/usr/X11R6/bin/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644, root, root, 755)
-%doc AUTHORS COPYING ChangeLog NEWS README
-%attr(755, root, root) /usr/bin/*
-/usr/share/apps/Audio/*
-/usr/share/pixmaps/tcd
-%lang(de) /usr/share/locale/de/LC_MESSAGES/gnome-media.mo
-%lang(es) /usr/share/locale/es/LC_MESSAGES/gnome-media.mo
-%lang(fr) /usr/share/locale/fr/LC_MESSAGES/gnome-media.mo
-%lang(ga) /usr/share/locale/ga/LC_MESSAGES/gnome-media.mo
-%lang(it) /usr/share/locale/it/LC_MESSAGES/gnome-media.mo
-%lang(ko) /usr/share/locale/ko/LC_MESSAGES/gnome-media.mo
-%lang(no) /usr/share/locale/no/LC_MESSAGES/gnome-media.mo
-%lang(pt) /usr/share/locale/pt/LC_MESSAGES/gnome-media.mo
+%doc AUTHORS ChangeLog NEWS README
+%attr(755, root, root) /usr/X11R6/bin/*
+/usr/X11R6/share/apps/Audio/*
+/usr/X11R6/share/pixmaps/tcd
+%lang(de) /usr/X11R6/share/locale/de/LC_MESSAGES/gnome-media.mo
+%lang(es) /usr/X11R6/share/locale/es/LC_MESSAGES/gnome-media.mo
+%lang(fr) /usr/X11R6/share/locale/fr/LC_MESSAGES/gnome-media.mo
+%lang(ga) /usr/X11R6/share/locale/ga/LC_MESSAGES/gnome-media.mo
+%lang(it) /usr/X11R6/share/locale/it/LC_MESSAGES/gnome-media.mo
+%lang(ko) /usr/X11R6/share/locale/ko/LC_MESSAGES/gnome-media.mo
+%lang(no) /usr/X11R6/share/locale/no/LC_MESSAGES/gnome-media.mo
+%lang(pt) /usr/X11R6/share/locale/pt/LC_MESSAGES/gnome-media.mo
 
 %changelog
+* Fri Sep 18 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [0.27-3]
+- added package Icon,
+- removed COPYING from %doc (copyright statment is in Copyright field),
+- removed gsl from Requires,
+- changed prefix to /usr/X11R6.
+
 * Sun Sep  6 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.27-2]
 - added -q %setup parameter,

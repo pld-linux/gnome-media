@@ -84,7 +84,7 @@ Biblioteki statyczne gnome-media.
 %setup -q
 
 %build
-%configure 
+%configure
 
 %{__make}
 

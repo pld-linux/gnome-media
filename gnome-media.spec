@@ -5,8 +5,8 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
-Version:	2.1.1
-Release:	6
+Version:	2.1.3
+Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
@@ -24,7 +24,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2.1.3-3
 BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	gail-devel >= 1.1.4
-BuildRequires:	gstreamer-devel >= 0.4.2
+BuildRequires:	gstreamer-devel >= 0.5.0
 BuildRequires:	libgnomeui-devel >= 2.1.2
 BuildRequires:	glib2-devel >= 2.0.6
 BuildRequires:	esound-devel >= 0.2.29
@@ -123,6 +123,7 @@ scrollkeeper-update
 %{_datadir}/control-center-2.0/capplets/*
 %{_datadir}/idl/*
 %{_datadir}/gnome-sound-recorder/*
+%{_datadir}/%{name}-2.0/*
 %{_pixmapsdir}/*
 %{_libdir}/lib*.so.*.*
 %{_omf_dest_dir}/*

@@ -5,12 +5,12 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.5.4
+Version:	2.5.5
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.5/%{name}-%{version}.tar.bz2
-# Source0-md5:	f8fd10cc38ff0815229de05b75e31e8c
+# Source0-md5:	2932569a45bc6746ec9b17cac27dc25c
 Patch0:		%{name}-locale-names.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
@@ -26,7 +26,7 @@ BuildRequires:	esound-devel >= 0.2.31
 BuildRequires:	gail-devel >= 1.5.6
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-desktop-devel >= 2.5.90
-BuildRequires:	gnome-vfs2-devel >= 2.5.8
+BuildRequires:	gnome-vfs2-devel >= 2.5.90
 BuildRequires:	gstreamer-GConf-devel >= 0.7.4
 BuildRequires:	gstreamer-devel >= 0.7.4
 BuildRequires:	gstreamer-plugins-devel >= 0.7.4

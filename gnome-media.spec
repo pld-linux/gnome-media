@@ -9,8 +9,8 @@ Group(pl):	X11/GNOME
 Source:		ftp://ftp.gnome.org/pub/GNOME/sources/%{name}-%{version}.tar.gz
 URL:		http://www.gnome.org/
 Icon:		gnome-media.gif
-BuildPrereq:	gtk+-devel
-BuildPrereq:	glib-devel
+BuildRequires:	gtk+-devel
+BuildRequires:	glib-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 Obsoletes:	gnome
 

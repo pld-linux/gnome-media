@@ -6,8 +6,6 @@ Version:	1.2.2
 Release:	3
 License:	GPL
 Group:		X11/Applications/Multimedia
-Group(de):	X11/Applikationen/Multimedia
-Group(pl):	X11/Aplikacje/Multimedia
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/gnome-media/%{name}-%{version}.tar.gz
 Patch0:		%{name}-keepclosed.patch
 Patch1:		%{name}-nogerror.patch

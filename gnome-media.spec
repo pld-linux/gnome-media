@@ -3,7 +3,7 @@
 # fix alsa issue
 Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
-Summary(pl):	Programy multimedialne GNOME'a
+Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.3.5
 Release:	1
@@ -31,14 +31,14 @@ BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	scrollkeeper >= 0.3.11
 BuildRequires:	xft-devel >= 2.1.2
+Requires:	gail >= 1.2.0
+Requires:	libgnomeui >= 2.3.0
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
 Requires(post):	GConf2
-Requires:	gail >= 1.2.0
-Requires:	libgnomeui >= 2.3.0
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	gnome
 Obsoletes:	grecord
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 GNOME media programs. GNOME is the GNU Network Object Model
@@ -54,23 +54,31 @@ graphique de type bureau. Il rends l'utilisation de votre ordinateur
 plus facile, agréable et eficace, et est facile à configurer.
 
 %description -l pl
-Programy multimedialne GNOME'a.
+Programy multimedialne dla GNOME.
 
 %package devel
 Summary:	gnome-media devel files
-Group:		X11/Applications/Multimedia
+Summary(pl):	Pliki nag³ówkowe gnome-media
+Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}
 
 %description devel
 gnome-media devel files.
 
+%description devel -l pl
+Pliki nag³ówkowe gnome-media.
+
 %package static
 Summary:	gnome-media static libraries
-Group:		X11/Applications/Multimedia
+Summary(pl):	Biblioteki statyczne gnome-media
+Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}
 
 %description static
 gnome-media static libraries.
+
+%description static -l pl
+Biblioteki statyczne gnome-media.
 
 %prep
 %setup -q
@@ -111,8 +119,8 @@ scrollkeeper-update
 %{_libdir}/bonobo/servers/*
 %{_datadir}/control-center-2.0/capplets/*
 %{_datadir}/idl/*
-%{_datadir}/gnome-sound-recorder/*
-%{_datadir}/%{name}-2.0/*
+%{_datadir}/gnome-sound-recorder
+%{_datadir}/%{name}-2.0
 %{_desktopdir}/*
 %{_pixmapsdir}/*
 %{_libdir}/lib*.so.*.*

@@ -1,0 +1,24 @@
+diff -ur gnome-media-2.8.0.orig/cddb-slave2/cddb-slave.desktop.in gnome-media-2.8.0/cddb-slave2/cddb-slave.desktop.in
+--- gnome-media-2.8.0.orig/cddb-slave2/cddb-slave.desktop.in	2004-05-09 19:13:42.000000000 +0200
++++ gnome-media-2.8.0/cddb-slave2/cddb-slave.desktop.in	2004-09-16 23:06:08.254420224 +0200
+@@ -7,7 +7,7 @@
+ StartupNotify=true
+ Terminal=false
+ Type=Application
+-Categories=GNOME;Application;Settings;AdvancedSettings;
++Categories=GTK;GNOME;Settings;AdvancedSettings;Capplet;
+ X-GNOME-Bugzilla-Bugzilla=GNOME
+ X-GNOME-Bugzilla-Product=gnome-media
+ X-GNOME-Bugzilla-Component=CDDBSlave2
+diff -ur gnome-media-2.8.0.orig/gstreamer-properties/gstreamer-properties.desktop.in gnome-media-2.8.0/gstreamer-properties/gstreamer-properties.desktop.in
+--- gnome-media-2.8.0.orig/gstreamer-properties/gstreamer-properties.desktop.in	2004-02-29 22:11:20.000000000 +0100
++++ gnome-media-2.8.0/gstreamer-properties/gstreamer-properties.desktop.in	2004-09-16 23:06:32.358755808 +0200
+@@ -7,7 +7,7 @@
+ StartupNotify=true
+ Terminal=false
+ Type=Application
+-Categories=GNOME;Application;Settings;AdvancedSettings;
++Categories=GTK;GNOME;Settings;AdvancedSettings;Capplet;
+ X-GNOME-Bugzilla-Bugzilla=GNOME
+ X-GNOME-Bugzilla-Product=gnome-media
+ X-GNOME-Bugzilla-Component=general

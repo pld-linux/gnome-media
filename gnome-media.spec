@@ -73,14 +73,16 @@ gnome-media static libraries.
 %setup -q
 
 %build
-%configure
+%configure 
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+    DESTDIR=$RPM_BUILD_ROOT \
+    GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
 %find_lang %{name} --with-gnome --all-name
 

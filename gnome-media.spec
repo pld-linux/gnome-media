@@ -5,13 +5,12 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.5.0
+Version:	2.5.1
 Release:	0.1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.5/%{name}-%{version}.tar.bz2
-# Source0-md5:	b5af2b3ceb5a3b328d13d56c324530b0
-Patch0:		%{name}-gst0.7.patch
+# Source0-md5:	f46d0c09ee6b2d1791d52ed23f811f09
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 2.9.0
@@ -24,9 +23,9 @@ BuildRequires:	control-center-devel >= 2.4.0
 BuildRequires:	gail-devel >= 1.4.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-desktop-devel >= 2.3.90
-BuildRequires:	gstreamer-devel >= 0.7.1
-BuildRequires:	gstreamer-GConf-devel >= 0.7.1
-BuildRequires:	gstreamer-plugins-devel >= 0.7.1
+BuildRequires:	gstreamer-devel >= 0.7.2
+BuildRequires:	gstreamer-GConf-devel >= 0.7.2
+BuildRequires:	gstreamer-plugins-devel >= 0.7.2
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	rpm-build >= 4.1-10
@@ -84,13 +83,9 @@ Biblioteki statyczne gnome-media.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
-%{__autoconf}
-# alsa is broken (not ported to new alsa 0.9.x?)
-%configure \
-	--disable-alsa
+%configure 
 %{__make}
 
 %install
@@ -125,7 +120,7 @@ scrollkeeper-update
 %{_datadir}/control-center-2.0/capplets/*
 %{_datadir}/idl/*
 %{_datadir}/gnome-sound-recorder
-%{_datadir}/%{name}-2.0
+%{_datadir}/gstreamer-properties
 %{_desktopdir}/*
 %{_pixmapsdir}/*
 %{_libdir}/lib*.so.*.*

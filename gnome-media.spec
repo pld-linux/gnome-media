@@ -4,12 +4,12 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.9.90
+Version:	2.9.92
 Release:	1
 License:	GPL/LGPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.9/%{name}-%{version}.tar.bz2
-# Source0-md5:	11b412b3dfa72c120cf0ed7f729151e8
+# Source0-md5:	7578a6b234f7b9e8ef6c811a6832a7b8
 Patch0:		%{name}-capplet.patch
 Patch1:		%{name}-desktop.patch
 Icon:		gnome-media.gif
@@ -26,7 +26,7 @@ BuildRequires:	esound-devel >= 1:0.2.31
 BuildRequires:	gail-devel >= 1.8.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.8.0
-BuildRequires:	gnome-vfs2-devel >= 2.9.90
+BuildRequires:	gnome-vfs2-devel >= 2.9.92
 BuildRequires:	gstreamer-GConf-devel >= 0.8.7
 BuildRequires:	gstreamer-devel >= 0.8.8
 BuildRequires:	gstreamer-plugins-devel >= 0.8.7
@@ -35,7 +35,7 @@ BuildRequires:	libglade2-devel >= 1:2.5.0
 BuildRequires:	libgnomeui-devel >= 2.9.1
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
-BuildRequires:	nautilus-cd-burner-devel >= 2.9.5
+BuildRequires:	nautilus-cd-burner-devel >= 2.9.6
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	scrollkeeper >= 0.3.11

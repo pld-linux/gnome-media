@@ -6,23 +6,23 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.3.5
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
 # Source0-md5:	82788e6a49d24518b57b4061c965da03
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel >= 2.7.0
+BuildRequires:	ORBit2-devel >= 2.7.5-1
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 2.2.0
+BuildRequires:	control-center-devel >= 2.3.4-2
 BuildRequires:	gail-devel >= 1.2.0
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.3.3
+BuildRequires:	gnome-desktop-devel >= 2.3.4-2
 BuildRequires:	gstreamer-devel >= 0.6.0
 BuildRequires:	gstreamer-GConf-devel >= 0.6.0
 BuildRequires:	gstreamer-plugins-devel >= 0.6.0
@@ -31,11 +31,11 @@ BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	scrollkeeper >= 0.3.11
 BuildRequires:	xft-devel >= 2.1.2
-Requires:	gail >= 1.2.0
-Requires:	libgnomeui >= 2.3.0
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
 Requires(post):	GConf2
+Requires:	gail >= 1.2.0
+Requires:	libgnomeui >= 2.3.3.1-2
 Obsoletes:	gnome
 Obsoletes:	grecord
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

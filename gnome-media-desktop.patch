@@ -6,7 +6,7 @@ diff -urN gnome-media-2.8.0.orig/gnome-cd/gnome-cd.desktop.in gnome-media-2.8.0/
  Type=Application
  X-GNOME-DocPath=gnome-cd/gnome-cd.xml
 -Categories=GNOME;Application;AudioVideo;X-Ximian-Main;X-Red-Hat-Base;
-+Categories=GTK;GNOME;Audio;Player;
++Categories=GTK;GNOME;AudioVideo;Audio;Player;
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=gnome-media
  X-GNOME-Bugzilla-Component=Gnome-CD
@@ -18,7 +18,7 @@ diff -urN gnome-media-2.8.0.orig/grecord/gnome-sound-recorder.desktop.in gnome-m
  Type=Application
  X-GNOME-DocPath=grecord/grecord.xml
 -Categories=GNOME;Application;AudioVideo;
-+Categories=GTK;GNOME;Audio;Recorder;
++Categories=GTK;GNOME;AudioVideo;Audio;Recorder;
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=gnome-media
  X-GNOME-Bugzilla-Component=Gnome-Sound-Recorder
@@ -30,7 +30,7 @@ diff -urN gnome-media-2.8.0.orig/gst-mixer/gnome-volume-control.desktop.in gnome
  Terminal=false
  Type=Application
 -Categories=Application;AudioVideo;X-Ximian-Main;X-Red-Hat-Base;
-+Categories=GTK;GNOME;Audio;Mixer;
++Categories=GTK;GNOME;AudioVideo;Audio;Mixer;
  X-GNOME-DocPath=gst-mixer/gnome-volume-control.xml
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=gnome-media
@@ -42,7 +42,7 @@ diff -urN gnome-media-2.8.0.orig/vu-meter/reclevel.desktop.in gnome-media-2.8.0/
  Terminal=false
  Type=Application
 -Categories=GNOME;Application;AudioVideo;
-+Categories=GTK;GNOME;Audio;
++Categories=GTK;GNOME;AudioVideo;Audio;
 diff -urN gnome-media-2.8.0.orig/vu-meter/vumeter.desktop.in gnome-media-2.8.0/vu-meter/vumeter.desktop.in
 --- gnome-media-2.8.0.orig/vu-meter/vumeter.desktop.in	2004-11-17 14:14:29.082119920 +0100
 +++ gnome-media-2.8.0/vu-meter/vumeter.desktop.in	2004-11-17 14:21:39.081750040 +0100
@@ -51,7 +51,7 @@ diff -urN gnome-media-2.8.0.orig/vu-meter/vumeter.desktop.in gnome-media-2.8.0/v
  Terminal=false
  Type=Application
 -Categories=GNOME;Application;AudioVideo;
-+Categories=GTK;GNOME;Audio;
++Categories=GTK;GNOME;AudioVideo;Audio;
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=gnome-media
  X-GNOME-Bugzilla-Component=VU-meter

@@ -1,0 +1,79 @@
+--- gnome-media-1.0.40/tcd/Makefile.am.fixedcorba	Tue Sep 21 14:33:09 1999
++++ gnome-media-1.0.40/tcd/Makefile.am	Tue Sep 21 14:35:52 1999
+@@ -8,11 +8,10 @@
+ CURSES_TCD=tcd
+ endif
+ 
+-bin_PROGRAMS = gtcd $(CURSES_TCD) corba-gtcd
++bin_PROGRAMS = gtcd $(CURSES_TCD)
+ 
+ SUBDIRS = icons
+ 
+-
+ GTCD_GENERATED = 			\
+ 		gtcd.h   		\
+ 		gtcd-stubs.c	\
+@@ -42,15 +41,10 @@
+ 	cddb_props.c	\
+ 	cddb_props.h	\
+ 	gtcd-skels.c     \
++	gtcd-stubs.c	\
+ 	gtcd-common.c    \
+ 	gtcd.h
+ 
+-corba_gtcd_SOURCES = \
+-	corba-gtcd.c \
+-	gtcd.h		\
+-	gtcd-stubs.c	\
+-	gtcd-common.c
+-
+ tcd_SOURCES = 		\
+ 	tcd.c 		\
+ 	cddb.c 		\
+@@ -64,10 +58,6 @@
+ gtcd_LDADD = 	$(GNOME_LIBDIR) \
+ 		$(GTCD_GNOME_LIBS) \
+ 		$(INTLLIBS)
+-
+-corba_gtcd_LDADD = 	$(GNOME_LIBDIR) \
+-			$(GTCD_GNOME_LIBS) \
+-			$(INTLLIBS)
+ 
+ tcd_LDADD = $(GNOME_LIBDIR) -lglib -lm $(CURSES_LIBS) $(INTLLIBS)
+ 
+--- gnome-media-1.0.40/tcd/gtcd.c.fixedcorba	Tue Sep 21 14:33:09 1999
++++ gnome-media-1.0.40/tcd/gtcd.c	Tue Sep 21 14:33:09 1999
+@@ -1125,17 +1125,29 @@
+         CORBA_ORB orb;
+         CORBA_Environment ev;
+         PortableServer_POA poa;
++        GNOME_GTcd gtcd_server;
+         
+ 	bindtextdomain(PACKAGE, GNOMELOCALEDIR);
+ 	textdomain(PACKAGE);
+ 
+         CORBA_exception_init(&ev);
+ 	orb = gnome_CORBA_init_with_popt_table("gtcd", VERSION, &argc, argv, gtcd_popt_options, 0, &ctx, GNORBA_INIT_SERVER_FUNC, &ev);
++
++        /* Check for existing instance */
++        gtcd_server = goad_server_activate_with_id (NULL,
++                                                    "GOAD:gtcd:19990918",
++                                                    GOAD_ACTIVATE_EXISTING_ONLY,                                                    NULL);
++        
++        
++        if (gtcd_server != CORBA_OBJECT_NIL) {
++                GNOME_GTcd_open_new_cd(gtcd_server, &ev);
++                exit(0);
++        }
+         
+-         poa = (PortableServer_POA)CORBA_ORB_resolve_initial_references(orb, "RootPOA", &ev);
+-         goad_server_register(CORBA_OBJECT_NIL,
+-                              impl_GNOME_GTcd__create(poa, &ev),
+-                              "GOAD:gtcd:19990918", "object", &ev);
++        poa = (PortableServer_POA)CORBA_ORB_resolve_initial_references(orb, "RootPOA", &ev);
++        goad_server_register(CORBA_OBJECT_NIL,
++                             impl_GNOME_GTcd__create(poa, &ev),
++                             "GOAD:gtcd:19990918", "object", &ev);
+ 
+ 	cd.play_method = NORMAL;
+ 

@@ -1,0 +1,11 @@
+--- gnome-media-1.2.0/tcd/callbacks.c.docs	Fri Aug  4 15:46:10 2000
++++ gnome-media-1.2.0/tcd/callbacks.c	Fri Aug  4 15:46:19 2000
+@@ -147,7 +147,7 @@
+ 
+ void help(GtkWidget *widget, gpointer data)
+ {
+-	gchar *file = gnome_help_file_path("users-guide", "gtcd-use.html");
++	gchar *file = gnome_help_file_path("gtcd", "gtcd-use.html");
+ 	gchar *path = g_strdup_printf("file:%s", file);
+ 	gnome_help_goto(NULL, path);
+ 	g_free(file);

@@ -1,0 +1,28 @@
+--- gnome-media-1.0.40/tcd/gtcd.c.sopwith	Tue Sep 21 00:50:39 1999
++++ gnome-media-1.0.40/tcd/gtcd.c	Tue Sep 21 00:51:16 1999
+@@ -1132,6 +1132,11 @@
+         CORBA_exception_init(&ev);
+ 	orb = gnome_CORBA_init_with_popt_table("gtcd", VERSION, &argc, argv, gtcd_popt_options, 0, &ctx, GNORBA_INIT_SERVER_FUNC, &ev);
+         
++         poa = (PortableServer_POA)CORBA_ORB_resolve_initial_references(orb, "RootPOA", &ev);
++         goad_server_register(CORBA_OBJECT_NIL,
++                              impl_GNOME_GTcd__create(poa, &ev),
++                              "GOAD:gtcd:19990918", "object", &ev);
++
+ 	cd.play_method = NORMAL;
+ 
+ 	prefs = g_new0(tcd_prefs, 1);
+@@ -1176,12 +1181,8 @@
+     
+ 	signal(SIGUSR2, reload_info);
+     
+-         poa = (PortableServer_POA)CORBA_ORB_resolve_initial_references(orb, "RootPOA", &ev);
+-         PortableServer_POAManager_activate(PortableServer_POA__get_the_POAManager(poa, &ev), &ev);
+-         goad_server_register(CORBA_OBJECT_NIL,
+-                              impl_GNOME_GTcd__create(poa, &ev),
+-                              "GOAD:gtcd:19990918", "object", &ev);
+  
++         PortableServer_POAManager_activate(PortableServer_POA__get_the_POAManager(poa, &ev), &ev);
+          
+ 	gtk_main();
+ 	return 0;

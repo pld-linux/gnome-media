@@ -3,15 +3,16 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
 Version:	1.2.0
-Release:	5
+Release:	6
 License:	GPL
-Group:		X11/GNOME
-Group(pl):	X11/GNOME
+Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/gnome-media/%{name}-%{version}.tar.gz
 URL:		http://www.gnome.org/
-Patch0:		gnome-media-sparccd.patch
-Patch1:		gnome-media-keepclosed.patch
-Patch2:		gnome-media-nogerror.patch
+Patch0:		%{name}-sparccd.patch
+Patch1:		%{name}-keepclosed.patch
+Patch2:		%{name}-nogerror.patch
 Icon:		gnome-media.gif
 BuildRequires:	gtk+-devel
 BuildRequires:	gettext-devel
@@ -36,8 +37,8 @@ easy to configure.
 Programmes multimédia GNOME.
 
 GNOME (GNU Network Object Model Environment) est un environnement
-graphique de type bureau. Il rends l'utilisation de votre ordinateur plus facile,
-agréable et eficace, et est facile à configurer.
+graphique de type bureau. Il rends l'utilisation de votre ordinateur
+plus facile, agréable et eficace, et est facile à configurer.
 
 %description -l pl
 Programy multimedialne GNOME'a.
@@ -51,7 +52,6 @@ Programy multimedialne GNOME'a.
 %build
 automake
 gettextize --copy --force
-LDFLAGS="-s"; export LDFLAGS
 %configure
 
 %{__make}
@@ -59,12 +59,12 @@ LDFLAGS="-s"; export LDFLAGS
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make install \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	Audiodir=%{_applnkdir}/Multimedia
 
-mv $RPM_BUILD_ROOT{%{_datadir}/gnome/apps/Multimedia/*,%{_applnkdir}/Multimedia}
-rm -rf $RPM_BUILD_ROOT%{_datadir}/gnome/apps
+mv -f $RPM_BUILD_ROOT{%{_applnkdir}/Multimedia/*,%{_applnkdir}/Multimedia}
+rm -rf $RPM_BUILD_ROOT%{_applnkdir}
 
 gzip -9nf AUTHORS ChangeLog NEWS
 

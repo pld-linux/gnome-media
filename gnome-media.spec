@@ -5,13 +5,13 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.5.1
+Version:	2.5.2
 Release:	0.1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.5/%{name}-%{version}.tar.bz2
-# Source0-md5:	f46d0c09ee6b2d1791d52ed23f811f09
-Patch0:		%{name}-gstautoplug.patch
+# Source0-md5:	8869acb4501be09966484156442f749e
+Patch0:		%{name}-grecord.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 2.9.0
@@ -27,6 +27,7 @@ BuildRequires:	gnome-desktop-devel >= 2.3.90
 BuildRequires:	gstreamer-devel >= 0.7.2
 BuildRequires:	gstreamer-GConf-devel >= 0.7.2
 BuildRequires:	gstreamer-plugins-devel >= 0.7.2
+BuildRequires:	intltool
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	rpm-build >= 4.1-10
@@ -87,6 +88,13 @@ Biblioteki statyczne gnome-media.
 %patch0 -p1
 
 %build
+intltoolize --copy --force
+%{__libtoolize}
+glib-gettextize --copy --force
+%{__aclocal} -I %{_aclocaldir}/gnome2-macros
+%{__autoheader}
+%{__autoconf}
+%{__automake}
 %configure 
 %{__make}
 
@@ -119,8 +127,11 @@ scrollkeeper-update
 %attr(755,root,root) %{_libdir}/CDDBSlave2
 %attr(755,root,root) %{_libdir}/cddb-track-editor
 %{_libdir}/bonobo/servers/*
+%attr(755,root,root) %{_libdir}/libglade/2.0/*.so
+%{_libdir}/libglade/2.0/*.la
 %{_datadir}/control-center-2.0/capplets/*
 %{_datadir}/idl/*
+%{_datadir}/gnome-media
 %{_datadir}/gnome-sound-recorder
 %{_datadir}/gstreamer-properties
 %{_desktopdir}/*
@@ -131,8 +142,10 @@ scrollkeeper-update
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/cddb-slave2
+%{_includedir}/gnome-media
 %{_libdir}/lib*.la
 %{_libdir}/lib*.so
+%{_pkgconfigdir}/*
 
 %files static
 %defattr(644,root,root,755)

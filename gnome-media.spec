@@ -5,12 +5,12 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
-Version:	2.3.3
+Version:	2.3.4
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	3a7f1221a570d9b894ab974b9f7fb953
+# Source0-md5:	0b4693a9b1bf691cd84680f442b7a53c
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
 %ifnarch sparc sparc64

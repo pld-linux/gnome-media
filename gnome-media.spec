@@ -1,14 +1,14 @@
 Summary:     GNOME media programs
 Summary(pl): Programy multimedialne GNOME'a
 Name:        gnome-media
-Version:     0.27
-Release:     2
+Version:     0.30
+Release:     1
 Copyright:   LGPL
 Group:       X11/Libraries
 Source:      ftp://ftp.gnome.org/pub/GNOME/sources/%{name}-%{version}.tar.gz
 URL:         http://www.gnome.org/
 Icon:        foot.gif
-Requires:    esound
+Requires:    esound, gtk+ >= 1.1.2, glib >= 1.1.3
 BuildRoot:   /tmp/%{name}-%{version}-root
 Obsoletes:   gnome
 
@@ -54,8 +54,14 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ko) /usr/X11R6/share/locale/ko/LC_MESSAGES/gnome-media.mo
 %lang(no) /usr/X11R6/share/locale/no/LC_MESSAGES/gnome-media.mo
 %lang(pt) /usr/X11R6/share/locale/pt/LC_MESSAGES/gnome-media.mo
+%lang(ru) /usr/X11R6/share/locale/ru*/LC_MESSAGES/gnome-media.mo
 
 %changelog
+* Fri Sep 25 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [0.30-1]
+- added in Requires "gtk+ >= 1.1.2, glib >= 1.1.3"
+- added ru_RU locale.
+
 * Fri Sep 18 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.27-3]
 - added package Icon,

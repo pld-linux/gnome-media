@@ -2,7 +2,7 @@ Summary:	GNOME media programs
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
 Version:	1.0.51
-Release:	1
+Release:	2
 Copyright:	LGPL
 Group:		X11/GNOME
 Group(pl):	X11/GNOME
@@ -13,6 +13,7 @@ Icon:		gnome-media.gif
 BuildRequires:	gtk+-devel
 BuildRequires:	glib-devel
 BuildRequires:	gettext-devel
+BuildRequires:	ncurses-devel >= 5.0
 BuildRoot:	/tmp/%{name}-%{version}-root
 Obsoletes:	gnome
 

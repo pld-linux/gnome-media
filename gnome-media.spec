@@ -117,6 +117,8 @@ scrollkeeper-update
 %{_sysconfdir}/gconf/schemas/*
 %attr(755,root,root) %{_bindir}/*
 %{_libdir}/bonobo/servers/*
+%attr(755,root,root) %{_libdir}/CDDBSlave2
+%attr(755,root,root) %{_libdir}/cddb-track-editor
 %{_datadir}/applications/*
 %{_datadir}/control-center-2.0/capplets/*
 %{_datadir}/idl/*

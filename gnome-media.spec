@@ -5,37 +5,35 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.6.2
+Version:	2.7.1
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	1eb2d95f29ae908a6fd3c5295e3d740d
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.7/%{name}-%{version}.tar.bz2
+# Source0-md5:	2bc7afd97189ee010621a2fe4360fdf8
 Patch0:		%{name}-locale-names.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.6.1
+BuildRequires:	GConf2-devel >= 2.7.1
 BuildRequires:	ORBit2-devel >= 1:2.10.2
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	control-center-devel >= 1:2.6.1
 BuildRequires:	esound-devel >= 1:0.2.31
 BuildRequires:	gail-devel >= 1.6.0
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.6.1
-BuildRequires:	gnome-vfs2-devel >= 2.6.1
-BuildRequires:	gstreamer-GConf-devel >= 0.8.1
-BuildRequires:	gstreamer-devel >= 0.8.1
-BuildRequires:	gstreamer-plugins-devel >= 0.8.1
-BuildRequires:	intltool
-BuildRequires:	libglade2-devel >= 1:2.3.6
-BuildRequires:	libgnomeui-devel >= 2.6.1
+BuildRequires:	gnome-vfs2-devel >= 2.7.1
+BuildRequires:	gstreamer-GConf-devel >= 0.8.2
+BuildRequires:	gstreamer-devel >= 0.8.3
+BuildRequires:	gstreamer-plugins-devel >= 0.8.2
+BuildRequires:	intltool >= 0.25
+BuildRequires:	libglade2-devel >= 1:2.4.0
+BuildRequires:	libgnomeui-devel >= 2.7.1
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
-BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	scrollkeeper >= 0.3.11
 BuildRequires:	xft-devel >= 2.1.2
@@ -43,8 +41,8 @@ Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
 Requires(post):	GConf2
 Requires:	gail >= 1.6.0
-Requires:	libgnomeui >= 2.6.1
-Requires:	gstreamer-plugins >= 0.8.1
+Requires:	libgnomeui >= 2.7.1
+Requires:	gstreamer-plugins >= 0.8.2
 Obsoletes:	gnome
 Obsoletes:	grecord
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -99,7 +97,7 @@ mv po/{no,nb}.po
 intltoolize --copy --force
 %{__libtoolize}
 glib-gettextize --copy --force
-%{__aclocal} -I %{_aclocaldir}/gnome2-macros
+%{__aclocal} -I m4 -I %{_aclocaldir}/gnome2-macros
 %{__autoheader}
 %{__autoconf}
 %{__automake}

@@ -6,7 +6,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
 Version:	2.1.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
@@ -20,10 +20,10 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	gettext-devel
-BuildRequires:	gtk+2-devel >= 2.0.6
+BuildRequires:	gtk+2-devel >= 2.1.0
 BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	gail-devel >= 0.17
-BuildRequires:	libgnomeui-devel >= 2.0.5
+BuildRequires:	libgnomeui-devel >= 2.1.1
 BuildRequires:	glib2-devel >= 2.0.6
 BuildRequires:	esound-devel >= 0.2.29
 BuildRequires:	ORBit2-devel >= 2.4.3

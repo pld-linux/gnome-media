@@ -1,0 +1,11 @@
+diff -Nru gnome-media-2.5.1.orig/gstreamer-properties/pipeline-tests.c gnome-media-2.5.1/gstreamer-properties/pipeline-tests.c
+--- gnome-media-2.5.1.orig/gstreamer-properties/pipeline-tests.c	2003-11-14 09:59:57.000000000 +0100
++++ gnome-media-2.5.1/gstreamer-properties/pipeline-tests.c	2003-12-23 22:09:32.151355776 +0100
+@@ -31,7 +31,6 @@
+ #include <glade/glade.h>
+ #include <gtk/gtk.h>
+ #include <gst/gst.h>
+-#include <gst/gstautoplug.h>
+ #include <gst/gconf/gconf.h>
+ 
+ #include "pipeline-tests.h"

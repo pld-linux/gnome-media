@@ -8,7 +8,7 @@ Group:       X11/Libraries
 Source:      ftp://ftp.gnome.org/pub/GNOME/sources/%{name}-%{version}.tar.gz
 Patch:       gnome-media-pl.po.patch
 URL:         http://www.gnome.org/
-Icon:        foot.gif
+Icon:        %{name}.gif
 Requires:    esound, gtk+ >= 1.1.2, glib >= 1.1.3
 BuildRoot:   /tmp/%{name}-%{version}-root
 Obsoletes:   gnome

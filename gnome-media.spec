@@ -11,28 +11,24 @@ License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.2/%{name}-%{version}.tar.bz2
 Icon:		gnome-media.gif
-Patch0:		%{name}-am.patch
-Patch1:		%{name}-schema.patch
 URL:		http://www.gnome.org/
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool
-BuildRequires:	gettext-devel
-BuildRequires:	gtk+2-devel >= 2.2.0
-BuildRequires:	ncurses-devel >= 5.2
+BuildRequires:	control-center-devel >= 2.2.0
 BuildRequires:	gail-devel >= 1.2.0
-BuildRequires:	gstreamer-GConf-devel >= 0.6.0
+BuildRequires:	gettext-devel
+BuildRequires:	gnome-desktop-devel >= 2.2.0
 BuildRequires:	gstreamer-devel >= 0.6.0
+BuildRequires:	gstreamer-GConf-devel >= 0.6.0
 BuildRequires:	gstreamer-plugins-devel >= 0.6.0
-BuildRequires:	libgnomeui-devel >= 2.2.0.1
-BuildRequires:	glib2-devel >= 2.2.0
-BuildRequires:	esound-devel >= 0.2.29
+BuildRequires:	libtool
+BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	ORBit2-devel >= 2.6.0
-BuildRequires:	scrollkeeper >= 0.3.11
 BuildRequires:	rpm-build >= 4.1-10
+BuildRequires:	scrollkeeper >= 0.3.11
 BuildRequires:	Xft-devel >= 2.1-2
 Prereq:		scrollkeeper
 Requires:	gail >= 1.2.0
@@ -75,19 +71,8 @@ gnome-media static libraries.
 
 %prep
 %setup -q
-%patch0 -p1 -b .wiget
-%patch1 -p1
 
 %build
-intltoolize --copy --force
-%{__libtoolize}
-glib-gettextize --copy --force
-sed 's,-ourdir,ourdir,' xmldocs.make > xmldocs.make.new
-mv xmldocs.make.new xmldocs.make
-%{__aclocal} -I %{_aclocaldir}/gnome2-macros
-%{__autoconf}
-##rm -f missing
-%{__automake} -i
 %configure
 
 %{__make}
@@ -95,9 +80,7 @@ mv xmldocs.make.new xmldocs.make
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	omf_dest_dir=%{_omf_dest_dir}/%{name}
+%{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 %find_lang %{name} --with-gnome --all-name
 

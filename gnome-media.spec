@@ -29,6 +29,7 @@ BuildRequires:	esound-devel >= 0.2.29
 BuildRequires:	ORBit2-devel >= 2.4.3
 BuildRequires:	scrollkeeper >= 0.3.11
 Prereq:		scrollkeeper
+Requires:	gail >= 0.17
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	gnome
 Obsoletes:	grecord

@@ -9,7 +9,7 @@ Version:	2.0.0
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
-Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/gnome-media/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/pre-gnome2/sources/gnome-media/%{name}-%{version}.tar.bz2
 Icon:		gnome-media.gif
 Patch0:		%{name}-am.patch
 URL:		http://www.gnome.org/
@@ -25,9 +25,9 @@ BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	gail-devel >= 0.16
 BuildRequires:	libgnomeui-devel >= 2.0.1
 BuildRequires:	glib2-devel >= 2.0.3
-BuildRequires:	esound-devel >= 0.2.23
-BuildRequires:	ORBit2-devel >= 2.4.0
-BuildRequires:	scrollkeeper >= 0.3.6
+BuildRequires:	esound-devel >= 0.2.28
+BuildRequires:	ORBit2-devel >= 2.4.1
+BuildRequires:	scrollkeeper >= 0.3.11
 Prereq:		scrollkeeper
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	gnome
@@ -74,13 +74,14 @@ gnome-media static libraries.
 %patch0 -p1 -b .wiget
 
 %build
-libtoolize --copy --force
+intltoolize --copy --force
+%{__libtoolize}
 glib-gettextize --copy --force
 sed 's,-ourdir,ourdir,' xmldocs.make > xmldocs.make.new
 mv xmldocs.make.new xmldocs.make
-aclocal 
+%{__aclocal} -I %{_aclocaldir}/gnome2-macros
 %{__autoconf}
-rm -f missing
+##rm -f missing
 %{__automake} -i
 %configure
 

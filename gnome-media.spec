@@ -6,7 +6,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.7.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.7/%{name}-%{version}.tar.bz2
@@ -14,24 +14,24 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.7/%{name}-%{version}.t
 Patch0:		%{name}-locale-names.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.7.1
-BuildRequires:	ORBit2-devel >= 1:2.10.2
+BuildRequires:	GConf2-devel >= 2.7.91
+BuildRequires:	ORBit2-devel >= 1:2.11.2
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 1:2.6.1
+BuildRequires:	control-center-devel >= 1:2.7.0
 BuildRequires:	esound-devel >= 1:0.2.31
-BuildRequires:	gail-devel >= 1.6.0
+BuildRequires:	gail-devel >= 1.7.0
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-vfs2-devel >= 2.7.1
+BuildRequires:	gnome-vfs2-devel >= 2.7.91
 BuildRequires:	gstreamer-GConf-devel >= 0.8.2
 BuildRequires:	gstreamer-devel >= 0.8.3
 BuildRequires:	gstreamer-plugins-devel >= 0.8.2
 BuildRequires:	intltool >= 0.25
 BuildRequires:	libglade2-devel >= 1:2.4.0
-BuildRequires:	libgnomeui-devel >= 2.7.1
+BuildRequires:	libgnomeui-devel >= 2.7.91
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
 BuildRequires:	rpm-build >= 4.1-10
@@ -40,8 +40,8 @@ BuildRequires:	xft-devel >= 2.1.2
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
 Requires(post):	GConf2
-Requires:	gail >= 1.6.0
-Requires:	libgnomeui >= 2.7.1
+Requires:	gail >= 1.7.0
+Requires:	libgnomeui >= 2.7.91
 Requires:	gstreamer-plugins >= 0.8.2
 Obsoletes:	gnome
 Obsoletes:	grecord

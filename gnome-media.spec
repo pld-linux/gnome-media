@@ -4,14 +4,14 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.8.0
-Release:	6
+Version:	2.10.0
+Release:	0.1
 License:	GPL/LGPL
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.8/%{name}-%{version}.tar.bz2
-# Source0-md5:	c200cb577be1adb6bedb8c6528d738a1
-Patch0:		%{name}-help.patch
-Patch1:		%{name}-capplet.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.10/%{name}-%{version}.tar.bz2
+# Source0-md5:	e3b5a422881bfcb7f4082818075e8c88
+#Patch0:		%{name}-help.patch
+#Patch1:		%{name}-capplet.patch
 Patch2:		%{name}-desktop.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
@@ -27,7 +27,7 @@ BuildRequires:	esound-devel >= 1:0.2.31
 BuildRequires:	gail-devel >= 1.8.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.8.0
-BuildRequires:	gnome-vfs2-devel >= 2.8.0
+BuildRequires:	gnome-vfs2-devel >= 2.10.0
 BuildRequires:	gstreamer-GConf-devel >= 0.8.3
 BuildRequires:	gstreamer-devel >= 0.8.5
 BuildRequires:	gstreamer-plugins-devel >= 0.8.3
@@ -190,8 +190,8 @@ Monitor g³o¶no¶ci.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+#%%patch0 -p1
+#%%patch1 -p1
 %patch2 -p1
 sed -i -e 's/888/8880/' cddb-slave2/CDDB-Slave2.schemas.in
 
@@ -214,7 +214,7 @@ rm -rf $RPM_BUILD_ROOT
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
-mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
+#mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.{la,a}
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
@@ -261,7 +261,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gstreamer-properties
 %attr(755,root,root) %{_libdir}/libgnome-media-profiles.so.*.*
 %attr(755,root,root) %{_libdir}/libglade/2.0/*.so
-%{_datadir}/gnome/capplets/gstreamer-properties.desktop
+%{_desktopdir}/gstreamer-properties.desktop
 %dir %{_datadir}/gnome-media
 %dir %{_datadir}/gnome-media/pixmaps
 %{_datadir}/gnome-media/glade
@@ -306,7 +306,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/cddb-track-editor
 %attr(755,root,root) %{_libdir}/libcddb-slave2.so.*.*
 %{_datadir}/idl/GNOME_Media_CDDBSlave2.idl
-%{_datadir}/gnome/capplets/cddb-slave.desktop
+%{_desktopdir}/cddb-slave.desktop
 %{_libdir}/bonobo/servers/GNOME_Media_CDDBSlave2.server
 %dir %{_pixmapsdir}/gnome-cd
 %{_pixmapsdir}/gnome-cd/cd.png

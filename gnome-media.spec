@@ -5,31 +5,31 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.6.0
-Release:	2
+Version:	2.6.1
+Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	51dd73a96cbdb8049fa9e7d2aa0af9b5
+# Source0-md5:	2003e36259c057236afb60dd1293377f
 Patch0:		%{name}-locale-names.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.6.0
+BuildRequires:	GConf2-devel >= 2.6.1
 BuildRequires:	ORBit2-devel >= 1:2.10.0
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 1:2.5.3
+BuildRequires:	control-center-devel >= 1:2.6.0
 BuildRequires:	esound-devel >= 1:0.2.31
 BuildRequires:	gail-devel >= 1.6.0
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.6.0
-BuildRequires:	gnome-vfs2-devel >= 2.6.0
-BuildRequires:	gstreamer-GConf-devel >= 0.8.0
-BuildRequires:	gstreamer-devel >= 0.8.0
-BuildRequires:	gstreamer-plugins-devel >= 0.8.0
+BuildRequires:	gnome-desktop-devel >= 2.6.1
+BuildRequires:	gnome-vfs2-devel >= 2.6.1
+BuildRequires:	gstreamer-GConf-devel >= 0.8.1
+BuildRequires:	gstreamer-devel >= 0.8.1
+BuildRequires:	gstreamer-plugins-devel >= 0.8.1
 BuildRequires:	intltool
 BuildRequires:	libglade2-devel >= 1:2.3.6
 BuildRequires:	libgnomeui-devel >= 2.6.0
@@ -44,7 +44,7 @@ Requires(post,postun):	scrollkeeper
 Requires(post):	GConf2
 Requires:	gail >= 1.6.0
 Requires:	libgnomeui >= 2.6.0
-Requires:	gstreamer-plugins >= 0.8.0-0.2
+Requires:	gstreamer-plugins >= 0.8.1
 Obsoletes:	gnome
 Obsoletes:	grecord
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

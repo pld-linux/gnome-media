@@ -6,7 +6,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
 Version:	2.1.1
-Release:	4
+Release:	5
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
@@ -37,9 +37,6 @@ Requires:	libgnomeui >= 2.1.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	gnome
 Obsoletes:	grecord
-
-%define		_prefix		/usr/X11R6
-%define		_sysconfdir	/etc/X11/GNOME2
 
 %description
 GNOME media programs. GNOME is the GNU Network Object Model

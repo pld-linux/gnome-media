@@ -5,7 +5,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.10.0
-Release:	0.1
+Release:	0.2
 License:	GPL/LGPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.10/%{name}-%{version}.tar.bz2
@@ -22,18 +22,18 @@ BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 1:2.7.1
+BuildRequires:	control-center-devel >= 1:2.10.0-0.2
 BuildRequires:	esound-devel >= 1:0.2.31
 BuildRequires:	gail-devel >= 1.8.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.8.0
-BuildRequires:	gnome-vfs2-devel >= 2.10.0
+BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
 BuildRequires:	gstreamer-GConf-devel >= 0.8.3
 BuildRequires:	gstreamer-devel >= 0.8.5
 BuildRequires:	gstreamer-plugins-devel >= 0.8.3
 BuildRequires:	intltool >= 0.25
 BuildRequires:	libglade2-devel >= 1:2.4.0
-BuildRequires:	libgnomeui-devel >= 2.7.92
+BuildRequires:	libgnomeui-devel >= 2.10.0-2
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
 BuildRequires:	rpm-build >= 4.1-10
@@ -43,7 +43,7 @@ Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
 Requires(post):	GConf2
 Requires:	gail >= 1.8.0
-Requires:	libgnomeui >= 2.7.92
+Requires:	libgnomeui >= 2.10.0-2
 Requires:	gstreamer-plugins >= 0.8.3
 Obsoletes:	gnome
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

@@ -22,6 +22,104 @@ diff -Nru gnome-media-1.2.0/tcd/Makefile.am gnome-media-1.2.0.new/tcd/Makefile.a
  
  GTCD_GENERATED = 			\
  		gtcd.h   		\
+diff -Nru gnome-media-1.2.0/tcd/Makefile.am~ gnome-media-1.2.0.new/tcd/Makefile.am~
+--- gnome-media-1.2.0/tcd/Makefile.am~	Sun Oct 29 16:30:42 2000
++++ gnome-media-1.2.0.new/tcd/Makefile.am~	Thu Jan  1 01:00:00 1970
+@@ -1,94 +0,0 @@
+-Audiodir = $(datadir)/gnome/apps/Multimedia
+-Pixmapdir = $(datadir)/pixmaps
+-
+-EXTRA_DIST = README TODO NEWS gtcd.desktop gtcd.png gtcd.goad gtcd.idl
+-
+-# Should make sure that tcd will work with all flavors of curses.
+-# Make sure it can support curses w/o color and old versions.
+-if HAS_CURSES
+-CURSES_TCD=tcd
+-endif
+-
+-bin_PROGRAMS = gtcd $(CURSES_TCD) corba-gtcd
+-
+-SUBDIRS = icons
+-
+-
+-GTCD_GENERATED = 			\
+-		gtcd.h   		\
+-		gtcd-stubs.c	\
+-		gtcd-skels.c 	\
+-		gtcd-common.c
+-
+-gtcd_SOURCES = 		\
+-	gtcd.c 		\
+-	cddb.c 		\
+-	linux-cdrom.c 	\
+-	gtracked.c 	\
+-	cddb.h 		\
+-	gtracked.h 	\
+-	prefs.c		\
+-	prefs.h		\
+-	led.h		\
+-	led.c		\
+-	led.xpm		\
+-	linux-cdrom.h	\
+-	callbacks.c	\
+-	callbacks.h	\
+-	popup.c		\
+-	keybindings.c	\
+-	keybindings.h	\
+-	gtcd_public.h	\
+-	cddb_status.c	\
+-	cddb_props.c	\
+-	cddb_props.h	\
+-	gtcd-skels.c     \
+-	gtcd-common.c    \
+-	gtcd.h
+-
+-corba_gtcd_SOURCES = \
+-	corba-gtcd.c \
+-	gtcd.h		\
+-	gtcd-stubs.c	\
+-	gtcd-common.c
+-
+-tcd_SOURCES = 		\
+-	tcd.c 		\
+-	cddb.c 		\
+-	linux-cdrom.c 	\
+-	cddb.h 		\
+-	linux-cdrom.h	\
+-	tcd.h		\
+-	tracked.h	\
+-	tracked.c
+-
+-gtcd_LDADD = 	$(GNOME_LIBDIR) \
+-		$(GTCD_GNOME_LIBS) \
+-		$(INTLLIBS)
+-
+-corba_gtcd_LDADD = 	$(GNOME_LIBDIR) \
+-			$(GTCD_GNOME_LIBS) \
+-			$(INTLLIBS)
+-
+-tcd_LDADD = $(GNOME_LIBDIR) -lglib -lm $(CURSES_LIBS) $(INTLLIBS)
+-
+-CLEANFILES = *~
+-
+-INCLUDES = -I$(includedir) $(GTCD_GNOME_CFLAGS) $(CURSES_INCLUDEDIR) \
+-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" $(USE_CD_CHANGER)	\
+-	-DGNOME_ICONDIR=\""$(Pixmapdir)"\"
+-
+-Audio_DATA = gtcd.desktop
+-Pixmap_DATA = gtcd.png
+-
+-idldir = $(datadir)/idl
+-idl_DATA = gtcd.idl
+-
+-goaddir = $(sysconfdir)/CORBA/servers
+-goad_DATA = gtcd.goad
+-
+-BUILT_SOURCES = $(GTCD_GENERATED)
+-
+-$(GTCD_GENERATED): gtcd.idl
+-	orbit-idl $(GNOME_IDLFLAGS) gtcd.idl
+-
 diff -Nru gnome-media-1.2.0/tcd/doc/C/Makefile.am gnome-media-1.2.0.new/tcd/doc/C/Makefile.am
 --- gnome-media-1.2.0/tcd/doc/C/Makefile.am	Thu Jan  1 01:00:00 1970
 +++ gnome-media-1.2.0.new/tcd/doc/C/Makefile.am	Sun Aug  6 00:31:10 2000

@@ -6,12 +6,13 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
 Version:	2.1.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
 Icon:		gnome-media.gif
 Patch0:		%{name}-am.patch
+Patch1:		%{name}-schema.patch
 URL:		http://www.gnome.org/
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
@@ -24,14 +25,14 @@ BuildRequires:	gtk+2-devel >= 2.1.0
 BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	gail-devel >= 0.17
 BuildRequires:	gstreamer-devel >= 0.4.2
-BuildRequires:	libgnomeui-devel >= 2.1.1-3
+BuildRequires:	libgnomeui-devel >= 2.1.2
 BuildRequires:	glib2-devel >= 2.0.6
 BuildRequires:	esound-devel >= 0.2.29
 BuildRequires:	ORBit2-devel >= 2.4.3
 BuildRequires:	scrollkeeper >= 0.3.11
 Prereq:		scrollkeeper
 Requires:	gail >= 1.1.2
-Requires:	libgnomeui >= 2.1.1-3
+Requires:	libgnomeui >= 2.1.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	gnome
 Obsoletes:	grecord
@@ -75,6 +76,7 @@ gnome-media static libraries.
 %prep
 %setup -q
 %patch0 -p1 -b .wiget
+%patch1 -p1
 
 %build
 intltoolize --copy --force
@@ -124,6 +126,7 @@ scrollkeeper-update
 %{_datadir}/applications/*
 %{_datadir}/control-center-2.0/capplets/*
 %{_datadir}/idl/*
+%{_datadir}/gnome-sound-recorder/*
 %{_pixmapsdir}/*
 %{_libdir}/lib*.so.*.*
 %{_omf_dest_dir}/*

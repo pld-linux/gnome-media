@@ -24,7 +24,9 @@ BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	gail-devel >= 1.1.7
+BuildRequires:	gstreamer-GConf-devel >= 0.5.1
 BuildRequires:	gstreamer-devel >= 0.5.1
+BuildRequires:	gstreamer-plugins-devel >= 0.5.1
 BuildRequires:	libgnomeui-devel >= 2.1.2
 BuildRequires:	glib2-devel >= 2.2.0
 BuildRequires:	esound-devel >= 0.2.29

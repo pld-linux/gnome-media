@@ -6,7 +6,7 @@ diff -ur gnome-media-2.8.0.orig/cddb-slave2/cddb-slave.desktop.in gnome-media-2.
  Terminal=false
  Type=Application
 -Categories=GNOME;Application;Settings;AdvancedSettings;
-+Categories=GTK;GNOME;Settings;AdvancedSettings;Capplet;
++Categories=GTK;GNOME;Settings;AdvancedSettings;X-Capplet;
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=gnome-media
  X-GNOME-Bugzilla-Component=CDDBSlave2
@@ -18,7 +18,7 @@ diff -ur gnome-media-2.8.0.orig/gstreamer-properties/gstreamer-properties.deskto
  Terminal=false
  Type=Application
 -Categories=GNOME;Application;Settings;AdvancedSettings;
-+Categories=GTK;GNOME;Settings;AdvancedSettings;Capplet;
++Categories=GTK;GNOME;Settings;AdvancedSettings;X-Capplet;
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=gnome-media
  X-GNOME-Bugzilla-Component=general

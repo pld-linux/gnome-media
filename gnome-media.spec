@@ -12,6 +12,7 @@ Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.8/%{name}-%{version}.tar.bz2
 # Source0-md5:	c200cb577be1adb6bedb8c6528d738a1
 Patch0:		%{name}-help.patch
+Patch1:		%{name}-capplet.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.7.92
@@ -91,6 +92,7 @@ Biblioteki statyczne gnome-media.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 intltoolize --copy --force

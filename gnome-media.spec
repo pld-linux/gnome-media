@@ -5,7 +5,7 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
-Version:	2.1.3
+Version:	2.1.5
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
@@ -21,19 +21,19 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	gettext-devel
-BuildRequires:	gtk+2-devel >= 2.1.3-3
+BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	ncurses-devel >= 5.2
-BuildRequires:	gail-devel >= 1.1.4
-BuildRequires:	gstreamer-devel >= 0.5.0
+BuildRequires:	gail-devel >= 1.1.7
+BuildRequires:	gstreamer-devel >= 0.5.1
 BuildRequires:	libgnomeui-devel >= 2.1.2
-BuildRequires:	glib2-devel >= 2.0.6
+BuildRequires:	glib2-devel >= 2.2.0
 BuildRequires:	esound-devel >= 0.2.29
-BuildRequires:	ORBit2-devel >= 2.5.0
+BuildRequires:	ORBit2-devel >= 2.5.1
 BuildRequires:	scrollkeeper >= 0.3.11
-BuildRequires:	rpm-build >= 4.1-8.2
-BuildRequires:	Xft-devel >= 2.0-6
+BuildRequires:	rpm-build >= 4.1-10
+BuildRequires:	Xft-devel >= 2.1-2
 Prereq:		scrollkeeper
-Requires:	gail >= 1.1.4
+Requires:	gail >= 1.1.7
 Requires:	libgnomeui >= 2.1.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	gnome

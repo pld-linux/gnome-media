@@ -21,7 +21,7 @@ BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 2.5.3
+BuildRequires:	control-center-devel >= 1:2.5.3
 BuildRequires:	esound-devel >= 0.2.31
 BuildRequires:	gail-devel >= 1.5.6
 BuildRequires:	gettext-devel

@@ -1,0 +1,37 @@
+- added using CVS keywords in %changelog (for automating them).
+
+* Mon Jun 07 1999 Jan R瘯orajski <baggins@pld.org.pl>
+  [1.0.1-2]
+- fixed buildprereq
+- added find_lang macro
+
+* Thu Apr  1 1999 Tomasz K這czko <kloczek@rudy.mif.pg.gda.pl>
+  [1.0.1-1]
+- more locales (da, fi, hu, ja, nl, pt, ru_RU).
+
+* Fri Sep 25 1998 Tomasz K這czko <kloczek@rudy.mif.pg.gda.pl>
+  [0.30-1]
+- added in Requires "gtk+ >= 1.1.2, glib >= 1.1.3"
+- added ru_RU locale.
+
+* Fri Sep 18 1998 Tomasz K這czko <kloczek@rudy.mif.pg.gda.pl>
+  [0.27-3]
+- added package Icon,
+- removed COPYING from %doc (copyright statment is in Copyright field),
+- removed gsl from Requires,
+- changed prefix to /usr/X11R6.
+
+* Sun Sep  6 1998 Tomasz K這czko <kloczek@rudy.mif.pg.gda.pl>
+  [0.27-2]
+- added -q %setup parameter,
+- changed Buildroot to /tmp/%%{name}-%%{version}-root,
+- added using %%{name} and %%{version} in Source,
+- added stripping binaries,
+- removed COPYING from %doc (copyright statment ins in Copyright field),
+- added pl translation (Wojtek 奸usarczyk <wojtek@shadow.eu.org>),
+- added full %attr description in %files,
+- added %lang macros for %{_datadir}/locale/*/LC_MESSAGES/gnome-media.mo
+  files.
+
+* Mon Mar 16 1998 Marc Ewing <marc@redhat.com>
+- Integrate into gnome-media CVS source tree

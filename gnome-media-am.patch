@@ -1,0 +1,25 @@
+--- gnome-media-1.520.2/cddb-slave2/Makefile.am.wiget	Fri May 31 02:16:59 2002
++++ gnome-media-1.520.2/cddb-slave2/Makefile.am	Fri May 31 02:23:52 2002
+@@ -30,7 +30,6 @@
+ idl_DATA = $(IDLS)
+ 
+ CDDBSlave2_SOURCES =				\
+-	$(IDL_GENERATED)			\
+ 	cddb-slave.c				\
+ 	cddb-slave.h				\
+ 	cddb-parser.c				\
+@@ -51,11 +50,11 @@
+ 	tcp.h
+ 
+ CDDBSlave2_LDADD =				\
+-	$(CDDBSLAVE_LIBS)				\
+-	$(INTLLIBS)
++	$(CDDBSLAVE_LIBS)			\
++	$(INTLLIBS)				\
++	libcddb-slave2.la
+ 
+ cddb_track_editor_SOURCES = 			\
+-	$(IDL_GENERATED)			\
+ 	cddb-disclosure.c	\
+ 	cddb-disclosure.h			\
+ 	cddb-track-editor.c

@@ -20,8 +20,11 @@ URL:		http://www.gnome.org/
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
-BuildRequires:	gtk+-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
 BuildRequires:	gettext-devel
+BuildRequires:	gtk+-devel
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	gnome-http-devel
 BuildRequires:	gnome-libs-devel
@@ -67,7 +70,7 @@ libtoolize --copy --force
 gettextize --copy --force
 aclocal -I macros
 autoconf
-rm -ff missing
+rm -f missing
 automake -a -c
 %configure
 

@@ -66,7 +66,7 @@ Programy multimedialne GNOME'a.
 %patch6 -p1
 
 %build
-libtoolize --copy --force
+%{__libtoolize}
 gettextize --copy --force
 aclocal -I macros
 %{__autoconf}

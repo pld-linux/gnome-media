@@ -1,5 +1,4 @@
 # TODO:
-# add -devel and -static 
 # separate -lib ?
 # fix alsa issue
 Summary:	GNOME media programs
@@ -7,7 +6,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
 Version:	2.0.0
-Release:	0.5
+Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	ftp://ftp.gnome.org/pub/gnome/pre-gnome2/sources/gnome-media/%{name}-%{version}.tar.bz2
@@ -54,6 +53,22 @@ plus facile, agréable et eficace, et est facile à configurer.
 %description -l pl
 Programy multimedialne GNOME'a.
 
+%package devel
+Summary:	gnome-media devel files
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}
+
+%description devel
+gnome-media devel files.
+
+%package static
+Summary:	gnome-media static libraries
+Group:		X11/Applications/Multimedia
+Requires:	%{name}-devel = %{version}
+
+%description static
+gnome-media static libraries.
+
 %prep
 %setup -q
 %patch0 -p1 -b .wiget
@@ -87,7 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 scrollkeeper-update
-GCONF_CONFIG_SOURCE="" \
+GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" \
 %{_bindir}/gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/*.schemas > /dev/null 
 
 %postun
@@ -107,7 +122,12 @@ scrollkeeper-update
 %{_libdir}/lib*.so.*.*
 %{_omf_dest_dir}/*
 
+%files devel
+%defattr(644,root,root,755)
 %{_includedir}/cddb-slave2
 %{_libdir}/lib*.la
 %{_libdir}/lib*.so
+
+%files static
+%defattr(644,root,root,755)
 %{_libdir}/lib*.a

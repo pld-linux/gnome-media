@@ -1,8 +1,8 @@
 Summary:	GNOME media programs
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
-Version:	1.0.51
-Release:	3
+Version:	1.2.0
+Release:	1
 License:	GPL
 Group:		X11/GNOME
 Group(pl):	X11/GNOME
@@ -44,14 +44,14 @@ Programy multimedialne GNOME'a
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
+# %patch3 -p1
+# %patch4 -p1
+# %patch5 -p1
 %patch6 -p1
 
-aclocal -I macros
-automake --include-deps tcd/Makefile
-autoconf
+# aclocal -I macros
+# automake --include-deps tcd/Makefile
+# autoconf
 
 install %{SOURCE1} %{SOURCE2} tcd
 

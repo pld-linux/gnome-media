@@ -1,0 +1,11 @@
+--- gnome-media-1.2.2/configure.in~	Wed Apr 25 20:55:33 2001
++++ gnome-media-1.2.2/configure.in	Sun Jun  3 19:37:17 2001
+@@ -59,7 +59,7 @@
+ 
+ 
+ ALL_LINGUAS="az ca cs da de el en_GB es et fi fr ga gl hu it ja ko lt nl no pl pt pt_BR ro ru sk sl sv tr uk zh_TW.Big5 zh_CN.GB2312"
+-AM_GNOME_GETTEXT
++AM_GNU_GETTEXT
+ 
+ AC_SUBST(CFLAGS)
+ AC_SUBST(CPPFLAGS)

@@ -15,6 +15,7 @@ Patch2:		%{name}-corba.patch
 Patch3:		%{name}-alsa.patch
 Patch4:		%{name}-use_AM_GNU_GETTEXT.patch
 Patch5:		%{name}-am_fixes.patch
+Patch6:		%{name}-am_conditional.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
 %ifnarch sparc sparc64
@@ -64,6 +65,7 @@ Programy multimedialne GNOME'a.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %build
 libtoolize --copy --force

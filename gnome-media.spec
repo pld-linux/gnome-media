@@ -5,7 +5,7 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
-Version:	2.2.1
+Version:	2.2.1.1
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
@@ -13,7 +13,6 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.2/%{name}-%{version}.t
 Icon:		gnome-media.gif
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-schema.patch
-Patch2:		%{name}-gstreamer-0_6.patch
 URL:		http://www.gnome.org/
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
@@ -78,7 +77,6 @@ gnome-media static libraries.
 %setup -q
 %patch0 -p1 -b .wiget
 %patch1 -p1
-%patch2 -p1
 
 %build
 intltoolize --copy --force

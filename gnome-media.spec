@@ -109,7 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
-rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.la
+rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.{la,a}
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 %find_lang %{name} --with-gnome --all-name
@@ -155,5 +155,4 @@ scrollkeeper-update
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libglade/2.0/lib*.a
 %{_libdir}/lib*.a

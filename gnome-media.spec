@@ -6,7 +6,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.5.2
-Release:	0.2
+Release:	0.3
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.5/%{name}-%{version}.tar.bz2
@@ -25,9 +25,9 @@ BuildRequires:	control-center-devel >= 2.4.0
 BuildRequires:	gail-devel >= 1.4.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-desktop-devel >= 2.3.90
-BuildRequires:	gstreamer-devel >= 0.7.2
-BuildRequires:	gstreamer-GConf-devel >= 0.7.2
-BuildRequires:	gstreamer-plugins-devel >= 0.7.2
+BuildRequires:	gstreamer-devel >= 0.7.4
+BuildRequires:	gstreamer-GConf-devel >= 0.7.4
+BuildRequires:	gstreamer-plugins-devel >= 0.7.4
 BuildRequires:	intltool
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel >= 5.2
@@ -39,7 +39,7 @@ Requires(post,postun):	scrollkeeper
 Requires(post):	GConf2
 Requires:	gail >= 1.4.0
 Requires:	libgnomeui >= 2.4.0
-Requires:	gstreamer-videotest >= 0.6.3
+Requires:	gstreamer-videotest >= 0.7.4
 Obsoletes:	gnome
 Obsoletes:	grecord
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

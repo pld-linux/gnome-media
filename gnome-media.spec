@@ -5,14 +5,13 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.10.0
-Release:	1
+Release:	2
 License:	GPL/LGPL
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.10/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.10/%{name}-%{version}.tar.bz2
 # Source0-md5:	e3b5a422881bfcb7f4082818075e8c88
-#Patch0:		%{name}-help.patch
-#Patch1:		%{name}-capplet.patch
-Patch2:		%{name}-desktop.patch
+Patch0:		%{name}-desktop.patch
+Patch1:		%{name}-capplet.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.7.92
@@ -191,9 +190,8 @@ Monitor g³o¶no¶ci.
 
 %prep
 %setup -q
-#%%patch0 -p1
-#%%patch1 -p1
-%patch2 -p1
+%patch0 -p1
+%patch1 -p1
 sed -i -e 's/888/8880/' cddb-slave2/CDDB-Slave2.schemas.in
 
 %build
@@ -214,8 +212,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
-install -d $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
-#mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.{la,a}
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 

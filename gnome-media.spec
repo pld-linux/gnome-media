@@ -5,16 +5,16 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.5.2
-Release:	0.3
+Version:	2.5.3
+Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.5/%{name}-%{version}.tar.bz2
-# Source0-md5:	8869acb4501be09966484156442f749e
-Patch0:		%{name}-grecord.patch
-Patch1:		%{name}-schemas.patch
+# Source0-md5:	cb9dc255f2d1cb7056d24e0d5d257f2c
+Patch0:		%{name}-locale-names.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
+BuildRequires:	GConf2-devel >= 2.5.0
 BuildRequires:	ORBit2-devel >= 2.9.0
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
@@ -22,14 +22,19 @@ BuildRequires:	alsa-lib-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	control-center-devel >= 2.4.0
-BuildRequires:	gail-devel >= 1.4.0
+BuildRequires:	esound-devel >= 0.2.31
+BuildRequires:	gail-devel >= 1.5.0
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.3.90
-BuildRequires:	gstreamer-devel >= 0.7.4
+BuildRequires:	gnome-desktop-devel >= 2.5.90
+BuildRequires:	gnome-vfs2-devel >= 2.5.6
 BuildRequires:	gstreamer-GConf-devel >= 0.7.4
+BuildRequires:	gstreamer-devel >= 0.7.4
 BuildRequires:	gstreamer-plugins-devel >= 0.7.4
 BuildRequires:	intltool
+BuildRequires:	libglade2-devel >= 2.3.1
+BuildRequires:	libgnomeui-devel >= 2.5.0
 BuildRequires:	libtool
+BuildRequires:	libxml2-devel
 BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	scrollkeeper >= 0.3.11
@@ -37,8 +42,8 @@ BuildRequires:	xft-devel >= 2.1.2
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
 Requires(post):	GConf2
-Requires:	gail >= 1.4.0
-Requires:	libgnomeui >= 2.4.0
+Requires:	gail >= 1.5.0
+Requires:	libgnomeui >= 2.5.0
 Requires:	gstreamer-videotest >= 0.7.4
 Obsoletes:	gnome
 Obsoletes:	grecord
@@ -64,7 +69,7 @@ Programy multimedialne dla GNOME.
 Summary:	gnome-media devel files
 Summary(pl):	Pliki nag³ówkowe gnome-media
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 gnome-media devel files.
@@ -76,7 +81,7 @@ Pliki nag³ówkowe gnome-media.
 Summary:	gnome-media static libraries
 Summary(pl):	Biblioteki statyczne gnome-media
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 gnome-media static libraries.
@@ -87,7 +92,8 @@ Biblioteki statyczne gnome-media.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+
+mv po/{no,nb}.po
 
 %build
 intltoolize --copy --force

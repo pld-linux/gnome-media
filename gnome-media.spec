@@ -5,10 +5,12 @@ Version:	1.0.1
 Release:	1
 Copyright:	LGPL
 Group:		X11/Libraries
+Group(pl):	X11/Biblioteki
 Source:		ftp://ftp.gnome.org/pub/GNOME/sources/%{name}-%{version}.tar.gz
 URL:		http://www.gnome.org/
 Icon:		gnome-media.gif
-Requires:	gtk+ = 1.2.1
+BuildPrereq:	gtk-devel
+BuildPrereq:	glib-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 Obsoletes:	gnome
 
@@ -28,7 +30,7 @@ Programy multimedialne GNOME'a
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure \
+./configure %{_target} \
 	--prefix=/usr/X11R6
 
 make
@@ -40,13 +42,15 @@ make prefix=$RPM_BUILD_ROOT/usr/X11R6 install
 
 strip $RPM_BUILD_ROOT/usr/X11R6/bin/*
 
+gzip -9fn AUTHORS ChangeLog NEWS README
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(644, root, root, 755)
-%doc AUTHORS ChangeLog NEWS README
-%attr(755, root, root) /usr/X11R6/bin/*
+%defattr(644,root,root,755)
+%doc {AUTHORS,ChangeLog,NEWS,README}.gz
+%attr(755,root,root) /usr/X11R6/bin/*
 /usr/X11R6/share/gnome/apps/Multimedia/*
 /usr/X11R6/share/pixmaps/tcd
 

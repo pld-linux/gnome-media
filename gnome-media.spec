@@ -8,11 +8,16 @@ Group:		X11/GNOME
 Group(pl):	X11/GNOME
 Source:		ftp://ftp.gnome.org/pub/GNOME/sources/%{name}-%{version}.tar.gz
 URL:		http://www.gnome.org/
-#Icon:		gnome-media.gif
+Patch0:		gnome-media-applnk.patch
+Icon:		gnome-media.gif
 BuildRequires:	gtk+-devel
 BuildRequires:	glib-devel
+BuildRequires:	gettext-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 Obsoletes:	gnome
+
+%define		_prefix		/usr/X11R6
+%define		_applnkdir	%{_datadir}/applnk
 
 %description
 GNOME media programs.
@@ -26,22 +31,22 @@ Programy multimedialne GNOME'a
 
 %prep
 %setup -q
+%patch -p1
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure %{_target_platform} \
-	--prefix=/usr/X11R6
+gettextize --copy --force
+automake
+LDFLAGS="-s"; export LDFLAGS
+%configure
 
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make prefix=$RPM_BUILD_ROOT/usr/X11R6 install
+make DESTDIR=$RPM_BUILD_ROOT install
 
-strip $RPM_BUILD_ROOT/usr/X11R6/bin/*
-
-gzip -9fn AUTHORS ChangeLog NEWS README
+gzip -9fn AUTHORS ChangeLog NEWS
 
 %find_lang %{name}
 
@@ -50,7 +55,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc {AUTHORS,ChangeLog,NEWS,README}.gz
-%attr(755,root,root) /usr/X11R6/bin/*
-/usr/X11R6/share/gnome/apps/Multimedia/*
-/usr/X11R6/share/pixmaps/tcd
+%doc {AUTHORS,ChangeLog,NEWS}.gz
+%attr(755,root,root) %{_bindir}/*
+%{_applnkdir}/Multimedia/*
+%{_datadir}/gnome/*
+%{_datadir}/pixmaps/*

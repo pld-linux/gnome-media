@@ -116,6 +116,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.la
+
 %find_lang %{name} --with-gnome --all-name
 
 %clean
@@ -139,7 +141,6 @@ scrollkeeper-update
 %attr(755,root,root) %{_libdir}/cddb-track-editor
 %{_libdir}/bonobo/servers/*
 %attr(755,root,root) %{_libdir}/libglade/2.0/*.so
-%{_libdir}/libglade/2.0/*.la
 %{_datadir}/gnome/capplets/*
 %{_datadir}/idl/*
 %{_datadir}/gnome-media
@@ -156,8 +157,6 @@ scrollkeeper-update
 %{_libdir}/lib*.la
 %{_includedir}/cddb-slave2
 %{_includedir}/gnome-media
-%{_libdir}/lib*.la
-%{_libdir}/lib*.so
 %{_pkgconfigdir}/*
 
 %files static

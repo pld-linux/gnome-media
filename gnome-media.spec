@@ -4,47 +4,48 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.10.0
-Release:	4
+Version:	2.10.1
+Release:	1
 License:	GPL/LGPL
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.10/%{name}-%{version}.tar.bz2
-# Source0-md5:	e3b5a422881bfcb7f4082818075e8c88
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.10/%{name}-%{version}.tar.bz2
+# Source0-md5:	3b8fc25c0f391ac869759c8f1ec01316
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-capplet.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.7.92
-BuildRequires:	ORBit2-devel >= 1:2.11.2
+BuildRequires:	GConf2-devel >= 2.10.0
+BuildRequires:	ORBit2-devel >= 1:2.12.1
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 1:2.10.0-0.2
+BuildRequires:	control-center-devel >= 1:2.10.1
 BuildRequires:	esound-devel >= 1:0.2.31
 BuildRequires:	gail-devel >= 1.8.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
-BuildRequires:	gstreamer-GConf-devel >= 0.8.3
-BuildRequires:	gstreamer-devel >= 0.8.5
-BuildRequires:	gstreamer-plugins-devel >= 0.8.3
-BuildRequires:	intltool >= 0.25
-BuildRequires:	libglade2-devel >= 1:2.4.0
+BuildRequires:	gstreamer-GConf-devel >= 0.8.8
+BuildRequires:	gstreamer-devel >= 0.8.9
+BuildRequires:	gstreamer-plugins-devel >= 0.8.8
+BuildRequires:	intltool >= 0.33
+BuildRequires:	libglade2-devel >= 1:2.5.1
 BuildRequires:	libgnomeui-devel >= 2.10.0-2
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
-BuildRequires:	nautilus-cd-burner-devel >= 2.9.0
+BuildRequires:	nautilus-cd-burner-devel >= 2.10.0-2
 BuildRequires:	rpm-build >= 4.1-10
+BuildRequires:	rpmbuild(macros) >= 1.196
 BuildRequires:	scrollkeeper >= 0.3.11
 BuildRequires:	xft-devel >= 2.1.2
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
-Requires(post):	GConf2
+Requires(post,preun):	GConf2
 Requires:	gail >= 1.8.0
 Requires:	libgnomeui >= 2.10.0-2
-Requires:	gstreamer-plugins >= 0.8.3
+Requires:	gstreamer-plugins >= 0.8.8
 Obsoletes:	gnome
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -222,34 +223,72 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-/usr/bin/scrollkeeper-update
-%gconf_schema_install
+/usr/bin/scrollkeeper-update -q
+%gconf_schema_install /etc/gconf/schemas/gnome-audio-profiles.schemas
+
+%preun
+if [ $1 = 0 ]; then
+	%gconf_schema_uninstall /etc/gconf/schemas/gnome-audio-profiles.schemas
+fi
 
 %postun
-/sbin/ldconfig
-/usr/bin/scrollkeeper-update
+if [ $1 = 0 ]; then
+	/sbin/ldconfig
+	/usr/bin/scrollkeeper-update -q
+fi
 
 %post cd
-/usr/bin/scrollkeeper-update
-%gconf_schema_install
+/usr/bin/scrollkeeper-update -q
+%gconf_schema_install /etc/gconf/schemas/gnome-cd.schemas
 
-%postun cd -p /usr/bin/scrollkeeper-update
+%preun cd
+if [ $1 = 0 ]; then
+	%gconf_schema_uninstall /etc/gconf/schemas/gnome-cd.schemas
+fi
+
+%postun cd
+if [ $1 = 0 ]; then
+	/usr/bin/scrollkeeper-update -q
+fi
 
 %post cddb
 /sbin/ldconfig
-%gconf_schema_install
+%gconf_schema_install /etc/gconf/schemas/CDDB-Slave2.schemas
 
-%postun cddb -p /sbin/ldconfig
+%preun cddb
+if [ $1 = 0 ]; then
+	%gconf_schema_uninstall /etc/gconf/schemas/CDDB-Slave2.schemas
+fi
+
+%postun cddb
+if [ $1 = 0 ]; then
+	/sbin/ldconfig
+fi
 
 %post sound-recorder
-/usr/bin/scrollkeeper-update
-%gconf_schema_install
+/usr/bin/scrollkeeper-update -q
+%gconf_schema_install /etc/gconf/schemas/gnome-sound-recorder.schemas
+%banner %{name} -e << EOF
+For full functionality, you need to install gnome-media-volume-control.
+EOF
 
-%postun sound-recorder -p /usr/bin/scrollkeeper-update
+%preun sound-recorder
+if [ $1 = 0 ]; then
+	%gconf_schema_install /etc/gconf/schemas/gnome-sound-recorder.schemas
+fi
 
-%post volume-control -p /usr/bin/scrollkeeper-update
+%postun sound-recorder
+if [ $1 = 0 ]; then
+	/usr/bin/scrollkeeper-update -q
+fi
 
-%postun volume-control -p /usr/bin/scrollkeeper-update
+%post volume-control
+/usr/bin/scrollkeeper-update -q
+
+%postun volume-control
+if [ $1 = 0 ]; then
+	/usr/bin/scrollkeeper-update -q
+fi
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)

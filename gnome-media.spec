@@ -6,13 +6,14 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
 Version:	2.2.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.2/%{name}-%{version}.tar.bz2
 Icon:		gnome-media.gif
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-schema.patch
+Patch2:		%{name}-gstreamer-0_6.patch
 URL:		http://www.gnome.org/
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
@@ -24,9 +25,9 @@ BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	gail-devel >= 1.2.0
-BuildRequires:	gstreamer-GConf-devel >= 0.5.2
-BuildRequires:	gstreamer-devel >= 0.5.2
-BuildRequires:	gstreamer-plugins-devel >= 0.5.2
+BuildRequires:	gstreamer-GConf-devel >= 0.6.0
+BuildRequires:	gstreamer-devel >= 0.6.0
+BuildRequires:	gstreamer-plugins-devel >= 0.6.0
 BuildRequires:	libgnomeui-devel >= 2.2.0.1
 BuildRequires:	glib2-devel >= 2.2.0
 BuildRequires:	esound-devel >= 0.2.29
@@ -77,6 +78,7 @@ gnome-media static libraries.
 %setup -q
 %patch0 -p1 -b .wiget
 %patch1 -p1
+%patch2 -p1
 
 %build
 intltoolize --copy --force

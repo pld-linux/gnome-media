@@ -69,9 +69,9 @@ Programy multimedialne GNOME'a.
 libtoolize --copy --force
 gettextize --copy --force
 aclocal -I macros
-autoconf
+%{__autoconf}
 rm -f missing
-automake -a -c -f
+%{__automake}
 %configure
 
 %{__make}

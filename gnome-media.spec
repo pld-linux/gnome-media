@@ -7,6 +7,7 @@ Release:	2
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/gnome-media/1.2/%{name}-%{version}.tar.bz2
+# Source0-md5:	2728b3cc7d8028d2f7beab3ad4fee027
 Patch0:		%{name}-am_fixes.patch
 Patch1:		%{name}-am_conditional.patch
 Patch2:		%{name}-omf.patch

@@ -5,12 +5,12 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.5.3
+Version:	2.5.4
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.5/%{name}-%{version}.tar.bz2
-# Source0-md5:	cb9dc255f2d1cb7056d24e0d5d257f2c
+# Source0-md5:	f8fd10cc38ff0815229de05b75e31e8c
 Patch0:		%{name}-locale-names.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
@@ -21,18 +21,18 @@ BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 2.4.0
+BuildRequires:	control-center-devel >= 2.5.3
 BuildRequires:	esound-devel >= 0.2.31
-BuildRequires:	gail-devel >= 1.5.0
+BuildRequires:	gail-devel >= 1.5.6
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-desktop-devel >= 2.5.90
-BuildRequires:	gnome-vfs2-devel >= 2.5.6
+BuildRequires:	gnome-vfs2-devel >= 2.5.8
 BuildRequires:	gstreamer-GConf-devel >= 0.7.4
 BuildRequires:	gstreamer-devel >= 0.7.4
 BuildRequires:	gstreamer-plugins-devel >= 0.7.4
 BuildRequires:	intltool
 BuildRequires:	libglade2-devel >= 2.3.1
-BuildRequires:	libgnomeui-devel >= 2.5.0
+BuildRequires:	libgnomeui-devel >= 2.5.90
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
 BuildRequires:	ncurses-devel >= 5.2
@@ -42,8 +42,8 @@ BuildRequires:	xft-devel >= 2.1.2
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
 Requires(post):	GConf2
-Requires:	gail >= 1.5.0
-Requires:	libgnomeui >= 2.5.0
+Requires:	gail >= 1.5.6
+Requires:	libgnomeui >= 2.5.90
 Requires:	gstreamer-videotest >= 0.7.4
 Obsoletes:	gnome
 Obsoletes:	grecord

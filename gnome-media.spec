@@ -1,20 +1,17 @@
+# TODO:
+# separate -lib ?
+# fix alsa issue
 Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
-Version:	1.2.2
-Release:	5
+Version:	2.0.2.5
+Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
-Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/gnome-media/%{name}-%{version}.tar.gz
-Patch0:		%{name}-keepclosed.patch
-Patch1:		%{name}-nogerror.patch
-Patch2:		%{name}-corba.patch
-Patch3:		%{name}-alsa.patch
-Patch4:		%{name}-use_AM_GNU_GETTEXT.patch
-Patch5:		%{name}-am_fixes.patch
-Patch6:		%{name}-am_conditional.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/2.0.1/sources/gnome-media/%{name}-%{version}.tar.bz2
 Icon:		gnome-media.gif
+Patch0:		%{name}-am.patch
 URL:		http://www.gnome.org/
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
@@ -23,20 +20,22 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	gettext-devel
-BuildRequires:	gtk+-devel
-BuildRequires:	ncurses-devel >= 5.0
-BuildRequires:	gnome-http-devel
-BuildRequires:	gnome-libs-devel
-BuildRequires:	ORBit-devel
-BuildRequires:	libghttp-devel
-BuildRequires:	scrollkeeper
+BuildRequires:	gtk+2-devel >= 2.0.6
+BuildRequires:	ncurses-devel >= 5.2
+BuildRequires:	gail-devel >= 0.17
+BuildRequires:	libgnomeui-devel >= 2.0.5
+BuildRequires:	glib2-devel >= 2.0.6
+BuildRequires:	esound-devel >= 0.2.29
+BuildRequires:	ORBit2-devel >= 2.4.3
+BuildRequires:	scrollkeeper >= 0.3.11
 Prereq:		scrollkeeper
+Requires:	gail >= 0.17
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	gnome
 Obsoletes:	grecord
 
 %define		_prefix		/usr/X11R6
-%define		_sysconfdir	/etc/X11/GNOME
+%define		_sysconfdir	/etc/X11/GNOME2
 %define		_omf_dest_dir	%(scrollkeeper-config --omfdir)
 
 %description
@@ -55,23 +54,36 @@ plus facile, agréable et eficace, et est facile à configurer.
 %description -l pl
 Programy multimedialne GNOME'a.
 
+%package devel
+Summary:	gnome-media devel files
+Group:		X11/Applications/Multimedia
+Requires:	%{name} = %{version}
+
+%description devel
+gnome-media devel files.
+
+%package static
+Summary:	gnome-media static libraries
+Group:		X11/Applications/Multimedia
+Requires:	%{name}-devel = %{version}
+
+%description static
+gnome-media static libraries.
+
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
+%patch0 -p1 -b .wiget
 
 %build
-libtoolize --copy --force
-gettextize --copy --force
-aclocal -I macros
+intltoolize --copy --force
+%{__libtoolize}
+glib-gettextize --copy --force
+sed 's,-ourdir,ourdir,' xmldocs.make > xmldocs.make.new
+mv xmldocs.make.new xmldocs.make
+%{__aclocal} -I %{_aclocaldir}/gnome2-macros
 %{__autoconf}
-rm -f missing
-%{__automake}
+##rm -f missing
+%{__automake} -i
 %configure
 
 %{__make}
@@ -81,23 +93,43 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	Audiodir=%{_applnkdir}/Multimedia \
-	Applicationsdir=%{_applnkdir}/Multimedia \
 	omf_dest_dir=%{_omf_dest_dir}/%{name}
 
-gzip -9nf AUTHORS ChangeLog NEWS
 
 %find_lang %{name} --with-gnome --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+/sbin/ldconfig
+scrollkeeper-update
+GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" \
+%{_bindir}/gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/*.schemas > /dev/null 
+
+%postun
+/sbin/ldconfig
+scrollkeeper-update
+
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc *.gz
+%doc AUTHORS ChangeLog NEWS README
+%{_sysconfdir}/gconf/schemas/*
 %attr(755,root,root) %{_bindir}/*
-%{_omf_dest_dir}/%{name}
-%{_applnkdir}/Multimedia/*
-%{_datadir}/gnome/cddb-submit-methods
-%{_datadir}/mime-info/*
+%{_libdir}/bonobo/servers/*
+%{_datadir}/applications/*
+%{_datadir}/control-center-2.0/capplets/*
+%{_datadir}/idl/*
 %{_pixmapsdir}/*
+%{_libdir}/lib*.so.*.*
+%{_omf_dest_dir}/*
+
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/cddb-slave2
+%{_libdir}/lib*.la
+%{_libdir}/lib*.so
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/lib*.a

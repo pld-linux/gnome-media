@@ -61,10 +61,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	Audiodir=%{_applnkdir}/Multimedia
-
-mv -f $RPM_BUILD_ROOT{%{_applnkdir}/Multimedia/*,%{_applnkdir}/Multimedia}
-rm -rf $RPM_BUILD_ROOT%{_applnkdir}
+	Audiodir=%{_applnkdir}/Multimedia \
+	Applicationsdir=%{_applnkdir}/Multimedia
 
 gzip -9nf AUTHORS ChangeLog NEWS
 

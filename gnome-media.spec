@@ -6,7 +6,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.4.1.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
@@ -95,6 +95,9 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
+install -d $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
+mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets/*.desktop
+
 %find_lang %{name} --with-gnome --all-name
 
 %clean
@@ -117,7 +120,7 @@ scrollkeeper-update
 %attr(755,root,root) %{_libdir}/CDDBSlave2
 %attr(755,root,root) %{_libdir}/cddb-track-editor
 %{_libdir}/bonobo/servers/*
-%{_datadir}/control-center-2.0/capplets/*
+%{_datadir}/capplets/*
 %{_datadir}/idl/*
 %{_datadir}/gnome-sound-recorder
 %{_datadir}/%{name}-2.0

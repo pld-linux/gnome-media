@@ -1,0 +1,37 @@
+diff -Nru gnome-media-1.2.0/configure.in gnome-media-1.2.0.new/configure.in
+--- gnome-media-1.2.0/configure.in	Sun Oct 29 16:26:35 2000
++++ gnome-media-1.2.0.new/configure.in	Sun Oct 29 16:27:38 2000
+@@ -79,11 +79,13 @@
+ dnl gmix
+ dnl
+ PROGRAMS_GMIX=""
++ALSA_LIB=""
+ AC_CHECK_HEADERS(soundcard.h linux/soundcard.h sys/soundcard.h)
+ AC_CHECK_HEADERS(machine/soundcard.h sys/asoundlib.h)
+ if test "${ac_cv_header_sys_asoundlib_h}" = "yes"; then
+     PROGRAMS_GMIX=gmix
+     AC_DEFINE(ALSA)
++    ALSA_LIB=-lasound
+ elif test "${ac_cv_header_sys_soundcard_h}" = "yes" || \
+      test "${ac_cv_header_soundcard_h}" = "yes" || \
+      test "${ac_cv_header_linux_soundcard_h}" = "yes" || \
+@@ -91,6 +93,7 @@
+     PROGRAMS_GMIX=gmix
+ fi
+ AC_SUBST(PROGRAMS_GMIX)
++AC_SUBST(ALSA_LIB)
+ 
+ 
+ dnl
+diff -Nru gnome-media-1.2.0/gmix/Makefile.am gnome-media-1.2.0.new/gmix/Makefile.am
+--- gnome-media-1.2.0/gmix/Makefile.am	Sun Oct 29 16:26:35 2000
++++ gnome-media-1.2.0.new/gmix/Makefile.am	Sun Oct 29 16:17:56 2000
+@@ -15,7 +15,7 @@
+ 	gmix.c
+ 
+ gmix_LDADD = \
+-	$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
++	$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) $(ALSA_LIB)
+ 
+ Audio_DATA = gmix.desktop
+ 

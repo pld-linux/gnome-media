@@ -41,7 +41,7 @@ Obsoletes:	grecord
 %define		_prefix		/usr/X11R6
 %define		_sysconfdir	/etc/X11/GNOME2
 %define		_omf_dest_dir	%(scrollkeeper-config --omfdir)
-%define		_serverdir	/usr/lib/bonobo/servers
+%define		_bonobo_server_dir	/usr/lib/bonobo/servers
 
 %description
 GNOME media programs. GNOME is the GNU Network Object Model
@@ -100,7 +100,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	omf_dest_dir=%{_omf_dest_dir}/%{name} \
-	serverdir=%{_serverdir}
+	serverdir=%{_bonobo_server_dir}
 
 
 %find_lang %{name} --with-gnome --all-name
@@ -122,7 +122,7 @@ scrollkeeper-update
 %doc AUTHORS ChangeLog NEWS README
 %{_sysconfdir}/gconf/schemas/*
 %attr(755,root,root) %{_bindir}/*
-%{_serverdir}/*
+%{_bonobo_server_dir}/*
 %attr(755,root,root) %{_libdir}/CDDBSlave2
 %attr(755,root,root) %{_libdir}/cddb-track-editor
 %{_datadir}/applications/*

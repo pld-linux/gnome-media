@@ -9,7 +9,7 @@ Version:	2.0.2.5
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/2.0.1/sources/gnome-media/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.0/%{name}-%{version}.tar.bz2
 Icon:		gnome-media.gif
 Patch0:		%{name}-am.patch
 URL:		http://www.gnome.org/

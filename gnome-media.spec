@@ -13,7 +13,16 @@ URL:		http://www.gnome.org/
 Patch0:		%{name}-sparccd.patch
 Patch1:		%{name}-keepclosed.patch
 Patch2:		%{name}-nogerror.patch
+Patch3:		%{name}-gtcdcorba.patch
+Patch4:		%{name}-mocorba.patch
+Patch5:		%{name}-fixedcorba.patch
+Patch6:		%{name}-docs.patch
+Patch7:		%{name}-alsa.patch
+PAtch8:		%{name}-tcd.patch
 Icon:		gnome-media.gif
+%ifnarch sparc sparc64
+BuildRequires:	alsa-lib-devel
+%endif
 BuildRequires:	gtk+-devel
 BuildRequires:	gettext-devel
 BuildRequires:	ncurses-devel >= 5.0
@@ -48,8 +57,15 @@ Programy multimedialne GNOME'a.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
 
 %build
+autoconf
 automake
 gettextize --copy --force
 %configure
@@ -66,7 +82,7 @@ rm -rf $RPM_BUILD_ROOT
 
 gzip -9nf AUTHORS ChangeLog NEWS
 
-%find_lang %{name}
+%find_lang %{name} --with-gnome --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -76,5 +92,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc {AUTHORS,ChangeLog,NEWS}.gz
 %attr(755,root,root) %{_bindir}/*
 %{_applnkdir}/Multimedia/*
-%{_datadir}/gnome/*
+%{_datadir}/gnome/cddb-submit-methods
 %{_datadir}/pixmaps/*

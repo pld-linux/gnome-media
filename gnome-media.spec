@@ -25,6 +25,7 @@ BuildRequires:	control-center-devel >= 1:2.7.1
 BuildRequires:	esound-devel >= 1:0.2.31
 BuildRequires:	gail-devel >= 1.8.0
 BuildRequires:	gettext-devel
+BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-vfs2-devel >= 2.8.0
 BuildRequires:	gstreamer-GConf-devel >= 0.8.3
 BuildRequires:	gstreamer-devel >= 0.8.5
@@ -95,7 +96,7 @@ Biblioteki statyczne gnome-media.
 intltoolize --copy --force
 %{__libtoolize}
 glib-gettextize --copy --force
-%{__aclocal} -I m4 -I %{_aclocaldir}/gnome2-macros
+%{__aclocal} -I m4
 %{__autoheader}
 %{__autoconf}
 %{__automake}

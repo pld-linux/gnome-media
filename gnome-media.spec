@@ -5,7 +5,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.10.0
-Release:	3
+Release:	4
 License:	GPL/LGPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.10/%{name}-%{version}.tar.bz2
@@ -270,6 +270,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_gnomehelpdir}/gstreamer-properties/C
 
 %files cd
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gnome-cd
 %{_desktopdir}/gnome-cd.desktop
 %{_omf_dest_dir}/%{name}/gnome-cd-C.omf

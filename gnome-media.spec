@@ -14,9 +14,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.4/%{name}-%{version}.t
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 2.8.0
-%ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
-%endif
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	control-center-devel >= 2.4.0
@@ -115,8 +113,8 @@ scrollkeeper-update
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%{_sysconfdir}/gconf/schemas/*
 %attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_libdir}/CDDBSlave2
 %attr(755,root,root) %{_libdir}/cddb-track-editor
 %{_libdir}/bonobo/servers/*
@@ -126,14 +124,14 @@ scrollkeeper-update
 %{_datadir}/%{name}-2.0
 %{_desktopdir}/*
 %{_pixmapsdir}/*
-%{_libdir}/lib*.so.*.*
 %{_omf_dest_dir}/*
+%{_sysconfdir}/gconf/schemas/*
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/cddb-slave2
+%attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
-%{_libdir}/lib*.so
+%{_includedir}/cddb-slave2
 
 %files static
 %defattr(644,root,root,755)

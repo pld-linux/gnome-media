@@ -6,6 +6,7 @@ Release:     1
 Copyright:   LGPL
 Group:       X11/Libraries
 Source:      ftp://ftp.gnome.org/pub/GNOME/sources/%{name}-%{version}.tar.gz
+Patch:       gnome-media-pl.po.patch
 URL:         http://www.gnome.org/
 Icon:        foot.gif
 Requires:    esound, gtk+ >= 1.1.2, glib >= 1.1.3
@@ -24,6 +25,7 @@ Programy multimedialne GNOME'a
 
 %prep
 %setup -q
+%patch -p1
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=/usr/X11R6
@@ -54,6 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ko) /usr/X11R6/share/locale/ko/LC_MESSAGES/gnome-media.mo
 %lang(no) /usr/X11R6/share/locale/no/LC_MESSAGES/gnome-media.mo
 %lang(pt) /usr/X11R6/share/locale/pt/LC_MESSAGES/gnome-media.mo
+%lang(pl) /usr/X11R6/share/locale/pl/LC_MESSAGES/gnome-media.mo
 %lang(ru) /usr/X11R6/share/locale/ru*/LC_MESSAGES/gnome-media.mo
 
 %changelog

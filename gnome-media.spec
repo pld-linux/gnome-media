@@ -3,7 +3,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
 Version:	1.2.2
-Release:	4
+Release:	5
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/gnome-media/%{name}-%{version}.tar.gz
@@ -83,7 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	Audiodir=%{_applnkdir}/Multimedia \
 	Applicationsdir=%{_applnkdir}/Multimedia \
-	omf_dest_dir=%{_omf_dest_dir}/omf/%{name}
+	omf_dest_dir=%{_omf_dest_dir}/%{name}
 
 gzip -9nf AUTHORS ChangeLog NEWS
 
@@ -96,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.gz
 %attr(755,root,root) %{_bindir}/*
-%{_omf_dest_dir}/omf/%{name}
+%{_omf_dest_dir}/%{name}
 %{_applnkdir}/Multimedia/*
 %{_datadir}/gnome/cddb-submit-methods
 %{_datadir}/mime-info/*

@@ -5,15 +5,16 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.4.1.1
-Release:	1
+Version:	2.5.0
+Release:	0.1
 License:	GPL
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	dce73f3f0e5bddfd5a2bd412900e5abe
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.5/%{name}-%{version}.tar.bz2
+# Source0-md5:	b5af2b3ceb5a3b328d13d56c324530b0
+Patch0:		%{name}-gst0.7.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel >= 2.8.0
+BuildRequires:	ORBit2-devel >= 2.9.0
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
@@ -23,9 +24,9 @@ BuildRequires:	control-center-devel >= 2.4.0
 BuildRequires:	gail-devel >= 1.4.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-desktop-devel >= 2.3.90
-BuildRequires:	gstreamer-devel >= 0.6.3
-BuildRequires:	gstreamer-GConf-devel >= 0.6.3
-BuildRequires:	gstreamer-plugins-devel >= 0.6.3
+BuildRequires:	gstreamer-devel >= 0.7.1
+BuildRequires:	gstreamer-GConf-devel >= 0.7.1
+BuildRequires:	gstreamer-plugins-devel >= 0.7.1
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	rpm-build >= 4.1-10
@@ -83,9 +84,13 @@ Biblioteki statyczne gnome-media.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-%configure
+%{__autoconf}
+# alsa is broken (not ported to new alsa 0.9.x?)
+%configure \
+	--disable-alsa
 %{__make}
 
 %install

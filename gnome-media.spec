@@ -71,7 +71,7 @@ gettextize --copy --force
 aclocal -I macros
 autoconf
 rm -f missing
-automake -a -c
+automake -a -c -f
 %configure
 
 %{__make}

@@ -2,18 +2,13 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
-Version:	1.2.2
-Release:	6
+Version:	1.2.3
+Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
-Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/gnome-media/%{name}-%{version}.tar.gz
-Patch0:		%{name}-keepclosed.patch
-Patch1:		%{name}-nogerror.patch
-Patch2:		%{name}-corba.patch
-Patch3:		%{name}-alsa.patch
-Patch4:		%{name}-use_AM_GNU_GETTEXT.patch
-Patch5:		%{name}-am_fixes.patch
-Patch6:		%{name}-am_conditional.patch
+Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/gnome-media/1.2/%{name}-%{version}.tar.bz2
+Patch0:		%{name}-am_fixes.patch
+Patch1:		%{name}-am_conditional.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
 %ifnarch sparc sparc64
@@ -59,18 +54,14 @@ Programy multimedialne GNOME'a.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
 
 %build
+rm -f missing
+xml-i18n-toolize --copy --force
 %{__libtoolize}
 %{__gettextize}
-aclocal -I macros
+%{__aclocal} -I macros
 %{__autoconf}
-rm -f missing
 %{__automake}
 %configure
 
@@ -93,9 +84,11 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS
+%{_sysconfdir}/CORBA/servers/gtcd.goad
 %attr(755,root,root) %{_bindir}/*
 %{_omf_dest_dir}/%{name}
 %{_applnkdir}/Multimedia/*
 %{_datadir}/gnome/cddb-submit-methods
 %{_datadir}/mime-info/*
+%{_datadir}/idl/gtcd.idl
 %{_pixmapsdir}/*

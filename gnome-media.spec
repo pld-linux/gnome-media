@@ -60,8 +60,8 @@ Programy multimedialne GNOME'a.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-mv -f po/zh_CN.GB2312.po po/zh_CN
-mv -f po/zh_TW.Big5.po po/zh_TW
+mv -f po/zh_CN.GB2312.po po/zh_CN.po
+mv -f po/zh_TW.Big5.po po/zh_TW.po
 %patch4 -p1
 
 %build

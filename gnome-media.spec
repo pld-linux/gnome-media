@@ -13,6 +13,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.8/%{name}-%{version}.t
 # Source0-md5:	c200cb577be1adb6bedb8c6528d738a1
 Patch0:		%{name}-help.patch
 Patch1:		%{name}-capplet.patch
+Patch2:		%{name}-desktop.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.7.92
@@ -93,6 +94,7 @@ Biblioteki statyczne gnome-media.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 sed -i -e 's/888/8880/' cddb-slave2/CDDB-Slave2.schemas.in
 
 %build

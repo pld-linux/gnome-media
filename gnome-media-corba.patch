@@ -1,0 +1,312 @@
+diff -Nru gnome-media-1.2.2/configure.in gnome-media-1.2.2.new/configure.in
+--- gnome-media-1.2.2/configure.in	Wed Apr 25 20:55:33 2001
++++ gnome-media-1.2.2.new/configure.in	Sun Jun  3 19:48:52 2001
+@@ -9,6 +9,15 @@
+ GNOME_INIT
+ GNOME_COMPILE_WARNINGS
+ 
++GNOME_DATADIR=`gnome-config --datadir`
++AC_SUBST(GNOME_DATADIR)
++
++GTCD_GNOME_LIBS=`gnome-config --libs gnomeui gnorba`
++AC_SUBST(GTCD_GNOME_LIBS)
++
++GTCD_GNOME_CFLAGS=`gnome-config --cflags gnomeui gnorba`
++AC_SUBST(GTCD_GNOME_CFLAGS)
++
+ AC_PROG_CC
+ AC_ISC_POSIX
+ 
+@@ -138,6 +147,10 @@
+ 
+ AC_SUBST(USE_CD_CHANGER)
+ AC_SUBST(PROGRAMS_TCD)
++
++dnl CORBA
++
++
+ 
+ dnl
+ dnl grecord
+diff -Nru gnome-media-1.2.2/tcd/Makefile.am gnome-media-1.2.2.new/tcd/Makefile.am
+--- gnome-media-1.2.2/tcd/Makefile.am	Sun Aug  6 00:31:09 2000
++++ gnome-media-1.2.2.new/tcd/Makefile.am	Sun Jun  3 19:48:52 2001
+@@ -1,7 +1,7 @@
+ Audiodir = $(datadir)/gnome/apps/Multimedia
+ Pixmapdir = $(datadir)/pixmaps
+ 
+-EXTRA_DIST = README TODO NEWS gtcd.desktop gtcd.png
++EXTRA_DIST = README TODO NEWS gtcd.desktop gtcd.png gtcd.goad gtcd.idl
+ 
+ # Should make sure that tcd will work with all flavors of curses.
+ # Make sure it can support curses w/o color and old versions.
+@@ -13,6 +13,12 @@
+ 
+ SUBDIRS = icons doc
+ 
++GTCD_GENERATED = 		\
++		gtcd.h   	\
++		gtcd-stubs.c	\
++		gtcd-skels.c 	\
++		gtcd-common.c
++ 
+ gtcd_SOURCES = 		\
+ 	gtcd.c 		\
+ 	cddb.c 		\
+@@ -34,7 +40,11 @@
+ 	gtcd_public.h	\
+ 	cddb_status.c	\
+ 	cddb_props.c	\
+-	cddb_props.h
++	cddb_props.h	\
++	gtcd-skels.c     \
++	gtcd-stubs.c	\
++	gtcd-common.c    \
++	gtcd.h
+ 
+ tcd_SOURCES = 		\
+ 	tcd.c 		\
+@@ -46,17 +56,28 @@
+ 	tracked.h	\
+ 	tracked.c
+ 
+-gtcd_LDADD = 	$(GNOME_LIBDIR) \
+-		$(GNOMEUI_LIBS) \
++gtcd_LDADD = 	$(GNOME_LIBDIR)    \
++		$(GTCD_GNOME_LIBS) \
+ 		$(INTLLIBS)
+ 
+ tcd_LDADD = $(GNOME_LIBDIR) -lglib -lm $(CURSES_LIBS) $(INTLLIBS)
+ 
+ CLEANFILES = *~
+ 
+-INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) $(CURSES_INCLUDEDIR) \
++INCLUDES = -I$(includedir) $(GTCD_GNOME_CFLAGS) $(CURSES_INCLUDEDIR)   \
+ 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" $(USE_CD_CHANGER)	\
+ 	-DGNOME_ICONDIR=\""$(Pixmapdir)"\"
+ 
+ Audio_DATA = gtcd.desktop
+ Pixmap_DATA = gtcd.png
++
++idldir = $(datadir)/idl
++idl_DATA = gtcd.idl
++ 
++goaddir = $(sysconfdir)/CORBA/servers
++goad_DATA = gtcd.goad
++
++BUILT_SOURCES = $(GTCD_GENERATED)
++
++$(GTCD_GENERATED): gtcd.idl
++	orbit-idl $(GNOME_IDLFLAGS) gtcd.idl
+diff -Nru gnome-media-1.2.2/tcd/callbacks.c gnome-media-1.2.2.new/tcd/callbacks.c
+--- gnome-media-1.2.2/tcd/callbacks.c	Wed Apr 25 21:11:35 2001
++++ gnome-media-1.2.2.new/tcd/callbacks.c	Sun Jun  3 19:48:52 2001
+@@ -2,6 +2,7 @@
+ 
+ #include <config.h>
+ #include <gnome.h>
++#include <libgnorba/gnorba.h>
+ #include <sys/types.h>
+ 
+ #include "linux-cdrom.h"
+@@ -117,7 +118,13 @@
+ 	gdk_gc_destroy(gc);
+ 	exit_action();
+ 	tcd_close_disc(&cd);
+-	
++	{
++		CORBA_Environment ev;
++		CORBA_exception_init(&ev);
++		goad_server_unregister(NULL, "GOAD:gtcd:19990918",
++			       	       "object", &ev);
++		CORBA_exception_free(&ev);
++	}
+ 	gtk_main_quit();
+ }
+ 
+diff -Nru gnome-media-1.2.2/tcd/gtcd.c gnome-media-1.2.2.new/tcd/gtcd.c
+--- gnome-media-1.2.2/tcd/gtcd.c	Fri Dec 29 03:46:54 2000
++++ gnome-media-1.2.2.new/tcd/gtcd.c	Sun Jun  3 19:48:52 2001
+@@ -42,6 +42,8 @@
+ #include <gnome.h>
+ #include <gdk/gdkkeysyms.h>
+ 
++#include <libgnorba/gnorba.h>
++
+ #include "linux-cdrom.h"
+ 
+ #include "gtracked.h"
+@@ -50,6 +52,7 @@
+ #include "callbacks.h"
+ #include "gtcd_public.h"
+ #include "keybindings.h"
++#include "gtcd.h"
+ 
+ /* time display types */
+ enum { TIME_FIRST=-1, TRACK_E, TRACK_R, DISC_E, DISC_R, TIME_LAST };
+@@ -1012,13 +1015,95 @@
+ 	default:
+ 		break;
+ 	}
+-}	
++}
+ 
+ void setup_keys()
+ {
+-	accel = gtk_accel_group_get_default();
++        accel = gtk_accel_group_get_default();
+ }    
+ 
++/*
++ * CORBA glue
++ */
++
++/*** App-specific servant structures ***/
++typedef struct {
++   POA_GNOME_GTcd servant;
++   PortableServer_POA poa;
++
++} impl_POA_GNOME_GTcd;
++
++/*** Implementation stub prototypes ***/
++static void impl_GNOME_GTcd__destroy(impl_POA_GNOME_GTcd * servant,
++				     CORBA_Environment * ev);
++static void
++impl_GNOME_GTcd_open_new_cd(impl_POA_GNOME_GTcd * servant,
++                            CORBA_Environment * ev);
++
++/*** epv structures ***/
++static PortableServer_ServantBase__epv impl_GNOME_GTcd_base_epv =
++{
++   NULL,			/* _private data */
++   NULL,			/* finalize routine */
++   NULL,			/* default_POA routine */
++};
++static POA_GNOME_GTcd__epv impl_GNOME_GTcd_epv =
++{
++   NULL,			/* _private */
++   (gpointer) & impl_GNOME_GTcd_open_new_cd,
++
++};
++
++/*** vepv structures ***/
++static POA_GNOME_GTcd__vepv impl_GNOME_GTcd_vepv =
++{
++   &impl_GNOME_GTcd_base_epv,
++   &impl_GNOME_GTcd_epv,
++};
++
++/*** Stub implementations ***/
++static GNOME_GTcd 
++impl_GNOME_GTcd__create(PortableServer_POA poa, CORBA_Environment * ev)
++{
++   GNOME_GTcd retval;
++   impl_POA_GNOME_GTcd *newservant;
++   PortableServer_ObjectId *objid;
++
++   newservant = g_new0(impl_POA_GNOME_GTcd, 1);
++   newservant->servant.vepv = &impl_GNOME_GTcd_vepv;
++   newservant->poa = poa;
++   POA_GNOME_GTcd__init((PortableServer_Servant) newservant, ev);
++   objid = PortableServer_POA_activate_object(poa, newservant, ev);
++   CORBA_free(objid);
++   retval = PortableServer_POA_servant_to_reference(poa, newservant, ev);
++
++   return retval;
++}
++
++static void
++impl_GNOME_GTcd__destroy(impl_POA_GNOME_GTcd * servant, CORBA_Environment * ev)
++{
++   PortableServer_ObjectId *objid;
++
++   objid = PortableServer_POA_servant_to_id(servant->poa, servant, ev);
++   PortableServer_POA_deactivate_object(servant->poa, objid, ev);
++   CORBA_free(objid);
++
++   POA_GNOME_GTcd__fini((PortableServer_Servant) servant, ev);
++   g_free(servant);
++}
++
++static void
++impl_GNOME_GTcd_open_new_cd(impl_POA_GNOME_GTcd * servant,
++			    CORBA_Environment * ev)
++{
++	tcd_playtracks(&cd, cd.first_t, cd.last_t, prefs->only_use_trkind);
++}
++
++/*
++ * Main
++ */
++
+ static char *CD_device = NULL;
+ poptContext ctx;
+ 
+@@ -1036,11 +1121,32 @@
+ {
+ 	GtkWidget *table;
+ 	GdkColor black;
+-
++        CORBA_ORB orb;
++        CORBA_Environment ev;
++        PortableServer_POA poa;
++        GNOME_GTcd gtcd_server;
++        
+ 	bindtextdomain(PACKAGE, GNOMELOCALEDIR);
+ 	textdomain(PACKAGE);
+ 
+-	gnome_init_with_popt_table("gtcd", VERSION, argc, argv, gtcd_popt_options, 0, &ctx);
++        CORBA_exception_init(&ev);
++	orb = gnome_CORBA_init_with_popt_table("gtcd", VERSION, &argc, argv, gtcd_popt_options, 0, &ctx, GNORBA_INIT_SERVER_FUNC, &ev);
++
++        /* Check for existing instance */
++        gtcd_server = goad_server_activate_with_id (NULL,
++                                                    "GOAD:gtcd:19990918",
++                                                    GOAD_ACTIVATE_EXISTING_ONLY,                                                    NULL);
++        
++        
++        if (gtcd_server != CORBA_OBJECT_NIL) {
++                GNOME_GTcd_open_new_cd(gtcd_server, &ev);
++                exit(0);
++        }
++        
++        poa = (PortableServer_POA)CORBA_ORB_resolve_initial_references(orb, "RootPOA", &ev);
++        goad_server_register(CORBA_OBJECT_NIL,
++                             impl_GNOME_GTcd__create(poa, &ev),
++                             "GOAD:gtcd:19990918", "object", &ev);
+ 
+ 	cd.play_method = NORMAL;
+ 
+@@ -1087,6 +1193,12 @@
+     
+ 	signal(SIGUSR2, reload_info);
+     
++ 
++         PortableServer_POAManager_activate(PortableServer_POA__get_the_POAManager(poa, &ev), &ev);
++         
+ 	gtk_main();
+ 	return 0;
+ }
++
++
++
+diff -Nru gnome-media-1.2.2/tcd/gtcd.goad gnome-media-1.2.2.new/tcd/gtcd.goad
+--- gnome-media-1.2.2/tcd/gtcd.goad	Thu Jan  1 01:00:00 1970
++++ gnome-media-1.2.2.new/tcd/gtcd.goad	Tue Sep 21 00:00:00 1999
+@@ -0,0 +1,5 @@
++[GOAD:gtcd:19990918]
++type=exe
++repo_id=IDL:GNOME/GTcd:1.0
++description=GTcd CD player
++location_info=gtcd
+\ No newline at end of file
+diff -Nru gnome-media-1.2.2/tcd/gtcd.idl gnome-media-1.2.2.new/tcd/gtcd.idl
+--- gnome-media-1.2.2/tcd/gtcd.idl	Thu Jan  1 01:00:00 1970
++++ gnome-media-1.2.2.new/tcd/gtcd.idl	Tue Sep 21 00:00:00 1999
+@@ -0,0 +1,6 @@
++module GNOME {
++  interface GTcd {
++    // New CD in the drive, behave appropriately.
++    void open_new_cd();
++  };
++};

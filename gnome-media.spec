@@ -5,7 +5,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.10.0
-Release:	2
+Release:	3
 License:	GPL/LGPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.10/%{name}-%{version}.tar.bz2
@@ -298,6 +298,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(zh_TW) %{_gnomehelpdir}/gnome-cd/zh_TW
 
 %files cddb
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/cddb-slave2-properties
 %attr(755,root,root) %{_libdir}/CDDBSlave2
 %attr(755,root,root) %{_libdir}/cddb-track-editor
@@ -328,6 +329,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/*
 
 %files sound-recorder
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gnome-sound-recorder
 %{_datadir}/gnome-sound-recorder
 %{_desktopdir}/gnome-sound-recorder.desktop
@@ -362,6 +364,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgnome-media-profiles.a
 
 %files volume-control
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gnome-volume-control
 %{_datadir}/gnome-media/pixmaps/*
 %{_desktopdir}/gnome-volume-control.desktop
@@ -372,6 +375,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_gnomehelpdir}/gnome-volume-control/C
 
 %files vumeter
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/vumeter
 %{_desktopdir}/reclevel.desktop
 %{_desktopdir}/vumeter.desktop

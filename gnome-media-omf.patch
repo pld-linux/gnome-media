@@ -1,0 +1,90 @@
+diff -ur gnome-media-1.2.3.orig/gmix/doc/C/gmix-C.omf gnome-media-1.2.3/gmix/doc/C/gmix-C.omf
+--- gnome-media-1.2.3.orig/gmix/doc/C/gmix-C.omf	Mon Jun 11 19:50:46 2001
++++ gnome-media-1.2.3/gmix/doc/C/gmix-C.omf	Fri Oct  4 20:42:17 2002
+@@ -1,14 +1,22 @@
+-<?xml version="1.0" standalone="no"?>
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE omf PUBLIC "-//OMF//DTD Scrollkeeper OMF Variant V1.0//EN" "http://scrollkeeper.sourceforge.net/dtds/scrollkeeper-omf-1.0/scrollkeeper-omf.dtd">
+ <omf>
+   <resource>
++    <creator/>
+     <title>
+       GMix Manual
+     </title>
+-    <subject>
+-      <category>GNOME|Multimedia</category>
+-    </subject>
++    <date>
++      2002-10-04
++    </date>
++    <version identifier="1.2.3" date="2002-10-04"/>
++    <subject category="GNOME|Multimedia"/>
++    <description/>
++    <type/>
+     <format mime="text/sgml"/>
+     <identifier url="gmix.sgml"/>
+     <language code="C"/>
++    <relation seriesid="01a2bd98-d7c9-11d6-9c95-c3fe555b946a"/>
++    <rights type="GNU GPL" license.version="2" license="http://www.gnu.org/licenses/gpl.html"/>
+   </resource>
+ </omf>
+diff -ur gnome-media-1.2.3.orig/gmix/doc/it/gmix-it.omf gnome-media-1.2.3/gmix/doc/it/gmix-it.omf
+--- gnome-media-1.2.3.orig/gmix/doc/it/gmix-it.omf	Mon Jun 11 19:50:46 2001
++++ gnome-media-1.2.3/gmix/doc/it/gmix-it.omf	Fri Oct  4 20:42:17 2002
+@@ -1,14 +1,22 @@
+-<?xml version="1.0" standalone="no"?>
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE omf PUBLIC "-//OMF//DTD Scrollkeeper OMF Variant V1.0//EN" "http://scrollkeeper.sourceforge.net/dtds/scrollkeeper-omf-1.0/scrollkeeper-omf.dtd">
+ <omf>
+   <resource>
++    <creator/>
+     <title>
+       GMix Manual
+     </title>
+-    <subject>
+-      <category>GNOME|Multimedia</category>
+-    </subject>
++    <date>
++      2002-10-04
++    </date>
++    <version identifier="1.2.3" date="2002-10-04"/>
++    <subject category="GNOME|Multimedia"/>
++    <description/>
++    <type/>
+     <format mime="text/sgml"/>
+     <identifier url="gmix.sgml"/>
+     <language code="it"/>
++    <relation seriesid="01a2bd98-d7c9-11d6-9c95-c3fe555b946a"/>
++    <rights type="GNU GPL" license.version="2" license="http://www.gnu.org/licenses/gpl.html"/>
+   </resource>
+ </omf>
+diff -ur gnome-media-1.2.3.orig/tcd/doc/C/gtcd-C.omf gnome-media-1.2.3/tcd/doc/C/gtcd-C.omf
+--- gnome-media-1.2.3.orig/tcd/doc/C/gtcd-C.omf	Mon Jun 11 19:50:55 2001
++++ gnome-media-1.2.3/tcd/doc/C/gtcd-C.omf	Fri Oct  4 20:42:27 2002
+@@ -1,14 +1,22 @@
+-<?xml version="1.0" standalone="no"?>
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE omf PUBLIC "-//OMF//DTD Scrollkeeper OMF Variant V1.0//EN" "http://scrollkeeper.sourceforge.net/dtds/scrollkeeper-omf-1.0/scrollkeeper-omf.dtd">
+ <omf>
+   <resource>
++    <creator/>
+     <title>
+       GTCD Manual
+     </title>
+-    <subject>
+-      <category>GNOME|Multimedia</category>
+-    </subject>
++    <date>
++      2002-10-04
++    </date>
++    <version identifier="1.2.3" date="2002-10-04"/>
++    <subject category="GNOME|Multimedia"/>
++    <description/>
++    <type/>
+     <format mime="text/sgml"/>
+     <identifier url="gtcd.sgml"/>
+     <language code="C"/>
++    <relation seriesid="07f95a9e-d7c9-11d6-81fc-9914757e7460"/>
++    <rights type="GNU GPL" license.version="2" license="http://www.gnu.org/licenses/gpl.html"/>
+   </resource>
+ </omf>

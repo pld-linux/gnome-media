@@ -3,7 +3,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
 Version:	1.2.0
-Release:	4
+Release:	5
 License:	GPL
 Group:		X11/GNOME
 Group(pl):	X11/GNOME
@@ -62,6 +62,9 @@ rm -rf $RPM_BUILD_ROOT
 make install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	Audiodir=%{_applnkdir}/Multimedia
+
+mv $RPM_BUILD_ROOT{%{_datadir}/gnome/apps/Multimedia/*,%{_applnkdir}/Multimedia}
+rm -rf $RPM_BUILD_ROOT%{_datadir}/gnome/apps
 
 gzip -9nf AUTHORS ChangeLog NEWS
 

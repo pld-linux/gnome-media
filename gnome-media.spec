@@ -95,7 +95,7 @@ rm -rf $RPM_BUILD_ROOT
 - removed COPYING from %doc (copyright statment ins in Copyright field),
 - added pl translation (Wojtek ¦lusarczyk <wojtek@shadow.eu.org>),
 - added full %attr description in %files,
-- added %lang macros for /usr/share/locale/*/LC_MESSAGES/gnome-media.mo
+- added %lang macros for %{_datadir}/locale/*/LC_MESSAGES/gnome-media.mo
   files.
 
 * Mon Mar 16 1998 Marc Ewing <marc@redhat.com>

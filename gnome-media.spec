@@ -3,7 +3,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
 Version:	1.2.0
-Release:	3
+Release:	4
 License:	GPL
 Group:		X11/GNOME
 Group(pl):	X11/GNOME
@@ -21,6 +21,7 @@ BuildRequires:	ORBit-devel
 BuildRequires:	libghttp-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	gnome
+Obsoletes:	grecord
 
 %define		_prefix		/usr/X11R6
 %define		_sysconfdir	/etc/X11/GNOME

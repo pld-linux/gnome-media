@@ -6,7 +6,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.6.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.6/%{name}-%{version}.tar.bz2
@@ -115,7 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
-
+mv $RPM_BUILD_ROOT%{_desktopdir}/gstreamer-properties.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.la
 
 %find_lang %{name} --with-gnome --all-name

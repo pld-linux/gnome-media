@@ -5,12 +5,12 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.3.90
+Version:	2.4.0
 Release:	1.1
 License:	GPL
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	4b3481729aa1072fb3f9ca98e59c9bf6
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
+# Source0-md5:	aa5d6a04049ea7552086a6bea47bf375
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
 BuildRequires:	ORBit2-devel >= 2.8.0
@@ -19,10 +19,10 @@ BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 2.3.5
-BuildRequires:	gail-devel >= 1.3.6
+BuildRequires:	control-center-devel >= 2.4.0
+BuildRequires:	gail-devel >= 1.4.0
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.3.7
+BuildRequires:	gnome-desktop-devel >= 2.3.90
 BuildRequires:	gstreamer-devel >= 0.6.3
 BuildRequires:	gstreamer-GConf-devel >= 0.6.3
 BuildRequires:	gstreamer-plugins-devel >= 0.6.3
@@ -34,9 +34,9 @@ BuildRequires:	xft-devel >= 2.1.2
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
 Requires(post):	GConf2
-Requires:	gail >= 1.3.6
-Requires:	libgnomeui >= 2.3.7
-Requires:	gstreamer-videotest
+Requires:	gail >= 1.4.0
+Requires:	libgnomeui >= 2.4.0
+Requires:	gstreamer-videotest >= 0.6.3
 Obsoletes:	gnome
 Obsoletes:	grecord
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

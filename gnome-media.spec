@@ -3,11 +3,11 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
 Version:	1.2.0
-Release:	6
+Release:	8
 License:	GPL
-Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(pl):	X11/Aplikacje
+Group:		X11/Applications/Multimedia
+Group(de):	X11/Applikationen/Multimedia
+Group(pl):	X11/Aplikacje/Multimedia
 Source0:	ftp://ftp.gnome.org/pub/GNOME/stable/sources/gnome-media/%{name}-%{version}.tar.gz
 URL:		http://www.gnome.org/
 Patch0:		%{name}-sparccd.patch

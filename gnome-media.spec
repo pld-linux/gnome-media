@@ -4,38 +4,39 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.8.0
-Release:	6
+Version:	2.9.90
+Release:	1
 License:	GPL/LGPL
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.8/%{name}-%{version}.tar.bz2
-# Source0-md5:	c200cb577be1adb6bedb8c6528d738a1
-Patch0:		%{name}-help.patch
-Patch1:		%{name}-capplet.patch
-Patch2:		%{name}-desktop.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.9/%{name}-%{version}.tar.bz2
+# Source0-md5:	11b412b3dfa72c120cf0ed7f729151e8
+Patch0:		%{name}-capplet.patch
+Patch1:		%{name}-desktop.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.7.92
-BuildRequires:	ORBit2-devel >= 1:2.11.2
+BuildRequires:	GConf2-devel >= 2.9.2
+BuildRequires:	ORBit2-devel >= 1:2.12.1
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 1:2.7.1
+BuildRequires:	control-center-devel >= 1:2.9.4
 BuildRequires:	esound-devel >= 1:0.2.31
 BuildRequires:	gail-devel >= 1.8.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.8.0
-BuildRequires:	gnome-vfs2-devel >= 2.8.0
-BuildRequires:	gstreamer-GConf-devel >= 0.8.3
-BuildRequires:	gstreamer-devel >= 0.8.5
-BuildRequires:	gstreamer-plugins-devel >= 0.8.3
+BuildRequires:	gnome-vfs2-devel >= 2.9.90
+BuildRequires:	gstreamer-GConf-devel >= 0.8.7
+BuildRequires:	gstreamer-devel >= 0.8.8
+BuildRequires:	gstreamer-plugins-devel >= 0.8.7
 BuildRequires:	intltool >= 0.25
-BuildRequires:	libglade2-devel >= 1:2.4.0
-BuildRequires:	libgnomeui-devel >= 2.7.92
+BuildRequires:	libglade2-devel >= 1:2.5.0
+BuildRequires:	libgnomeui-devel >= 2.9.1
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
+BuildRequires:	nautilus-cd-burner-devel >= 2.9.5
+BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	scrollkeeper >= 0.3.11
 BuildRequires:	xft-devel >= 2.1.2
@@ -43,8 +44,8 @@ Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
 Requires(post):	GConf2
 Requires:	gail >= 1.8.0
-Requires:	libgnomeui >= 2.7.92
-Requires:	gstreamer-plugins >= 0.8.3
+Requires:	libgnomeui >= 2.9.1
+Requires:	gstreamer-plugins >= 0.8.7
 Obsoletes:	gnome
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -192,7 +193,6 @@ Monitor g³o¶no¶ci.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 sed -i -e 's/888/8880/' cddb-slave2/CDDB-Slave2.schemas.in
 
 %build
@@ -213,8 +213,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
-install -d $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
-mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.{la,a}
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
@@ -261,11 +259,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gstreamer-properties
 %attr(755,root,root) %{_libdir}/libgnome-media-profiles.so.*.*
 %attr(755,root,root) %{_libdir}/libglade/2.0/*.so
-%{_datadir}/gnome/capplets/gstreamer-properties.desktop
 %dir %{_datadir}/gnome-media
 %dir %{_datadir}/gnome-media/pixmaps
 %{_datadir}/gnome-media/glade
 %{_datadir}/gstreamer-properties
+%{_desktopdir}/gstreamer-properties.desktop
 %{_omf_dest_dir}/%{name}/gstreamer-properties-C.omf
 %{_pixmapsdir}/gstreamer-properties.png
 %{_sysconfdir}/gconf/schemas/gnome-audio-profiles.schemas
@@ -306,7 +304,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/cddb-track-editor
 %attr(755,root,root) %{_libdir}/libcddb-slave2.so.*.*
 %{_datadir}/idl/GNOME_Media_CDDBSlave2.idl
-%{_datadir}/gnome/capplets/cddb-slave.desktop
+%{_desktopdir}/cddb-slave.desktop
 %{_libdir}/bonobo/servers/GNOME_Media_CDDBSlave2.server
 %dir %{_pixmapsdir}/gnome-cd
 %{_pixmapsdir}/gnome-cd/cd.png

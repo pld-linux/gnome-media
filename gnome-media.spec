@@ -5,11 +5,11 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
-Version:	2.1.5
+Version:	2.2.0
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.2/%{name}-%{version}.tar.bz2
 Icon:		gnome-media.gif
 Patch0:		%{name}-am.patch
 Patch1:		%{name}-schema.patch
@@ -23,20 +23,20 @@ BuildRequires:	libtool
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	ncurses-devel >= 5.2
-BuildRequires:	gail-devel >= 1.1.7
-BuildRequires:	gstreamer-GConf-devel >= 0.5.1
-BuildRequires:	gstreamer-devel >= 0.5.1
-BuildRequires:	gstreamer-plugins-devel >= 0.5.1
-BuildRequires:	libgnomeui-devel >= 2.1.2
+BuildRequires:	gail-devel >= 1.2.0
+BuildRequires:	gstreamer-GConf-devel >= 0.5.2
+BuildRequires:	gstreamer-devel >= 0.5.2
+BuildRequires:	gstreamer-plugins-devel >= 0.5.2
+BuildRequires:	libgnomeui-devel >= 2.2.0.1
 BuildRequires:	glib2-devel >= 2.2.0
 BuildRequires:	esound-devel >= 0.2.29
-BuildRequires:	ORBit2-devel >= 2.5.1
+BuildRequires:	ORBit2-devel >= 2.6.0
 BuildRequires:	scrollkeeper >= 0.3.11
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	Xft-devel >= 2.1-2
 Prereq:		scrollkeeper
-Requires:	gail >= 1.1.7
-Requires:	libgnomeui >= 2.1.2
+Requires:	gail >= 1.2.0
+Requires:	libgnomeui >= 2.2.0.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	gnome
 Obsoletes:	grecord

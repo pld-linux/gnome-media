@@ -5,13 +5,12 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.7.1
-Release:	2
+Version:	2.7.92
+Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.7/%{name}-%{version}.tar.bz2
-# Source0-md5:	2bc7afd97189ee010621a2fe4360fdf8
-Patch0:		%{name}-locale-names.patch
+# Source0-md5:	6c0419a22f395e8655511d190422cb3e
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.7.91
@@ -21,7 +20,7 @@ BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 1:2.7.0
+BuildRequires:	control-center-devel >= 1:2.7.1
 BuildRequires:	esound-devel >= 1:0.2.31
 BuildRequires:	gail-devel >= 1.7.0
 BuildRequires:	gettext-devel
@@ -89,9 +88,6 @@ Biblioteki statyczne gnome-media.
 
 %prep
 %setup -q
-%patch0 -p1
-
-mv po/{no,nb}.po
 
 %build
 intltoolize --copy --force
@@ -114,6 +110,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.la
+rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -158,4 +155,5 @@ scrollkeeper-update
 
 %files static
 %defattr(644,root,root,755)
+%{_libdir}/libglade/2.0/lib*.a
 %{_libdir}/lib*.a

@@ -6,11 +6,12 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.7.92
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.7/%{name}-%{version}.tar.bz2
 # Source0-md5:	6c0419a22f395e8655511d190422cb3e
+Patch0:		%{name}-help.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.7.91
@@ -88,6 +89,7 @@ Biblioteki statyczne gnome-media.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 intltoolize --copy --force

@@ -1,22 +1,12 @@
-diff -urN aaa/gnome-media-2.2.0/configure.in gnome-media-2.2.0/configure.in
---- aaa/gnome-media-2.2.0/configure.in	Thu Jan 23 18:31:15 2003
-+++ gnome-media-2.2.0/configure.in	Sun Feb  2 22:43:21 2003
-@@ -312,8 +312,17 @@
- PKG_CHECK_MODULES(GSTPROPS, $COMMON_MODULES libxml-2.0 gnome-vfs-2.0,
+diff -Nru gnome-media-2.2.1.orig/configure.in gnome-media-2.2.1/configure.in
+--- gnome-media-2.2.1.orig/configure.in	Wed Feb  5 00:48:09 2003
++++ gnome-media-2.2.1/configure.in	Wed Feb  5 10:46:09 2003
+@@ -313,7 +313,7 @@
  		  PROGRAMS_GSTPROPS="gstreamer-properties",
  		  PROGRAMS_GSTPROPS="")
-+if test "x$PROGRAMS_GSTPROPS" = "x"; then
-+	COMMON_MODULES="gtk+-2.0 gconf-2.0 libgnomeui-2.0 libglade-2.0 >= 1.99.12 libglade-2.0 gconf-2.0 gnome-desktop-2.0 gstreamer-0.6 gstreamer-libs-0.6"
-+	PKG_CHECK_MODULES(GSTPROPS, $COMMON_MODULES libxml-2.0 gnome-vfs-2.0,
-+			  PROGRAMS_GSTPROPS="gstreamer-properties",
-+			  PROGRAMS_GSTPROPS="")
-+	GSTPROPS_LIBS="$GSTPROPS_LIBS $x_libs -lgstgconf-0.6"
-+fi
  
 -GSTPROPS_LIBS="$GSTPROPS_LIBS $x_libs -lgstgconf-0.5"
-+if test "x$GSTPROPS_LIBS" = "x"; then
-+	GSTPROPS_LIBS="$GSTPROPS_LIBS $x_libs -lgstgconf-0.5"
-+fi
++GSTPROPS_LIBS="$GSTPROPS_LIBS $x_libs -lgstgconf-0.6"
  AC_SUBST(GSTPROPS_LIBS)
  AC_SUBST(GSTPROPS_CFLAGS)
  

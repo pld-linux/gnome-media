@@ -7,9 +7,9 @@ diff -ur gnome-media-2.8.0.orig/cddb-slave2/cddb-slave.desktop.in gnome-media-2.
  Type=Application
 -Categories=GNOME;Application;Settings;AdvancedSettings;
 +Categories=GTK;GNOME;Settings;AdvancedSettings;X-Capplet;
+ OnlyShowIn=GNOME;
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=gnome-media
- X-GNOME-Bugzilla-Component=CDDBSlave2
 diff -ur gnome-media-2.8.0.orig/gstreamer-properties/gstreamer-properties.desktop.in gnome-media-2.8.0/gstreamer-properties/gstreamer-properties.desktop.in
 --- gnome-media-2.8.0.orig/gstreamer-properties/gstreamer-properties.desktop.in	2004-02-29 22:11:20.000000000 +0100
 +++ gnome-media-2.8.0/gstreamer-properties/gstreamer-properties.desktop.in	2004-09-16 23:06:32.358755808 +0200
@@ -19,6 +19,6 @@ diff -ur gnome-media-2.8.0.orig/gstreamer-properties/gstreamer-properties.deskto
  Type=Application
 -Categories=GNOME;Application;Settings;AdvancedSettings;
 +Categories=GTK;GNOME;Settings;AdvancedSettings;X-Capplet;
+ OnlyShowIn=GNOME;
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=gnome-media
- X-GNOME-Bugzilla-Component=general

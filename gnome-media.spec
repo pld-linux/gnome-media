@@ -1,11 +1,11 @@
 Summary:	GNOME media programs
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
-Version:	1.0.1
-Release:	2
+Version:	1.0.9
+Release:	1
 Copyright:	LGPL
-Group:		X11/Libraries
-Group(pl):	X11/Biblioteki
+Group:		X11/GNOME
+Group(pl):	X11/GNOME
 Source:		ftp://ftp.gnome.org/pub/GNOME/sources/%{name}-%{version}.tar.gz
 URL:		http://www.gnome.org/
 Icon:		gnome-media.gif
@@ -26,7 +26,6 @@ Programy multimedialne GNOME'a
 
 %prep
 %setup -q
-#%patch -p1
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \

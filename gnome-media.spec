@@ -5,7 +5,7 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
-Version:	2.0.0
+Version:	2.0.2
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia

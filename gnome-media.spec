@@ -5,11 +5,11 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
-Version:	2.2.1.1
+Version:	2.3.0
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.2/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
 %ifnarch sparc sparc64
@@ -20,19 +20,19 @@ BuildRequires:	automake
 BuildRequires:	control-center-devel >= 2.2.0
 BuildRequires:	gail-devel >= 1.2.0
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.2.0
+BuildRequires:	gnome-desktop-devel >= 2.3.0
 BuildRequires:	gstreamer-devel >= 0.6.0
 BuildRequires:	gstreamer-GConf-devel >= 0.6.0
 BuildRequires:	gstreamer-plugins-devel >= 0.6.0
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel >= 5.2
-BuildRequires:	ORBit2-devel >= 2.6.0
+BuildRequires:	ORBit2-devel >= 2.7.0
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	scrollkeeper >= 0.3.11
 BuildRequires:	Xft-devel >= 2.1-2
 Prereq:		scrollkeeper
 Requires:	gail >= 1.2.0
-Requires:	libgnomeui >= 2.2.0.1
+Requires:	libgnomeui >= 2.3.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	gnome
 Obsoletes:	grecord

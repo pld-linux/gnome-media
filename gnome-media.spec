@@ -77,7 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 - added -q %setup parameter,
 - changed Buildroot to /tmp/%%{name}-%%{version}-root,
 - added using %%{name} and %%{version} in Source,
-- added striping binaries,
+- added stripping binaries,
 - removed COPYING from %doc (copyright statment ins in Copyright field),
 - added pl translation (Wojtek ¦lusarczyk <wojtek@shadow.eu.org>),
 - added full %attr description in %files,

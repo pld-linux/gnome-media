@@ -93,4 +93,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_applnkdir}/Multimedia/*
 %{_datadir}/gnome/cddb-submit-methods
-%{_datadir}/pixmaps/*
+%{_pixmapsdir}/*

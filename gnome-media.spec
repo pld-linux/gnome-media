@@ -2,14 +2,14 @@ Summary:	GNOME media programs
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
 Version:	1.0.1
-Release:	1
+Release:	2
 Copyright:	LGPL
 Group:		X11/Libraries
 Group(pl):	X11/Biblioteki
 Source:		ftp://ftp.gnome.org/pub/GNOME/sources/%{name}-%{version}.tar.gz
 URL:		http://www.gnome.org/
 Icon:		gnome-media.gif
-BuildPrereq:	gtk-devel
+BuildPrereq:	gtk+-devel
 BuildPrereq:	glib-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 Obsoletes:	gnome
@@ -44,32 +44,25 @@ strip $RPM_BUILD_ROOT/usr/X11R6/bin/*
 
 gzip -9fn AUTHORS ChangeLog NEWS README
 
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f gnome-media.lang
 %defattr(644,root,root,755)
 %doc {AUTHORS,ChangeLog,NEWS,README}.gz
 %attr(755,root,root) /usr/X11R6/bin/*
 /usr/X11R6/share/gnome/apps/Multimedia/*
 /usr/X11R6/share/pixmaps/tcd
 
-%lang(da)    /usr/X11R6/share/locale/da/LC_MESSAGES/gnome-media.mo
-%lang(de)    /usr/X11R6/share/locale/de/LC_MESSAGES/gnome-media.mo
-%lang(es)    /usr/X11R6/share/locale/es/LC_MESSAGES/gnome-media.mo
-%lang(fi)    /usr/X11R6/share/locale/fi/LC_MESSAGES/gnome-media.mo
-%lang(fr)    /usr/X11R6/share/locale/fr/LC_MESSAGES/gnome-media.mo
-%lang(ga)    /usr/X11R6/share/locale/ga/LC_MESSAGES/gnome-media.mo
-%lang(hu)    /usr/X11R6/share/locale/hu/LC_MESSAGES/gnome-media.mo
-%lang(it)    /usr/X11R6/share/locale/it/LC_MESSAGES/gnome-media.mo
-%lang(ja)    /usr/X11R6/share/locale/ja/LC_MESSAGES/gnome-media.mo
-%lang(ko)    /usr/X11R6/share/locale/ko/LC_MESSAGES/gnome-media.mo
-%lang(nl)    /usr/X11R6/share/locale/nl/LC_MESSAGES/gnome-media.mo
-%lang(no)    /usr/X11R6/share/locale/no/LC_MESSAGES/gnome-media.mo
-%lang(pt)    /usr/X11R6/share/locale/pt/LC_MESSAGES/gnome-media.mo
-%lang(ru_RU) /usr/X11R6/share/locale/ru*/LC_MESSAGES/gnome-media.mo
 
 %changelog
+* Mon Jun 07 1999 Jan Rêkorajski <baggins@pld.org.pl>
+  [1.0.1-2]
+- fixed buildprereq
+- added find_lang macro
+
 * Thu Apr  1 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.0.1-1]
 - more locales (da, fi, hu, ja, nl, pt, ru_RU).

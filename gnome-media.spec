@@ -12,6 +12,7 @@ Patch1:		%{name}-am_conditional.patch
 Patch2:		%{name}-omf.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
+BuildRequires:	ORBit-devel
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
@@ -23,7 +24,7 @@ BuildRequires:	gtk+-devel
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	gnome-http-devel
 BuildRequires:	gnome-libs-devel
-BuildRequires:	ORBit-devel
+BuildRequires:	intltool
 BuildRequires:	libghttp-devel
 BuildRequires:	scrollkeeper
 Prereq:		scrollkeeper

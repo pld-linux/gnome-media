@@ -5,28 +5,36 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.4.1.1
-Release:	3
+Version:	2.6.0
+Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	dce73f3f0e5bddfd5a2bd412900e5abe
-Source1:	%{name}-gstreamer.desktop
-Patch0:		%{name}-desktop.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.6/%{name}-%{version}.tar.bz2
+# Source0-md5:	51dd73a96cbdb8049fa9e7d2aa0af9b5
+Patch0:		%{name}-locale-names.patch
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel >= 2.8.0
+BuildRequires:	GConf2-devel >= 2.6.0
+BuildRequires:	ORBit2-devel >= 1:2.10.0
+%ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
+%endif
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 2.4.0
-BuildRequires:	gail-devel >= 1.4.0
+BuildRequires:	control-center-devel >= 1:2.5.3
+BuildRequires:	esound-devel >= 1:0.2.31
+BuildRequires:	gail-devel >= 1.6.0
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.3.90
-BuildRequires:	gstreamer-devel >= 0.6.3
-BuildRequires:	gstreamer-GConf-devel >= 0.6.3
-BuildRequires:	gstreamer-plugins-devel >= 0.6.3
+BuildRequires:	gnome-desktop-devel >= 2.6.0
+BuildRequires:	gnome-vfs2-devel >= 2.6.0
+BuildRequires:	gstreamer-GConf-devel >= 0.8.0
+BuildRequires:	gstreamer-devel >= 0.8.0
+BuildRequires:	gstreamer-plugins-devel >= 0.8.0
+BuildRequires:	intltool
+BuildRequires:	libglade2-devel >= 1:2.3.6
+BuildRequires:	libgnomeui-devel >= 2.6.0
 BuildRequires:	libtool
+BuildRequires:	libxml2-devel
 BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	scrollkeeper >= 0.3.11
@@ -34,9 +42,9 @@ BuildRequires:	xft-devel >= 2.1.2
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
 Requires(post):	GConf2
-Requires:	gail >= 1.4.0
-Requires:	libgnomeui >= 2.4.0
-Requires:	gstreamer-videotest >= 0.6.3
+Requires:	gail >= 1.6.0
+Requires:	libgnomeui >= 2.6.0
+Requires:	gstreamer-plugins >= 0.8.0-0.2
 Obsoletes:	gnome
 Obsoletes:	grecord
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -61,7 +69,7 @@ Programy multimedialne dla GNOME.
 Summary:	gnome-media devel files
 Summary(pl):	Pliki nag³ówkowe gnome-media
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 gnome-media devel files.
@@ -73,7 +81,7 @@ Pliki nag³ówkowe gnome-media.
 Summary:	gnome-media static libraries
 Summary(pl):	Biblioteki statyczne gnome-media
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 gnome-media static libraries.
@@ -85,8 +93,17 @@ Biblioteki statyczne gnome-media.
 %setup -q
 %patch0 -p1
 
+mv po/{no,nb}.po
+
 %build
-%configure
+intltoolize --copy --force
+%{__libtoolize}
+glib-gettextize --copy --force
+%{__aclocal} -I %{_aclocaldir}/gnome2-macros
+%{__autoheader}
+%{__autoconf}
+%{__automake}
+%configure 
 %{__make}
 
 %install
@@ -98,7 +115,6 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
 mv $RPM_BUILD_ROOT%{_datadir}/control-center-2.0/capplets/*.desktop $RPM_BUILD_ROOT%{_datadir}/gnome/capplets
-install %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/gnome/capplets/gstreamer.desktop
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -122,10 +138,13 @@ scrollkeeper-update
 %attr(755,root,root) %{_libdir}/CDDBSlave2
 %attr(755,root,root) %{_libdir}/cddb-track-editor
 %{_libdir}/bonobo/servers/*
+%attr(755,root,root) %{_libdir}/libglade/2.0/*.so
+%{_libdir}/libglade/2.0/*.la
 %{_datadir}/gnome/capplets/*
 %{_datadir}/idl/*
+%{_datadir}/gnome-media
 %{_datadir}/gnome-sound-recorder
-%{_datadir}/%{name}-2.0
+%{_datadir}/gstreamer-properties
 %{_desktopdir}/*
 %{_pixmapsdir}/*
 %{_omf_dest_dir}/*
@@ -136,6 +155,10 @@ scrollkeeper-update
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
 %{_includedir}/cddb-slave2
+%{_includedir}/gnome-media
+%{_libdir}/lib*.la
+%{_libdir}/lib*.so
+%{_pkgconfigdir}/*
 
 %files static
 %defattr(644,root,root,755)

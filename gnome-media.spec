@@ -13,6 +13,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.3/%{name}-%{version}.t
 # Source0-md5:	0b4693a9b1bf691cd84680f442b7a53c
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
+BuildRequires:	ORBit2-devel >= 2.7.0
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
@@ -27,11 +28,12 @@ BuildRequires:	gstreamer-GConf-devel >= 0.6.0
 BuildRequires:	gstreamer-plugins-devel >= 0.6.0
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel >= 5.2
-BuildRequires:	ORBit2-devel >= 2.7.0
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	scrollkeeper >= 0.3.11
 BuildRequires:	xft-devel >= 2.1.2
-Prereq:		scrollkeeper
+Requires(post,postun):	/sbin/ldconfig
+Requires(post,postun):	scrollkeeper
+Requires(post):	GConf2
 Requires:	gail >= 1.2.0
 Requires:	libgnomeui >= 2.3.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -107,11 +109,11 @@ scrollkeeper-update
 %attr(755,root,root) %{_libdir}/CDDBSlave2
 %attr(755,root,root) %{_libdir}/cddb-track-editor
 %{_libdir}/bonobo/servers/*
-%{_datadir}/applications/*
 %{_datadir}/control-center-2.0/capplets/*
 %{_datadir}/idl/*
 %{_datadir}/gnome-sound-recorder/*
 %{_datadir}/%{name}-2.0/*
+%{_desktopdir}/*
 %{_pixmapsdir}/*
 %{_libdir}/lib*.so.*.*
 %{_omf_dest_dir}/*

@@ -1,17 +1,16 @@
-Summary:     GNOME media programs
-Summary(pl): Programy multimedialne GNOME'a
-Name:        gnome-media
-Version:     0.30
-Release:     1
-Copyright:   LGPL
-Group:       X11/Libraries
-Source:      ftp://ftp.gnome.org/pub/GNOME/sources/%{name}-%{version}.tar.gz
-Patch:       gnome-media-pl.po.patch
-URL:         http://www.gnome.org/
-Icon:        %{name}.gif
-Requires:    esound, gtk+ >= 1.1.2, glib >= 1.1.3
-BuildRoot:   /tmp/%{name}-%{version}-root
-Obsoletes:   gnome
+Summary:	GNOME media programs
+Summary(pl):	Programy multimedialne GNOME'a
+Name:		gnome-media
+Version:	1.0.1
+Release:	1
+Copyright:	LGPL
+Group:		X11/Libraries
+Source:		ftp://ftp.gnome.org/pub/GNOME/sources/%{name}-%{version}.tar.gz
+URL:		http://www.gnome.org/
+Icon:		gnome-media.gif
+Requires:	gtk+ = 1.2.1
+BuildRoot:	/tmp/%{name}-%{version}-root
+Obsoletes:	gnome
 
 %description
 GNOME media programs.
@@ -25,10 +24,12 @@ Programy multimedialne GNOME'a
 
 %prep
 %setup -q
-%patch -p1
+#%patch -p1
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=/usr/X11R6
+CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
+./configure \
+	--prefix=/usr/X11R6
 
 make
 
@@ -46,20 +47,29 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644, root, root, 755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755, root, root) /usr/X11R6/bin/*
-/usr/X11R6/share/apps/Audio/*
+/usr/X11R6/share/gnome/apps/Multimedia/*
 /usr/X11R6/share/pixmaps/tcd
-%lang(de) /usr/X11R6/share/locale/de/LC_MESSAGES/gnome-media.mo
-%lang(es) /usr/X11R6/share/locale/es/LC_MESSAGES/gnome-media.mo
-%lang(fr) /usr/X11R6/share/locale/fr/LC_MESSAGES/gnome-media.mo
-%lang(ga) /usr/X11R6/share/locale/ga/LC_MESSAGES/gnome-media.mo
-%lang(it) /usr/X11R6/share/locale/it/LC_MESSAGES/gnome-media.mo
-%lang(ko) /usr/X11R6/share/locale/ko/LC_MESSAGES/gnome-media.mo
-%lang(no) /usr/X11R6/share/locale/no/LC_MESSAGES/gnome-media.mo
-%lang(pt) /usr/X11R6/share/locale/pt/LC_MESSAGES/gnome-media.mo
-%lang(pl) /usr/X11R6/share/locale/pl/LC_MESSAGES/gnome-media.mo
-%lang(ru) /usr/X11R6/share/locale/ru*/LC_MESSAGES/gnome-media.mo
+
+%lang(da)    /usr/X11R6/share/locale/da/LC_MESSAGES/gnome-media.mo
+%lang(de)    /usr/X11R6/share/locale/de/LC_MESSAGES/gnome-media.mo
+%lang(es)    /usr/X11R6/share/locale/es/LC_MESSAGES/gnome-media.mo
+%lang(fi)    /usr/X11R6/share/locale/fi/LC_MESSAGES/gnome-media.mo
+%lang(fr)    /usr/X11R6/share/locale/fr/LC_MESSAGES/gnome-media.mo
+%lang(ga)    /usr/X11R6/share/locale/ga/LC_MESSAGES/gnome-media.mo
+%lang(hu)    /usr/X11R6/share/locale/hu/LC_MESSAGES/gnome-media.mo
+%lang(it)    /usr/X11R6/share/locale/it/LC_MESSAGES/gnome-media.mo
+%lang(ja)    /usr/X11R6/share/locale/ja/LC_MESSAGES/gnome-media.mo
+%lang(ko)    /usr/X11R6/share/locale/ko/LC_MESSAGES/gnome-media.mo
+%lang(nl)    /usr/X11R6/share/locale/nl/LC_MESSAGES/gnome-media.mo
+%lang(no)    /usr/X11R6/share/locale/no/LC_MESSAGES/gnome-media.mo
+%lang(pt)    /usr/X11R6/share/locale/pt/LC_MESSAGES/gnome-media.mo
+%lang(ru_RU) /usr/X11R6/share/locale/ru*/LC_MESSAGES/gnome-media.mo
 
 %changelog
+* Thu Apr  1 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.0.1-1]
+- more locales (da, fi, hu, ja, nl, pt, ru_RU).
+
 * Fri Sep 25 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [0.30-1]
 - added in Requires "gtk+ >= 1.1.2, glib >= 1.1.3"

@@ -5,27 +5,27 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.3.8
+Version:	2.3.90
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.3/%{name}-%{version}.tar.bz2
-# Source0-md5:	f5d937ce82f0a16cdf0a093bb6663baf
+# Source0-md5:	4b3481729aa1072fb3f9ca98e59c9bf6
 Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
-BuildRequires:	ORBit2-devel >= 2.7.5-1
+BuildRequires:	ORBit2-devel >= 2.8.0
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 2.3.4-2
-BuildRequires:	gail-devel >= 1.2.0
+BuildRequires:	control-center-devel >= 2.3.5
+BuildRequires:	gail-devel >= 1.3.6
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-desktop-devel >= 2.3.4-2
-BuildRequires:	gstreamer-devel >= 0.6.0
-BuildRequires:	gstreamer-GConf-devel >= 0.6.0
-BuildRequires:	gstreamer-plugins-devel >= 0.6.0
+BuildRequires:	gnome-desktop-devel >= 2.3.7
+BuildRequires:	gstreamer-devel >= 0.6.3
+BuildRequires:	gstreamer-GConf-devel >= 0.6.3
+BuildRequires:	gstreamer-plugins-devel >= 0.6.3
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel >= 5.2
 BuildRequires:	rpm-build >= 4.1-10
@@ -34,8 +34,8 @@ BuildRequires:	xft-devel >= 2.1.2
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
 Requires(post):	GConf2
-Requires:	gail >= 1.2.0
-Requires:	libgnomeui >= 2.3.3.1-2
+Requires:	gail >= 1.3.6
+Requires:	libgnomeui >= 2.3.7
 Obsoletes:	gnome
 Obsoletes:	grecord
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -85,15 +85,14 @@ Biblioteki statyczne gnome-media.
 
 %build
 %configure
-
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-    DESTDIR=$RPM_BUILD_ROOT \
-    GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
+	DESTDIR=$RPM_BUILD_ROOT \
+	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
 %find_lang %{name} --with-gnome --all-name
 

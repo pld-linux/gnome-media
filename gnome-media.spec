@@ -6,8 +6,8 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.8.0
-Release:	1
-License:	GPL
+Release:	2
+License:	GPL/LGPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.8/%{name}-%{version}.tar.bz2
 # Source0-md5:	c200cb577be1adb6bedb8c6528d738a1
@@ -93,6 +93,7 @@ Biblioteki statyczne gnome-media.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+sed -i -e 's/888/8880/' cddb-slave2/CDDB-Slave2.schemas.in
 
 %build
 intltoolize --copy --force

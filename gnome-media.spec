@@ -6,7 +6,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne GNOME'a
 Name:		gnome-media
 Version:	2.1.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/2.1/%{name}-%{version}.tar.bz2
@@ -30,6 +30,7 @@ BuildRequires:	glib2-devel >= 2.0.6
 BuildRequires:	esound-devel >= 0.2.29
 BuildRequires:	ORBit2-devel >= 2.4.3
 BuildRequires:	scrollkeeper >= 0.3.11
+BuildRequires:	rpm-build >= 4.1-7
 Prereq:		scrollkeeper
 Requires:	gail >= 1.1.2
 Requires:	libgnomeui >= 2.1.2
@@ -40,6 +41,7 @@ Obsoletes:	grecord
 %define		_prefix		/usr/X11R6
 %define		_sysconfdir	/etc/X11/GNOME2
 %define		_omf_dest_dir	%(scrollkeeper-config --omfdir)
+%define		_serverdir	/usr/lib/bonobo/servers
 
 %description
 GNOME media programs. GNOME is the GNU Network Object Model
@@ -97,7 +99,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	omf_dest_dir=%{_omf_dest_dir}/%{name}
+	omf_dest_dir=%{_omf_dest_dir}/%{name} \
+	serverdir=%{_serverdir}
 
 
 %find_lang %{name} --with-gnome --all-name
@@ -108,8 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 scrollkeeper-update
-GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" \
-%{_bindir}/gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/*.schemas > /dev/null 
+%gconf_schema_install
 
 %postun
 /sbin/ldconfig
@@ -120,7 +122,7 @@ scrollkeeper-update
 %doc AUTHORS ChangeLog NEWS README
 %{_sysconfdir}/gconf/schemas/*
 %attr(755,root,root) %{_bindir}/*
-%{_libdir}/bonobo/servers/*
+%{_serverdir}/*
 %attr(755,root,root) %{_libdir}/CDDBSlave2
 %attr(755,root,root) %{_libdir}/cddb-track-editor
 %{_datadir}/applications/*

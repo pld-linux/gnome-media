@@ -19,7 +19,6 @@ Patch5:		gnome-media-fixedcorba.patch
 Patch6:		gnome-media-nogerror.patch
 Icon:		gnome-media.gif
 BuildRequires:	gtk+-devel
-BuildRequires:	glib-devel
 BuildRequires:	gettext-devel
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	gnome-libs-devel

@@ -1,0 +1,12 @@
+--- gnome-media-1.0.40/gmix/gmix.c.nogerror	Tue Sep 21 14:10:13 1999
++++ gnome-media-1.0.40/gmix/gmix.c	Tue Sep 21 14:10:53 1999
+@@ -229,7 +229,8 @@
+ 
+ static void error_close_cb(void)
+ {
+-        g_error("No mixers found.");
++  /*        g_error("No mixers found."); */
++  exit(1);
+ }
+ 
+ static void apply_cb(GtkWidget *widget, void *data)

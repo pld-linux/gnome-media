@@ -1,0 +1,248 @@
+--- gnome-media-1.0.40/tcd/linux-cdrom.c.keepclosed	Mon Aug 16 00:58:40 1999
++++ gnome-media-1.0.40/tcd/linux-cdrom.c	Mon Sep 20 20:29:36 1999
+@@ -77,6 +77,8 @@
+     cd->nslots = 0;
+ #endif
+     cd->old_cddb_id = 0;
++
++    tcd_close_disc( cd );
+     
+     debug("cdrom.c: tcd_init_disc exiting normally\n" );
+     return(tcd_post_init(cd));
+@@ -108,6 +110,7 @@
+ {
+     debug("cdrom.c: tcd_close_disc(%p) top\n", cd );
+     close(cd->cd_dev);
++    cd->cd_dev = -1;
+     debug("cdrom.c: tcd_close_disc exiting normally\n" );
+     return 0;
+ }
+@@ -120,6 +123,8 @@
+     if(cd->time_lock)
+ 	    return;
+ 
++    tcd_opencddev( cd, NULL );
++
+     debug("cdrom.c: tcd_readtoc(%p) top\n", cd );
+     cd->err = FALSE;
+     cd->isplayable=FALSE;
+@@ -132,6 +137,7 @@
+ 	debug("cdrom.c: tcd_readtoc exiting prematurly. CDROMREADTOCHDR ioctl error.\n" );
+ 	cd->cur_t = 0;
+ 	cd->cddb_id = 0;
++	tcd_close_disc ( cd );
+ 	return(-1);		
+     }
+ 
+@@ -152,6 +158,7 @@
+ 	debug("cdrom.c: tcd_readtoc exiting prematurly. CDROMREADTOCENTRY ioctl error.\n" );
+ 	cd->cur_t = 0;
+ 	cd->cddb_id = 0;
++	tcd_close_disc ( cd );
+ 	return(-1);
+     }                                         
+ 
+@@ -168,6 +175,7 @@
+ 	    debug("cdrom.c: tcd_readtoc exiting prematurly. CDROMREADTOCENTRY ioctl error.\n" );
+ 	    cd->cur_t = 0;
+ 	    cd->cddb_id = 0;
++	    tcd_close_disc ( cd );
+ 	    return(-1);
+ 	}
+ 
+@@ -203,6 +211,7 @@
+     cd->cddb_id = cddb_discid(cd);
+ 
+     cd->isplayable=TRUE;
++    tcd_close_disc ( cd );
+     debug("cdrom.c: tcd_readtoc exiting normally\n" );
+     return tmp;
+ }
+@@ -235,7 +244,9 @@
+     cd->cd_min = cd->cur_pos_abs / 60;
+ 
+ #ifdef TCD_CHANGER_ENABLED
++    tcd_opencddev( cd, NULL );
+     cd->cur_disc = ioctl( cd->cd_dev, CDROM_SELECT_DISC, CDSL_CURRENT );
++    tcd_close_disc ( cd );
+ #endif
+ }
+ 
+@@ -286,7 +297,11 @@
+ 	
+ 	if(cd->isplayable)
+ 	{
+-		if(ioctl( cd->cd_dev, CDROMSUBCHNL, &cd->sc))
++	        int tmp;
++		tcd_opencddev (cd, NULL);
++		tmp = ioctl( cd->cd_dev, CDROMSUBCHNL, &cd->sc);
++		tcd_close_disc (cd);
++		if(tmp)
+ 		{
+ 			strcpy( cd->errmsg, "Can't read disc." );
+ 			cd->err = TRUE;
+@@ -305,11 +320,15 @@
+ int tcd_set_volume(cd_struct *cd, int volume)
+ {
+     struct cdrom_volctrl vol;
++    int tmp;
+ 
+     vol.channel0 = volume;
+     vol.channel1 = vol.channel2 = vol.channel3 = vol.channel0;
+-	
+-    if(ioctl(cd->cd_dev, CDROMVOLCTRL, &vol) < 0)
++
++    tcd_opencddev( cd, NULL );
++    tmp = ioctl(cd->cd_dev, CDROMVOLCTRL, &vol);
++    tcd_close_disc ( cd );
++    if(tmp < 0)
+ 	return FALSE;
+ 
+     return TRUE;
+@@ -319,8 +338,12 @@
+ {
+ #ifdef CDROMVOLREAD
+     struct cdrom_volctrl vol;
++    int tmp;
+ 
+-    if(ioctl(cd->cd_dev, CDROMVOLREAD, &vol) < 0)
++    tcd_opencddev( cd, NULL );
++    tmp = ioctl(cd->cd_dev, CDROMVOLREAD, &vol);
++    tcd_close_disc ( cd );
++    if(tmp < 0)
+ 	return -1;
+ 
+     return vol.channel0;
+@@ -351,6 +374,7 @@
+ 	}
+     }
+ 
++    tcd_opencddev( cd, NULL );
+ #if defined(CDROMCLOSETRAY)
+     ioctl(cd->cd_dev, CDROMCLOSETRAY);
+ #endif	        
+@@ -409,9 +433,11 @@
+ 	    strcpy( cd->errmsg, "Error playing disc" );
+ 	    cd->err = TRUE;
+ 	    debug("cdrom.c: tcd_playtracks error. CDROMPLAYTRKIND ioctl error.\n");
++	    tcd_close_disc ( cd );
+ 	    return -1;
+ 	}
+     }
++    tcd_close_disc ( cd );
+ 
+     cd->isplayable = TRUE;
+     debug("cdrom.c: tcd_playtracks exiting normally\n" );
+@@ -437,6 +463,7 @@
+     struct cdrom_msf msf;
+     cd_min_sec_frame msf0;
+     int cur_frame, start_frame, end_frame;
++    int tmp;
+ 
+     debug("cdrom.c: tcd_play_seconds( %p, %ld )\n", cd, offset );
+ 
+@@ -481,18 +508,20 @@
+     }
+ #endif
+ 	
+-    if(ioctl(cd->cd_dev, CDROMPLAYMSF, &msf))
+-    {
++    tcd_opencddev( cd, NULL );
++    tmp = ioctl(cd->cd_dev, CDROMPLAYMSF, &msf);
++    if(tmp)
++      {
+ 	strcpy( cd->errmsg, "Error playing disc." );
+ 	cd->err = TRUE;
+ 
+ 	debug("cdrom.c: tcd_play_seconds error. CDROMPLAYMSF ioctl error.\n" );
+-	return(-1);
+     }
+-    cd->isplayable=TRUE;                                                 
++    cd->isplayable=TRUE;
++    tcd_close_disc( cd );
+ 
+     debug("cdrom.c: tcd_play_seconds exiting normally\n" );
+-    return( 0 );
++    return tmp ? -1 : 0;
+ }       
+ 
+ int tcd_ejectcd( cd_struct *cd )
+@@ -503,6 +532,7 @@
+     if(cd->isplayable) tcd_stopcd(cd);
+     cd->err = FALSE;
+ 
++    tcd_opencddev( cd, NULL );
+     if(!ioctl(cd->cd_dev, CDROMEJECT))
+     {
+ 	cd->isplayable = FALSE;
+@@ -527,7 +557,8 @@
+ 	}
+ 	cd->isplayable = TRUE;
+     }
+-    cd->cur_t = 0;	
++    cd->cur_t = 0;
++    tcd_close_disc( cd );
+ 	
+     debug("cdrom.c: tcd_eject exiting normally\n" );
+     return 0;
+@@ -544,7 +575,10 @@
+ 	tcd_pausecd(cd);
+ 
+     cd->err = FALSE;
+-    if(ioctl(cd->cd_dev, CDROMSTOP))
++    tcd_opencddev( cd, NULL );
++    tmp = ioctl(cd->cd_dev, CDROMSTOP);
++    tcd_close_disc ( cd );
++    if(tmp)
+     {
+ 	strcpy( cd->errmsg, "Can't stop disc." );
+ 	cd->err = TRUE;
+@@ -562,26 +596,23 @@
+     int tmp;
+     cd->err = FALSE;
+ 	
++    tcd_opencddev( cd, NULL );
+     if(cd->sc.cdsc_audiostatus==CDROM_AUDIO_PAUSED)
+-    {       
+-	if((tmp=ioctl(cd->cd_dev, CDROMRESUME)))
+-	{
+-	    strcpy(cd->errmsg, strerror(errno));
+-	    cd->err = TRUE;
+-	    return(-1);
+-	}
+-	return tmp;
++    {
++        tmp = ioctl(cd->cd_dev, CDROMRESUME);
+     }	        
+     else
+     {
+-	if((tmp=ioctl(cd->cd_dev, CDROMPAUSE)))
+-	{
+-	    strcpy( cd->errmsg, strerror( errno ) );
+-	    cd->err = TRUE;
+-	    return(-1);
+-	}
+-	return tmp;
++        tmp=ioctl(cd->cd_dev, CDROMPAUSE);
+     }
++    if(tmp < 0)
++    {
++        strcpy(cd->errmsg, strerror(errno));
++	cd->err = TRUE;
++    }
++    tcd_close_disc ( cd );
++
++    return tmp ? -1 : 0;
+ }
+ 
+ int tcd_change_disc( cd_struct *cd, int disc )
+@@ -590,7 +621,9 @@
+     int tmp;
+     cd->err = FALSE;
+ 
++    tcd_opencddev( cd, NULL );
+     tmp = ioctl( cd->cd_dev, CDROM_SELECT_DISC, disc );
++    tcd_close_disc ( cd );
+     if(tmp && errno)
+ 	fprintf( stdout, "ioctl: %s\n", strerror(errno) );	
+ 

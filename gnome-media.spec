@@ -74,6 +74,7 @@ Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
 Requires:	%{name}-cddb = %{epoch}:%{version}-%{release}
+Requires:	gstreamer-cdparanoia >= 0.8.8-2
 Conflicts:	gnome-media <= 0:2.8.0-5
 
 %description cd

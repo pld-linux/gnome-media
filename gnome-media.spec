@@ -4,12 +4,12 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.10.1
+Version:	2.10.2
 Release:	1
-License:	GPL/LGPL
+License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.10/%{name}-%{version}.tar.bz2
-# Source0-md5:	3b8fc25c0f391ac869759c8f1ec01316
+# Source0-md5:	3d73cd40cfa52c5eef882302f92c60d6
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-capplet.patch
 Icon:		gnome-media.gif
@@ -36,8 +36,7 @@ BuildRequires:	libgnomeui-devel >= 2.10.0-2
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
 BuildRequires:	nautilus-cd-burner-devel >= 2.10.0-2
-BuildRequires:	rpm-build >= 4.1-10
-BuildRequires:	rpmbuild(macros) >= 1.196
+BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.3.11
 BuildRequires:	xft-devel >= 2.1.2
 Requires(post,postun):	/sbin/ldconfig
@@ -45,6 +44,7 @@ Requires(post,postun):	scrollkeeper
 Requires(post,preun):	GConf2
 Requires:	gail >= 1.8.0
 Requires:	libgnomeui >= 2.10.0-2
+Requires:	gstreamer-audiosink
 Requires:	gstreamer-plugins >= 0.8.8
 Obsoletes:	gnome
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -74,6 +74,7 @@ Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
 Requires:	%{name}-cddb = %{epoch}:%{version}-%{release}
+Requires:	gstreamer-audiosink
 Requires:	gstreamer-cdparanoia >= 0.8.8-2
 Conflicts:	gnome-media <= 0:2.8.0-5
 
@@ -143,6 +144,7 @@ Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	gstreamer-audiosink
 Obsoletes:	grecord
 Conflicts:	gnome-media <= 0:2.8.0-5
 
@@ -169,6 +171,7 @@ Summary:	Volume controler
 Summary(pl):	Regulator g³o¶no¶ci
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	gstreamer-audiosink
 Conflicts:	gnome-media <= 0:2.8.0-5
 
 %description volume-control
@@ -182,6 +185,7 @@ Summary:	Volume monitor
 Summary(pl):	Monitor g³o¶no¶ci
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	gstreamer-audiosink
 Conflicts:	gnome-media <= 0:2.8.0-5
 
 %description vumeter
@@ -194,7 +198,6 @@ Monitor g³o¶no¶ci.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-sed -i -e 's/888/8880/' cddb-slave2/CDDB-Slave2.schemas.in
 
 %build
 intltoolize --copy --force
@@ -223,73 +226,55 @@ rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/ldconfig
-/usr/bin/scrollkeeper-update -q
-%gconf_schema_install /etc/gconf/schemas/gnome-audio-profiles.schemas
+%ldconfig_post
+%scrollkeeper_update_post
+%gconf_schema_install gnome-audio-profiles.schemas
 
 %preun
-if [ $1 = 0 ]; then
-	%gconf_schema_uninstall /etc/gconf/schemas/gnome-audio-profiles.schemas
-fi
+%gconf_schema_uninstall gnome-audio-profiles.schemas
 
 %postun
-if [ $1 = 0 ]; then
-	/sbin/ldconfig
-	/usr/bin/scrollkeeper-update -q
-fi
+%ldconfig_postun
+%scrollkeeper_update_postun
 
 %post cd
-/usr/bin/scrollkeeper-update -q
-%gconf_schema_install /etc/gconf/schemas/gnome-cd.schemas
+%scrollkeeper_update_post
+%gconf_schema_install gnome-cd.schemas
 
 %preun cd
-if [ $1 = 0 ]; then
-	%gconf_schema_uninstall /etc/gconf/schemas/gnome-cd.schemas
-fi
+%gconf_schema_uninstall gnome-cd.schemas
 
 %postun cd
-if [ $1 = 0 ]; then
-	/usr/bin/scrollkeeper-update -q
-fi
+%scrollkeeper_update_postun
 
 %post cddb
-/sbin/ldconfig
-%gconf_schema_install /etc/gconf/schemas/CDDB-Slave2.schemas
+%ldconfig_post
+%gconf_schema_install CDDB-Slave2.schemas
 
 %preun cddb
-if [ $1 = 0 ]; then
-	%gconf_schema_uninstall /etc/gconf/schemas/CDDB-Slave2.schemas
-fi
+%gconf_schema_uninstall CDDB-Slave2.schemas
 
 %postun cddb
-if [ $1 = 0 ]; then
-	/sbin/ldconfig
-fi
+%ldconfig_postun
 
 %post sound-recorder
-/usr/bin/scrollkeeper-update -q
-%gconf_schema_install /etc/gconf/schemas/gnome-sound-recorder.schemas
+%scrollkeeper_update_post
+%gconf_schema_install gnome-sound-recorder.schemas
 %banner %{name} -e << EOF
 For full functionality, you need to install gnome-media-volume-control.
 EOF
 
 %preun sound-recorder
-if [ $1 = 0 ]; then
-	%gconf_schema_install /etc/gconf/schemas/gnome-sound-recorder.schemas
-fi
+%gconf_schema_install gnome-sound-recorder.schemas
 
 %postun sound-recorder
-if [ $1 = 0 ]; then
-	/usr/bin/scrollkeeper-update -q
-fi
+%scrollkeeper_update_postun
 
 %post volume-control
-/usr/bin/scrollkeeper-update -q
+%scrollkeeper_update_post
 
 %postun volume-control
-if [ $1 = 0 ]; then
-	/usr/bin/scrollkeeper-update -q
-fi
+%scrollkeeper_update_postun
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)

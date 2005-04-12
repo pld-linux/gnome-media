@@ -200,9 +200,9 @@ Monitor g³o¶no¶ci.
 %patch1 -p1
 
 %build
-intltoolize --copy --force
+%{__intltoolize}
 %{__libtoolize}
-glib-gettextize --copy --force
+%{__glib_gettextize}
 %{__aclocal} -I m4
 %{__autoheader}
 %{__autoconf}
@@ -226,7 +226,7 @@ rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%ldconfig_post
+/sbin/ldconfig
 %scrollkeeper_update_post
 %gconf_schema_install gnome-audio-profiles.schemas
 
@@ -234,7 +234,7 @@ rm -rf $RPM_BUILD_ROOT
 %gconf_schema_uninstall gnome-audio-profiles.schemas
 
 %postun
-%ldconfig_postun
+/sbin/ldconfig
 %scrollkeeper_update_postun
 
 %post cd
@@ -248,14 +248,13 @@ rm -rf $RPM_BUILD_ROOT
 %scrollkeeper_update_postun
 
 %post cddb
-%ldconfig_post
+/sbin/ldconfig
 %gconf_schema_install CDDB-Slave2.schemas
 
 %preun cddb
 %gconf_schema_uninstall CDDB-Slave2.schemas
 
-%postun cddb
-%ldconfig_postun
+%postun cddb -p /sbin/ldconfig
 
 %post sound-recorder
 %scrollkeeper_update_post

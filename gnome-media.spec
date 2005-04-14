@@ -220,7 +220,15 @@ rm -rf $RPM_BUILD_ROOT
 rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.{la,a}
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
-%find_lang %{name} --all-name
+%find_lang %{name}-2.0
+%find_lang gstreamer-properties --with-gnome
+%find_lang gnome-cd --with-gnome
+%find_lang gnome-sound-recorder --with-gnome
+%find_lang grecord --with-gnome
+%find_lang gnome-volume-control --with-gnome
+
+cat gstreamer-properties.lang >> %{name}-2.0.lang
+cat gnome-sound-recorder.lang >> grecord.lang
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -275,7 +283,7 @@ EOF
 %postun volume-control
 %scrollkeeper_update_postun
 
-%files -f %{name}.lang
+%files -f %{name}-2.0.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/gnome-audio-profiles-properties
@@ -290,10 +298,8 @@ EOF
 %{_omf_dest_dir}/%{name}/gstreamer-properties-C.omf
 %{_pixmapsdir}/gstreamer-properties.png
 %{_sysconfdir}/gconf/schemas/gnome-audio-profiles.schemas
-%dir %{_gnomehelpdir}/gstreamer-properties
-%{_gnomehelpdir}/gstreamer-properties/C
 
-%files cd
+%files cd -f gnome-cd.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gnome-cd
 %{_desktopdir}/gnome-cd.desktop
@@ -310,17 +316,6 @@ EOF
 %{_pixmapsdir}/gnome-cd/*
 %exclude %{_pixmapsdir}/gnome-cd/cd.png
 %{_sysconfdir}/gconf/schemas/gnome-cd.schemas
-%dir %{_gnomehelpdir}/gnome-cd
-%{_gnomehelpdir}/gnome-cd/C
-%lang(de) %{_gnomehelpdir}/gnome-cd/de
-%lang(es) %{_gnomehelpdir}/gnome-cd/es
-%lang(fr) %{_gnomehelpdir}/gnome-cd/fr
-%lang(it) %{_gnomehelpdir}/gnome-cd/it
-%lang(ja) %{_gnomehelpdir}/gnome-cd/ja
-%lang(ko) %{_gnomehelpdir}/gnome-cd/ko
-%lang(sv) %{_gnomehelpdir}/gnome-cd/sv
-%lang(zh_CN) %{_gnomehelpdir}/gnome-cd/zh_CN
-%lang(zh_TW) %{_gnomehelpdir}/gnome-cd/zh_TW
 
 %files cddb
 %defattr(644,root,root,755)
@@ -353,7 +348,7 @@ EOF
 %{_includedir}/gnome-media
 %{_pkgconfigdir}/*
 
-%files sound-recorder
+%files sound-recorder -f grecord.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gnome-sound-recorder
 %{_datadir}/gnome-sound-recorder
@@ -371,24 +366,12 @@ EOF
 %{_pixmapsdir}/%{name}
 %{_pixmapsdir}/gnome-grecord.png
 %{_sysconfdir}/gconf/schemas/gnome-sound-recorder.schemas
-%dir %{_gnomehelpdir}/gnome-sound-recorder
-%{_gnomehelpdir}/gnome-sound-recorder/C
-%dir %{_gnomehelpdir}/grecord
-%lang(de) %{_gnomehelpdir}/grecord/de
-%lang(es) %{_gnomehelpdir}/grecord/es
-%lang(fr) %{_gnomehelpdir}/grecord/fr
-%lang(it) %{_gnomehelpdir}/grecord/it
-%lang(ja) %{_gnomehelpdir}/grecord/ja
-%lang(ko) %{_gnomehelpdir}/grecord/ko
-%lang(sv) %{_gnomehelpdir}/grecord/sv
-%lang(zh_CN) %{_gnomehelpdir}/grecord/zh_CN
-%lang(zh_TW) %{_gnomehelpdir}/grecord/zh_TW
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libgnome-media-profiles.a
 
-%files volume-control
+%files volume-control -f gnome-volume-control.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gnome-volume-control
 %{_datadir}/gnome-media/pixmaps/*
@@ -396,8 +379,6 @@ EOF
 %{_omf_dest_dir}/%{name}/gnome-volume-control-C.omf
 %{_pixmapsdir}/%{name}
 %{_pixmapsdir}/gnome-mixer.png
-%dir %{_gnomehelpdir}/gnome-volume-control
-%{_gnomehelpdir}/gnome-volume-control/C
 
 %files vumeter
 %defattr(644,root,root,755)

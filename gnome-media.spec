@@ -35,7 +35,7 @@ BuildRequires:	libglade2-devel >= 1:2.5.1
 BuildRequires:	libgnomeui-devel >= 2.10.0-2
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
-BuildRequires:	nautilus-cd-burner-devel >= 2.10.0-2
+BuildRequires:	nautilus-cd-burner-devel >= 2.11.1
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.3.11
 BuildRequires:	xft-devel >= 2.1.2
@@ -46,6 +46,7 @@ Requires:	gail >= 1.8.0
 Requires:	libgnomeui >= 2.10.0-2
 Requires:	gstreamer-audiosink
 Requires:	gstreamer-plugins >= 0.8.8
+Requires:	nautilus-cd-burner-libs >= 2.11.1
 Obsoletes:	gnome
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

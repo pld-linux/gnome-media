@@ -4,12 +4,12 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.11.4
+Version:	2.11.5
 Release:	1
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.11/%{name}-%{version}.tar.bz2
-# Source0-md5:	63cc492b444b57ac6e6a195a2447db6a
+# Source0-md5:	40e475f5a5b0ddfe1c8de990e385399f
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-capplet.patch
 Icon:		gnome-media.gif

@@ -3,7 +3,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.11.91
-Release:	1
+Release:	2
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.11/%{name}-%{version}.tar.bz2
@@ -30,7 +30,7 @@ BuildRequires:	gstreamer-devel >= 0.8.9
 BuildRequires:	gstreamer-plugins-devel >= 0.8.8
 BuildRequires:	intltool >= 0.33
 BuildRequires:	libglade2-devel >= 1:2.5.1
-BuildRequires:	libgnomeui-devel >= 2.10.0-2
+BuildRequires:	libgnomeui-devel >= 2.11.2-2
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
 BuildRequires:	nautilus-cd-burner-devel >= 2.11.1
@@ -41,7 +41,7 @@ Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
 Requires(post,preun):	GConf2
 Requires:	gail >= 1.8.0
-Requires:	libgnomeui >= 2.10.0-2
+Requires:	libgnomeui >= 2.11.2-2
 Requires:	gstreamer-audiosink
 Requires:	gstreamer-plugins >= 0.8.8
 Requires:	nautilus-cd-burner-libs >= 2.11.1

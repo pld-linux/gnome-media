@@ -3,7 +3,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.11.91
-Release:	2
+Release:	3
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.11/%{name}-%{version}.tar.bz2
@@ -294,6 +294,7 @@ EOF
 %dir %{_datadir}/gnome-media/pixmaps
 %{_datadir}/gnome-media/glade
 %{_datadir}/gstreamer-properties
+%dir %{_omf_dest_dir}/%{name}
 %{_omf_dest_dir}/%{name}/gstreamer-properties-C.omf
 %{_pixmapsdir}/gstreamer-properties.png
 %{_sysconfdir}/gconf/schemas/gnome-audio-profiles.schemas

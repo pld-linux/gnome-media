@@ -2,12 +2,12 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.11.91
-Release:	3
+Version:	2.12.0
+Release:	1
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.11/%{name}-%{version}.tar.bz2
-# Source0-md5:	32e0ed9f33fb1101b291ed8e6df8a0f9
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.12/%{name}-%{version}.tar.bz2
+# Source0-md5:	74d9a78f7269602e033ab1a4a144afdf
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-capplet.patch
 Icon:		gnome-media.gif
@@ -296,6 +296,7 @@ EOF
 %{_datadir}/gstreamer-properties
 %dir %{_omf_dest_dir}/%{name}
 %{_omf_dest_dir}/%{name}/gstreamer-properties-C.omf
+%lang(uk) %{_omf_dest_dir}/%{name}/gstreamer-properties-uk.omf
 %{_pixmapsdir}/gstreamer-properties.png
 %{_sysconfdir}/gconf/schemas/gnome-audio-profiles.schemas
 
@@ -312,6 +313,7 @@ EOF
 %lang(ko) %{_omf_dest_dir}/%{name}/gnome-cd-ko.omf
 %lang(nl) %{_omf_dest_dir}/%{name}/gnome-cd-nl.omf
 %lang(sv) %{_omf_dest_dir}/%{name}/gnome-cd-sv.omf
+%lang(uk) %{_omf_dest_dir}/%{name}/gnome-cd-uk.omf
 %lang(zh_CN) %{_omf_dest_dir}/%{name}/gnome-cd-zh_CN.omf
 %lang(zh_TW) %{_omf_dest_dir}/%{name}/gnome-cd-zh_TW.omf
 %{_pixmapsdir}/gnome-cd/*
@@ -362,8 +364,10 @@ EOF
 %lang(ja) %{_omf_dest_dir}/%{name}/grecord-ja.omf
 %lang(ko) %{_omf_dest_dir}/%{name}/grecord-ko.omf
 %lang(sv) %{_omf_dest_dir}/%{name}/grecord-sv.omf
+%lang(uk) %{_omf_dest_dir}/%{name}/grecord-uk.omf
 %lang(zh_CN) %{_omf_dest_dir}/%{name}/grecord-zh_CN.omf
 %lang(zh_TW) %{_omf_dest_dir}/%{name}/grecord-zh_TW.omf
+%{_pixmapsdir}/gnome-grecord.png
 %{_sysconfdir}/gconf/schemas/gnome-sound-recorder.schemas
 
 %files static
@@ -376,6 +380,7 @@ EOF
 %{_datadir}/gnome-media/pixmaps/*
 %{_desktopdir}/gnome-volume-control.desktop
 %{_omf_dest_dir}/%{name}/gnome-volume-control-C.omf
+%lang(uk) %{_omf_dest_dir}/%{name}/gnome-volume-control-uk.omf
 %{_pixmapsdir}/gnome-mixer.png
 %{_sysconfdir}/gconf/schemas/gnome-volume-control.schemas
 

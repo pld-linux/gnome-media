@@ -37,13 +37,12 @@ BuildRequires:	nautilus-cd-burner-devel >= 2.11.1
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.3.11
 BuildRequires:	xft-devel >= 2.1.2
-Requires(post,postun):	/sbin/ldconfig
 Requires(post,postun):	scrollkeeper
 Requires(post,preun):	GConf2
 Requires:	gail >= 1.8.0
-Requires:	libgnomeui >= 2.11.2-2
 Requires:	gstreamer-audiosink
 Requires:	gstreamer-plugins >= 0.8.8
+Requires:	libgnomeui >= 2.11.2-2
 Requires:	nautilus-cd-burner-libs >= 2.11.1
 Obsoletes:	gnome
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -89,7 +88,6 @@ Summary:	CD database server
 Summary(pl):	Serwer bazy danych p³yt CD
 Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
-Requires(post):	/sbin/ldconfig
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Conflicts:	gnome-media <= 0:2.8.0-5
 
@@ -144,6 +142,7 @@ Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	gstreamer-audio-effects
 Requires:	gstreamer-audiosink
 Obsoletes:	grecord
 Conflicts:	gnome-media <= 0:2.8.0-5
@@ -171,6 +170,7 @@ Summary:	Volume controler
 Summary(pl):	Regulator g³o¶no¶ci
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	gstreamer-audio-effects
 Requires:	gstreamer-audiosink
 Conflicts:	gnome-media <= 0:2.8.0-5
 

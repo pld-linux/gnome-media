@@ -10,7 +10,6 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.12/%{name}-%{versi
 # Source0-md5:	74d9a78f7269602e033ab1a4a144afdf
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-capplet.patch
-Icon:		gnome-media.gif
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.10.0
 BuildRequires:	ORBit2-devel >= 1:2.12.1

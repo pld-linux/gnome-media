@@ -2,12 +2,12 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.12.0
-Release:	3
+Version:	2.13.91
+Release:	1
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.12/%{name}-%{version}.tar.bz2
-# Source0-md5:	74d9a78f7269602e033ab1a4a144afdf
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.13/%{name}-%{version}.tar.bz2
+# Source0-md5:	cb39341ac416a7844f8059fc6a6a8511
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-capplet.patch
 URL:		http://www.gnome.org/
@@ -24,9 +24,8 @@ BuildRequires:	gail-devel >= 1.8.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
-BuildRequires:	gstreamer-GConf-devel >= 0.8.8
-BuildRequires:	gstreamer-devel >= 0.8.9
-BuildRequires:	gstreamer-plugins-devel >= 0.8.8
+BuildRequires:	gstreamer-GConf >= 0.10
+BuildRequires:	gstreamer-plugins-base-devel >= 0.10
 BuildRequires:	intltool >= 0.33
 BuildRequires:	libglade2-devel >= 1:2.5.1
 BuildRequires:	libgnomeui-devel >= 2.11.2-2
@@ -40,7 +39,7 @@ Requires(post,postun):	scrollkeeper
 Requires(post,preun):	GConf2
 Requires:	gail >= 1.8.0
 Requires:	gstreamer-audiosink
-Requires:	gstreamer-plugins >= 0.8.8
+Requires:	gstreamer-GConf
 Requires:	libgnomeui >= 2.11.2-2
 Requires:	nautilus-cd-burner-libs >= 2.11.1
 Obsoletes:	gnome
@@ -157,6 +156,7 @@ Summary:	gnome-media static libraries
 Summary(pl):	Biblioteki statyczne gnome-media
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Requires:	gstreamer-audio-effects-base
 
 %description static
 gnome-media static libraries.
@@ -199,6 +199,7 @@ Monitor g³o¶no¶ci.
 %patch1 -p1
 
 %build
+%{__gnome_doc_common}
 %{__intltoolize}
 %{__libtoolize}
 %{__glib_gettextize}
@@ -217,17 +218,15 @@ rm -rf $RPM_BUILD_ROOT
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.{la,a}
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 %find_lang %{name}-2.0
-%find_lang gstreamer-properties --with-gnome
 %find_lang gnome-cd --with-gnome
 %find_lang gnome-sound-recorder --with-gnome
-%find_lang grecord --with-gnome
 %find_lang gnome-volume-control --with-gnome
-
+%find_lang grecord --with-gnome
+%find_lang gstreamer-properties --with-gnome
 cat gstreamer-properties.lang >> %{name}-2.0.lang
-cat gnome-sound-recorder.lang >> grecord.lang
+cat grecord.lang >> gnome-sound-recorder.lang
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -300,6 +299,17 @@ EOF
 %{_pixmapsdir}/gstreamer-properties.png
 %{_sysconfdir}/gconf/schemas/gnome-audio-profiles.schemas
 
+%files devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libgnome-media-profiles.so
+%{_libdir}/libgnome-media-profiles.la
+%{_includedir}/gnome-media
+%{_pkgconfigdir}/*
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libgnome-media-profiles.a
+
 %files cd -f gnome-cd.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gnome-cd
@@ -344,18 +354,13 @@ EOF
 %defattr(644,root,root,755)
 %{_libdir}/libcddb-slave2.a
 
-%files devel
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgnome-media-profiles.so
-%{_libdir}/libgnome-media-profiles.la
-%{_includedir}/gnome-media
-%{_pkgconfigdir}/*
-
-%files sound-recorder -f grecord.lang
+%files sound-recorder -f gnome-sound-recorder.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gnome-sound-recorder
 %{_datadir}/gnome-sound-recorder
 %{_desktopdir}/gnome-sound-recorder.desktop
+%{_pixmapsdir}/gnome-grecord.png
+%{_sysconfdir}/gconf/schemas/gnome-sound-recorder.schemas
 %{_omf_dest_dir}/%{name}/grecord-C.omf
 %lang(de) %{_omf_dest_dir}/%{name}/grecord-de.omf
 %lang(es) %{_omf_dest_dir}/%{name}/grecord-es.omf
@@ -367,12 +372,6 @@ EOF
 %lang(uk) %{_omf_dest_dir}/%{name}/grecord-uk.omf
 %lang(zh_CN) %{_omf_dest_dir}/%{name}/grecord-zh_CN.omf
 %lang(zh_TW) %{_omf_dest_dir}/%{name}/grecord-zh_TW.omf
-%{_pixmapsdir}/gnome-grecord.png
-%{_sysconfdir}/gconf/schemas/gnome-sound-recorder.schemas
-
-%files static
-%defattr(644,root,root,755)
-%{_libdir}/libgnome-media-profiles.a
 
 %files volume-control -f gnome-volume-control.lang
 %defattr(644,root,root,755)

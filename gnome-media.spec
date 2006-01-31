@@ -38,8 +38,8 @@ BuildRequires:	xft-devel >= 2.1.2
 Requires(post,postun):	scrollkeeper
 Requires(post,preun):	GConf2
 Requires:	gail >= 1.8.0
-Requires:	gstreamer-audiosink
 Requires:	gstreamer-GConf
+Requires:	gstreamer-audiosink
 Requires:	libgnomeui >= 2.11.2-2
 Requires:	nautilus-cd-burner-libs >= 2.11.1
 Obsoletes:	gnome
@@ -70,9 +70,9 @@ Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
 Requires:	%{name}-cddb = %{epoch}:%{version}-%{release}
-Requires:	gstreamer-audio-effects
+Requires:	gstreamer-audio-effects-base >= 0.10
 Requires:	gstreamer-audiosink
-Requires:	gstreamer-cdparanoia >= 0.8.8-2
+Requires:	gstreamer-cdparanoia >= 0.10
 Conflicts:	gnome-media <= 0:2.8.0-5
 
 %description cd
@@ -140,7 +140,7 @@ Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	gstreamer-audio-effects
+Requires:	gstreamer-audio-effects-base
 Requires:	gstreamer-audiosink
 Obsoletes:	grecord
 Conflicts:	gnome-media <= 0:2.8.0-5
@@ -156,7 +156,6 @@ Summary:	gnome-media static libraries
 Summary(pl):	Biblioteki statyczne gnome-media
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-Requires:	gstreamer-audio-effects-base
 
 %description static
 gnome-media static libraries.
@@ -169,7 +168,7 @@ Summary:	Volume controler
 Summary(pl):	Regulator g³o¶no¶ci
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	gstreamer-audio-effects
+Requires:	gstreamer-audio-effects-base
 Requires:	gstreamer-audiosink
 Conflicts:	gnome-media <= 0:2.8.0-5
 

@@ -2,12 +2,12 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.13.91
+Version:	2.13.92
 Release:	1
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.13/%{name}-%{version}.tar.bz2
-# Source0-md5:	cb39341ac416a7844f8059fc6a6a8511
+# Source0-md5:	faa1f6e68b49b37e2b8b075bd74f03c7
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-capplet.patch
 URL:		http://www.gnome.org/
@@ -23,25 +23,25 @@ BuildRequires:	esound-devel >= 1:0.2.31
 BuildRequires:	gail-devel >= 1.8.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.8.0
-BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
-BuildRequires:	gstreamer-GConf >= 0.10
+BuildRequires:	gnome-vfs2-devel >= 2.10.0-2 
 BuildRequires:	gstreamer-audio-effects-base >= 0.10
+BuildRequires:	gstreamer-devel >= 0.10.3
+BuildRequires:	gstreamer-GConf >= 0.10
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10
 BuildRequires:	intltool >= 0.33
 BuildRequires:	libglade2-devel >= 1:2.5.1
-BuildRequires:	libgnomeui-devel >= 2.11.2-2
+BuildRequires:	libgnomeui-devel >= 2.13.3
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
 BuildRequires:	nautilus-cd-burner-devel >= 2.11.1
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.3.11
-BuildRequires:	xft-devel >= 2.1.2
 Requires(post,postun):	scrollkeeper
 Requires(post,preun):	GConf2
 Requires:	gail >= 1.8.0
 Requires:	gstreamer-GConf
 Requires:	gstreamer-audiosink
-Requires:	libgnomeui >= 2.11.2-2
+Requires:	libgnomeui >= 2.13.3
 Requires:	nautilus-cd-burner-libs >= 2.11.1
 Obsoletes:	gnome
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -71,7 +71,7 @@ Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
 Requires:	%{name}-cddb = %{epoch}:%{version}-%{release}
-Requires:	gstreamer-audio-effects-base >= 0.10
+Requires:	gstreamer-audio-effects-base >= 0.10.3
 Requires:	gstreamer-audiosink
 Requires:	gstreamer-cdparanoia >= 0.10
 Conflicts:	gnome-media <= 0:2.8.0-5
@@ -141,7 +141,7 @@ Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	gstreamer-audio-effects-base
+Requires:	gstreamer-audio-effects-base >= 0.10.3
 Requires:	gstreamer-audiosink
 Obsoletes:	grecord
 Conflicts:	gnome-media <= 0:2.8.0-5
@@ -169,7 +169,7 @@ Summary:	Volume controler
 Summary(pl):	Regulator g³o¶no¶ci
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	gstreamer-audio-effects-base
+Requires:	gstreamer-audio-effects-base >= 0.10.3
 Requires:	gstreamer-audiosink
 Conflicts:	gnome-media <= 0:2.8.0-5
 

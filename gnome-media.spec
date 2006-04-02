@@ -37,6 +37,7 @@ BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.3.11
 Requires(post,postun):	scrollkeeper
 Requires(post,preun):	GConf2
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	gail >= 1.8.0
 Requires:	gstreamer-GConf
 Requires:	gstreamer-audiosink
@@ -62,6 +63,18 @@ plus facile, agréable et eficace, et est facile à configurer.
 
 %description -l pl
 Programy multimedialne dla GNOME.
+
+%package libs
+Summary:	gnome-media library
+Summary(pl):	Biblioteka gnome-media
+Group:		Development/Libraries
+Requires:	libgnomeui >= 2.10.0-2
+
+%description libs
+This package contains gnome-media library.
+
+%description libs -l pl
+Pakiet ten zawiera bibliotekê gnome-media.
 
 %package cd
 Summary:	CD player
@@ -125,7 +138,7 @@ Biblioteki statyczne gnome-media-cddb.
 Summary:	gnome-media devel files
 Summary(pl):	Pliki nag³ówkowe gnome-media
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 
 %description devel
 gnome-media devel files.
@@ -232,7 +245,6 @@ cat grecord.lang >> gnome-sound-recorder.lang
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/ldconfig
 %scrollkeeper_update_post
 %gconf_schema_install gnome-audio-profiles.schemas
 
@@ -240,8 +252,10 @@ rm -rf $RPM_BUILD_ROOT
 %gconf_schema_uninstall gnome-audio-profiles.schemas
 
 %postun
-/sbin/ldconfig
 %scrollkeeper_update_postun
+
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %post cd
 %scrollkeeper_update_post
@@ -286,7 +300,6 @@ EOF
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/gnome-audio-profiles-properties
 %attr(755,root,root) %{_bindir}/gstreamer-properties
-%attr(755,root,root) %{_libdir}/libgnome-media-profiles.so.*.*
 %attr(755,root,root) %{_libdir}/libglade/2.0/*.so
 %{_desktopdir}/gstreamer-properties.desktop
 %dir %{_datadir}/gnome-media
@@ -298,6 +311,10 @@ EOF
 %lang(uk) %{_omf_dest_dir}/%{name}/gstreamer-properties-uk.omf
 %{_pixmapsdir}/gstreamer-properties.png
 %{_sysconfdir}/gconf/schemas/gnome-audio-profiles.schemas
+
+%files libs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libgnome-media-profiles.so.*.*
 
 %files devel
 %defattr(644,root,root,755)

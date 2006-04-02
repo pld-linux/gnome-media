@@ -10,6 +10,7 @@ Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.14/%{name}-%{versi
 # Source0-md5:	e1304b3fb5e069025bb2c1ea3f9f8b62
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-capplet.patch
+Patch2:		%{name}-configure.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.10.0
 BuildRequires:	ORBit2-devel >= 1:2.12.1
@@ -24,7 +25,6 @@ BuildRequires:	gail-devel >= 1.8.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.8.0
 BuildRequires:	gnome-vfs2-devel >= 2.10.0-2 
-BuildRequires:	gstreamer-audio-effects-base >= 0.10
 BuildRequires:	gstreamer-devel >= 0.10.3
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10
 BuildRequires:	intltool >= 0.33
@@ -196,6 +196,7 @@ Monitor g³o¶no¶ci.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__gnome_doc_common}

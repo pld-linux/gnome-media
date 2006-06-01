@@ -2,15 +2,14 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.14.0
-Release:	2
+Version:	2.14.2
+Release:	1
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.14/%{name}-%{version}.tar.bz2
-# Source0-md5:	e1304b3fb5e069025bb2c1ea3f9f8b62
+# Source0-md5:	16c35916f429c5ea04fb942b4072643b
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-capplet.patch
-Patch2:		%{name}-configure.patch
+Patch1:		%{name}-configure.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.14.0
 BuildRequires:	ORBit2-devel >= 1:2.14.0
@@ -19,20 +18,20 @@ BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 1:2.14.1
+BuildRequires:	control-center-devel >= 1:2.14.2
 BuildRequires:	esound-devel >= 1:0.2.31
 BuildRequires:	gail-devel >= 1.8.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.8.0
-BuildRequires:	gnome-vfs2-devel >= 2.14.0
+BuildRequires:	gnome-vfs2-devel >= 2.14.2
 BuildRequires:	gstreamer-devel >= 0.10.3
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10
-BuildRequires:	intltool >= 0.33
+BuildRequires:	intltool >= 0.35
 BuildRequires:	libglade2-devel >= 1:2.5.1
-BuildRequires:	libgnomeui-devel >= 2.14.0
+BuildRequires:	libgnomeui-devel >= 2.14.1
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
-BuildRequires:	nautilus-cd-burner-devel >= 2.14.1
+BuildRequires:	nautilus-cd-burner-devel >= 2.14.2
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.3.11
 Requires(post,postun):	scrollkeeper
@@ -41,8 +40,8 @@ Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	gail >= 1.8.0
 Requires:	gstreamer-GConf
 Requires:	gstreamer-audiosink
-Requires:	libgnomeui >= 2.14.0
-Requires:	nautilus-cd-burner-libs >= 2.14.1
+Requires:	libgnomeui >= 2.14.1
+Requires:	nautilus-cd-burner-libs >= 2.14.2
 Obsoletes:	gnome
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -209,13 +208,11 @@ Monitor g³o¶no¶ci.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__gnome_doc_common}
 %{__intltoolize}
 %{__libtoolize}
-%{__glib_gettextize}
 %{__aclocal} -I m4
 %{__autoheader}
 %{__autoconf}

@@ -3,7 +3,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.14.2
-Release:	2
+Release:	3
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.14/%{name}-%{version}.tar.bz2
@@ -18,30 +18,30 @@ BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 1:2.14.2
+BuildRequires:	control-center-devel >= 1:2.15.4
 BuildRequires:	esound-devel >= 1:0.2.31
-BuildRequires:	gail-devel >= 1.8.11
+BuildRequires:	gail-devel >= 1.9.0
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-common >= 2.8.0
-BuildRequires:	gnome-vfs2-devel >= 2.15.1
+BuildRequires:	gnome-common >= 2.12.0
+BuildRequires:	gnome-vfs2-devel >= 2.15.3
 BuildRequires:	gstreamer-devel >= 0.10.6
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.7
 BuildRequires:	intltool >= 0.35
-BuildRequires:	libglade2-devel >= 1:2.5.1
+BuildRequires:	libglade2-devel >= 1:2.6.0
 BuildRequires:	libgnomeui-devel >= 2.15.1
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.26
-BuildRequires:	nautilus-cd-burner-devel >= 2.15.2
+BuildRequires:	nautilus-cd-burner-devel >= 2.15.4
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.3.11
 Requires(post,postun):	scrollkeeper
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
-Requires:	gail >= 1.8.11
+Requires:	gail >= 1.9.11
 Requires:	gstreamer-GConf
 Requires:	gstreamer-audiosink
-Requires:	libgnomeui >= 2.14.1
-Requires:	nautilus-cd-burner-libs >= 2.15.2
+Requires:	libgnomeui >= 2.14.2
+Requires:	nautilus-cd-burner-libs >= 2.15.4
 Obsoletes:	gnome
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -67,7 +67,7 @@ Programy multimedialne dla GNOME.
 Summary:	gnome-media library
 Summary(pl):	Biblioteka gnome-media
 Group:		Development/Libraries
-Requires:	libgnomeui >= 2.15.1
+Requires:	libgnomeui >= 2.15.2
 
 %description libs
 This package contains gnome-media library.
@@ -217,6 +217,7 @@ Monitor g³o¶no¶ci.
 %{__autoheader}
 %{__autoconf}
 %{__automake}
+LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure 
 %{__make}
 

@@ -3,7 +3,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.14.2
-Release:	4
+Release:	5
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.14/%{name}-%{version}.tar.bz2
@@ -37,7 +37,7 @@ BuildRequires:	scrollkeeper >= 0.3.11
 Requires(post,postun):	scrollkeeper
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
-Requires:	gail >= 1.9.10
+Requires:	gail >= 1.9.0
 Requires:	gstreamer-GConf
 Requires:	gstreamer-audiosink
 Requires:	libgnomeui >= 2.14.2

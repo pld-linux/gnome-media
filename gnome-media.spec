@@ -3,7 +3,7 @@ Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.14.2
-Release:	5
+Release:	6
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.14/%{name}-%{version}.tar.bz2
@@ -217,7 +217,6 @@ Monitor g³o¶no¶ci.
 %{__autoheader}
 %{__autoconf}
 %{__automake}
-LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure 
 %{__make}
 

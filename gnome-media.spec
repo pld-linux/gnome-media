@@ -2,46 +2,46 @@ Summary:	GNOME media programs
 Summary(fr):	Programmes multimédia de GNOME
 Summary(pl):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.14.2
-Release:	6
+Version:	2.16.1
+Release:	1
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.14/%{name}-%{version}.tar.bz2
-# Source0-md5:	16c35916f429c5ea04fb942b4072643b
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.16/%{name}-%{version}.tar.bz2
+# Source0-md5:	4fa1e8e8bd31e2db1cb49679170a98a8
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-configure.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.10.0
-BuildRequires:	ORBit2-devel >= 1:2.12.1
+BuildRequires:	GConf2-devel >= 2.14.0
+BuildRequires:	ORBit2-devel >= 1:2.14.3
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 1:2.15.4
-BuildRequires:	esound-devel >= 1:0.2.31
-BuildRequires:	gail-devel >= 1.9.0
+BuildRequires:	control-center-devel >= 1:2.16.0
+BuildRequires:	esound-devel >= 1:0.2.36
+BuildRequires:	gail-devel >= 1.9.2
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.12.0
-BuildRequires:	gnome-vfs2-devel >= 2.15.3
-BuildRequires:	gstreamer-devel >= 0.10.6
-BuildRequires:	gstreamer-plugins-base-devel >= 0.10.7
+BuildRequires:	gnome-vfs2-devel >= 2.16.0
+BuildRequires:	gstreamer-devel >= 0.10.9
+BuildRequires:	gstreamer-plugins-base-devel >= 0.10.9
 BuildRequires:	intltool >= 0.35
 BuildRequires:	libglade2-devel >= 1:2.6.0
-BuildRequires:	libgnomeui-devel >= 2.15.1
+BuildRequires:	libgnomeui-devel >= 2.16.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.26
-BuildRequires:	nautilus-cd-burner-devel >= 2.15.4
+BuildRequires:	nautilus-cd-burner-devel >= 2.16.0
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.3.11
 Requires(post,postun):	scrollkeeper
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
-Requires:	gail >= 1.9.0
+Requires:	gail >= 1.9.2
 Requires:	gstreamer-GConf
 Requires:	gstreamer-audiosink
-Requires:	libgnomeui >= 2.14.2
-Requires:	nautilus-cd-burner-libs >= 2.15.4
+Requires:	libgnomeui >= 2.16.0
+Requires:	nautilus-cd-burner-libs >= 2.16.0
 Obsoletes:	gnome
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -67,7 +67,7 @@ Programy multimedialne dla GNOME.
 Summary:	gnome-media library
 Summary(pl):	Biblioteka gnome-media
 Group:		Development/Libraries
-Requires:	libgnomeui >= 2.15.2
+Requires:	libgnomeui >= 2.16.0
 
 %description libs
 This package contains gnome-media library.
@@ -82,9 +82,9 @@ Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
 Requires:	%{name}-cddb = %{epoch}:%{version}-%{release}
-Requires:	gstreamer-audio-effects-base >= 0.10.7
+Requires:	gstreamer-audio-effects-base >= 0.10.9
 Requires:	gstreamer-audiosink
-Requires:	gstreamer-cdparanoia >= 0.10
+Requires:	gstreamer-cdparanoia >= 0.10.9
 Conflicts:	gnome-media <= 0:2.8.0-5
 
 %description cd
@@ -152,7 +152,7 @@ Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	gstreamer-audio-effects-base >= 0.10.7
+Requires:	gstreamer-audio-effects-base >= 0.10.9
 Requires:	gstreamer-audiosink
 Obsoletes:	grecord
 Conflicts:	gnome-media <= 0:2.8.0-5
@@ -180,7 +180,7 @@ Summary:	Volume controler
 Summary(pl):	Regulator g³o¶no¶ci
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	gstreamer-audio-effects-base >= 0.10.3
+Requires:	gstreamer-audio-effects-base >= 0.10.9
 Requires:	gstreamer-audiosink
 Conflicts:	gnome-media <= 0:2.8.0-5
 

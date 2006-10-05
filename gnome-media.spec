@@ -228,7 +228,6 @@ rm -rf $RPM_BUILD_ROOT
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.{la,a}
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/tk
 
 %find_lang %{name}-2.0
 %find_lang gnome-cd --with-gnome

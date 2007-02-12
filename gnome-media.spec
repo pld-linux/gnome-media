@@ -1,6 +1,6 @@
 Summary:	GNOME media programs
-Summary(fr):	Programmes multimédia de GNOME
-Summary(pl):	Programy multimedialne dla GNOME
+Summary(fr.UTF-8):   Programmes multimÃ©dia de GNOME
+Summary(pl.UTF-8):   Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.16.1
 Release:	2
@@ -53,31 +53,31 @@ Environment. That's a fancy name but really GNOME is a nice GUI
 desktop environment. It makes using your computer easy, powerful, and
 easy to configure.
 
-%description -l fr
-Programmes multimédia GNOME.
+%description -l fr.UTF-8
+Programmes multimÃ©dia GNOME.
 
 GNOME (GNU Network Object Model Environment) est un environnement
 graphique de type bureau. Il rends l'utilisation de votre ordinateur
-plus facile, agréable et eficace, et est facile à configurer.
+plus facile, agrÃ©able et eficace, et est facile Ã  configurer.
 
-%description -l pl
+%description -l pl.UTF-8
 Programy multimedialne dla GNOME.
 
 %package libs
 Summary:	gnome-media library
-Summary(pl):	Biblioteka gnome-media
+Summary(pl.UTF-8):   Biblioteka gnome-media
 Group:		Development/Libraries
 Requires:	libgnomeui >= 2.16.0
 
 %description libs
 This package contains gnome-media library.
 
-%description libs -l pl
-Pakiet ten zawiera bibliotekê gnome-media.
+%description libs -l pl.UTF-8
+Pakiet ten zawiera bibliotekÄ™ gnome-media.
 
 %package cd
 Summary:	CD player
-Summary(pl):	Odtwarzacz CD
+Summary(pl.UTF-8):   Odtwarzacz CD
 Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
@@ -90,12 +90,12 @@ Conflicts:	gnome-media <= 0:2.8.0-5
 %description cd
 CD player.
 
-%description cd -l pl
+%description cd -l pl.UTF-8
 Odtwarzacz CD.
 
 %package cddb
 Summary:	CD database server
-Summary(pl):	Serwer bazy danych p³yt CD
+Summary(pl.UTF-8):   Serwer bazy danych pÅ‚yt CD
 Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires:	%{name} = %{epoch}:%{version}-%{release}
@@ -104,12 +104,12 @@ Conflicts:	gnome-media <= 0:2.8.0-5
 %description cddb
 CD database server.
 
-%description cddb -l pl
-Serwer bazy danych p³yt CD.
+%description cddb -l pl.UTF-8
+Serwer bazy danych pÅ‚yt CD.
 
 %package cddb-devel
 Summary:	gnome-media-cddb devel file
-Summary(pl):	Pliki nag³ówkowe gnome-media-cddb
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe gnome-media-cddb
 Group:		X11/Development/Libraries
 Requires:	%{name}-cddb = %{epoch}:%{version}-%{release}
 Conflicts:	gnome-media-devel <= 0:2.8.0-5
@@ -117,12 +117,12 @@ Conflicts:	gnome-media-devel <= 0:2.8.0-5
 %description cddb-devel
 gnome-media-cddb devel files.
 
-%description cddb-devel -l pl
-Pliki nag³ówkowe gnome-media-cddb.
+%description cddb-devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe gnome-media-cddb.
 
 %package cddb-static
 Summary:	gnome-media-cddb static libraries
-Summary(pl):	Biblioteki statyczne gnome-media-cddb
+Summary(pl.UTF-8):   Biblioteki statyczne gnome-media-cddb
 Group:		X11/Development/Libraries
 Requires:	%{name}-cddb-devel = %{epoch}:%{version}-%{release}
 Conflicts:	gnome-media-static <= 0:2.8.0-5
@@ -130,24 +130,24 @@ Conflicts:	gnome-media-static <= 0:2.8.0-5
 %description cddb-static
 gnome-media-cddb static libraries.
 
-%description cddb-static -l pl
+%description cddb-static -l pl.UTF-8
 Biblioteki statyczne gnome-media-cddb.
 
 %package devel
 Summary:	gnome-media devel files
-Summary(pl):	Pliki nag³ówkowe gnome-media
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe gnome-media
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 
 %description devel
 gnome-media devel files.
 
-%description devel -l pl
-Pliki nag³ówkowe gnome-media.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe gnome-media.
 
 %package sound-recorder
 Summary:	Sound recorder
-Summary(pl):	Rejestrator d¼wiêku
+Summary(pl.UTF-8):   Rejestrator dÅºwiÄ™ku
 Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
@@ -160,24 +160,24 @@ Conflicts:	gnome-media <= 0:2.8.0-5
 %description sound-recorder
 Sound recorder.
 
-%description sound-recorder -l pl
-Rejestrator d¼wiêku.
+%description sound-recorder -l pl.UTF-8
+Rejestrator dÅºwiÄ™ku.
 
 %package static
 Summary:	gnome-media static libraries
-Summary(pl):	Biblioteki statyczne gnome-media
+Summary(pl.UTF-8):   Biblioteki statyczne gnome-media
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 gnome-media static libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne gnome-media.
 
 %package volume-control
 Summary:	Volume controler
-Summary(pl):	Regulator g³o¶no¶ci
+Summary(pl.UTF-8):   Regulator gÅ‚oÅ›noÅ›ci
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gstreamer-audio-effects-base >= 0.10.9
@@ -187,12 +187,12 @@ Conflicts:	gnome-media <= 0:2.8.0-5
 %description volume-control
 Volume control.
 
-%description volume-control -l pl
-Regulator g³o¶no¶ci.
+%description volume-control -l pl.UTF-8
+Regulator gÅ‚oÅ›noÅ›ci.
 
 %package vumeter
 Summary:	Volume monitor
-Summary(pl):	Monitor g³o¶no¶ci
+Summary(pl.UTF-8):   Monitor gÅ‚oÅ›noÅ›ci
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gstreamer-audiosink
@@ -201,8 +201,8 @@ Conflicts:	gnome-media <= 0:2.8.0-5
 %description vumeter
 Volume monitor.
 
-%description vumeter -l pl
-Monitor g³o¶no¶ci.
+%description vumeter -l pl.UTF-8
+Monitor gÅ‚oÅ›noÅ›ci.
 
 %prep
 %setup -q

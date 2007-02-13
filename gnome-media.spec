@@ -1,6 +1,6 @@
 Summary:	GNOME media programs
-Summary(fr.UTF-8):   Programmes multimédia de GNOME
-Summary(pl.UTF-8):   Programy multimedialne dla GNOME
+Summary(fr.UTF-8):	Programmes multimédia de GNOME
+Summary(pl.UTF-8):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.16.1
 Release:	2
@@ -65,7 +65,7 @@ Programy multimedialne dla GNOME.
 
 %package libs
 Summary:	gnome-media library
-Summary(pl.UTF-8):   Biblioteka gnome-media
+Summary(pl.UTF-8):	Biblioteka gnome-media
 Group:		Development/Libraries
 Requires:	libgnomeui >= 2.16.0
 
@@ -77,7 +77,7 @@ Pakiet ten zawiera bibliotekę gnome-media.
 
 %package cd
 Summary:	CD player
-Summary(pl.UTF-8):   Odtwarzacz CD
+Summary(pl.UTF-8):	Odtwarzacz CD
 Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
@@ -95,7 +95,7 @@ Odtwarzacz CD.
 
 %package cddb
 Summary:	CD database server
-Summary(pl.UTF-8):   Serwer bazy danych płyt CD
+Summary(pl.UTF-8):	Serwer bazy danych płyt CD
 Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires:	%{name} = %{epoch}:%{version}-%{release}
@@ -109,7 +109,7 @@ Serwer bazy danych płyt CD.
 
 %package cddb-devel
 Summary:	gnome-media-cddb devel file
-Summary(pl.UTF-8):   Pliki nagłówkowe gnome-media-cddb
+Summary(pl.UTF-8):	Pliki nagłówkowe gnome-media-cddb
 Group:		X11/Development/Libraries
 Requires:	%{name}-cddb = %{epoch}:%{version}-%{release}
 Conflicts:	gnome-media-devel <= 0:2.8.0-5
@@ -122,7 +122,7 @@ Pliki nagłówkowe gnome-media-cddb.
 
 %package cddb-static
 Summary:	gnome-media-cddb static libraries
-Summary(pl.UTF-8):   Biblioteki statyczne gnome-media-cddb
+Summary(pl.UTF-8):	Biblioteki statyczne gnome-media-cddb
 Group:		X11/Development/Libraries
 Requires:	%{name}-cddb-devel = %{epoch}:%{version}-%{release}
 Conflicts:	gnome-media-static <= 0:2.8.0-5
@@ -135,7 +135,7 @@ Biblioteki statyczne gnome-media-cddb.
 
 %package devel
 Summary:	gnome-media devel files
-Summary(pl.UTF-8):   Pliki nagłówkowe gnome-media
+Summary(pl.UTF-8):	Pliki nagłówkowe gnome-media
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 
@@ -147,7 +147,7 @@ Pliki nagłówkowe gnome-media.
 
 %package sound-recorder
 Summary:	Sound recorder
-Summary(pl.UTF-8):   Rejestrator dźwięku
+Summary(pl.UTF-8):	Rejestrator dźwięku
 Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
@@ -165,7 +165,7 @@ Rejestrator dźwięku.
 
 %package static
 Summary:	gnome-media static libraries
-Summary(pl.UTF-8):   Biblioteki statyczne gnome-media
+Summary(pl.UTF-8):	Biblioteki statyczne gnome-media
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
@@ -177,7 +177,7 @@ Biblioteki statyczne gnome-media.
 
 %package volume-control
 Summary:	Volume controler
-Summary(pl.UTF-8):   Regulator głośności
+Summary(pl.UTF-8):	Regulator głośności
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gstreamer-audio-effects-base >= 0.10.9
@@ -192,7 +192,7 @@ Regulator głośności.
 
 %package vumeter
 Summary:	Volume monitor
-Summary(pl.UTF-8):   Monitor głośności
+Summary(pl.UTF-8):	Monitor głośności
 Group:		X11/Applications/Multimedia
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gstreamer-audiosink

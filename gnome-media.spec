@@ -2,14 +2,14 @@ Summary:	GNOME media programs
 Summary(fr.UTF-8):	Programmes multimédia de GNOME
 Summary(pl.UTF-8):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.16.1
-Release:	2
+Version:	2.17.91
+Release:	1
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.16/%{name}-%{version}.tar.bz2
-# Source0-md5:	4fa1e8e8bd31e2db1cb49679170a98a8
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.17/%{name}-%{version}.tar.bz2
+# Source0-md5:	297978a546d25d2e03081842bccc534d
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-configure.patch
+#Patch1:		%{name}-configure.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.14.0
 BuildRequires:	ORBit2-devel >= 1:2.14.3
@@ -207,7 +207,7 @@ Monitor głośności.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
+#%%patch1 -p1
 
 %build
 %{__gnome_doc_common}

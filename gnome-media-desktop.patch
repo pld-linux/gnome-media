@@ -41,7 +41,7 @@ diff -aurN gnome-media-2.14.2.orig/gst-mixer/gnome-volume-control.desktop.in.in 
  X-Info=Gnome Mixer
  Terminal=false
  Type=Application
--Categories=GNOME;GTK;Application;AudioVideo;X-Ximian-Main;X-Red-Hat-Base;
+-Categories=GNOME;GTK;AudioVideo;X-Ximian-Main;X-Red-Hat-Base;
 +Categories=GTK;GNOME;AudioVideo;Audio;Mixer;
  X-GNOME-DocPath=gst-mixer/gnome-volume-control.xml
  X-GNOME-Bugzilla-Bugzilla=GNOME
@@ -53,7 +53,7 @@ diff -aurN gnome-media-2.14.2.orig/gstreamer-properties/gstreamer-properties.des
  StartupNotify=true
  Terminal=false
  Type=Application
--Categories=GNOME;GTK;Application;Settings;AdvancedSettings;
+-Categories=GNOME;GTK;Application;Settings;AdvancedSettings;SystemSettings;
 +Categories=GTK;GNOME;Settings;AdvancedSettings;X-Capplet;
  OnlyShowIn=GNOME;
  X-GNOME-Bugzilla-Bugzilla=GNOME

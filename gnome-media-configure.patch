@@ -1,9 +1,9 @@
-diff -aurN gnome-media-2.14.0.orig/configure.in gnome-media-2.14.0/configure.in
---- gnome-media-2.14.0.orig/configure.in	2006-03-12 21:35:01.000000000 +0100
-+++ gnome-media-2.14.0/configure.in	2006-04-02 15:55:43.000000000 +0200
-@@ -157,49 +157,8 @@
+diff -urN gnome-media-2.17.91/configure.in gnome-media-2.17.91.new/configure.in
+--- gnome-media-2.17.91/configure.in	2007-02-12 15:06:29.000000000 +0100
++++ gnome-media-2.17.91.new/configure.in	2007-03-05 16:17:04.000000000 +0100
+@@ -178,51 +178,8 @@
  
- if test "x$HAVE_GST" = "xyes"; then
+ if test "x$HAVE_GST" = "xyes" && test "x$enable_grecord" == "xyes"; then
    PROGRAMS_GRECORD="grecord"
 -
 -  gst010_toolsdir=`$PKG_CONFIG --variable=toolsdir gstreamer-0.10`
@@ -46,9 +46,11 @@ diff -aurN gnome-media-2.14.0.orig/configure.in gnome-media-2.14.0/configure.in
 -    fi
 -  done
  else
--  AC_MSG_WARN([You need GStreamer installed for the mixer and recorder to work])
--  sleep 5 2>/dev/null
-+ PROGRAMS_GRECORD=""
+-  if test "x$HAVE_GST" = "xno"; then		
+-    AC_MSG_WARN([You need GStreamer installed for the mixer and recorder to work])
+-    sleep 5 2>/dev/null
+-  fi	
++  PROGRAMS_GRECORD=""
  fi
  
  AC_SUBST(PROGRAMS_GRECORD)

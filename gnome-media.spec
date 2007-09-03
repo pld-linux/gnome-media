@@ -3,13 +3,14 @@ Summary(fr.UTF-8):	Programmes multimédia de GNOME
 Summary(pl.UTF-8):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.18.0
-Release:	1
+Release:	2
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.18/%{name}-%{version}.tar.bz2
 # Source0-md5:	a472d8c7733b119376bc6127ee55a82d
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-configure.patch
+Patch2:		%{name}-glsink.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.18.0.1
 BuildRequires:	ORBit2-devel >= 1:2.14.7
@@ -210,6 +211,7 @@ Monitor głośności.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__gnome_doc_common}

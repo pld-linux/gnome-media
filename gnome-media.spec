@@ -2,49 +2,49 @@ Summary:	GNOME media programs
 Summary(fr.UTF-8):	Programmes multimédia de GNOME
 Summary(pl.UTF-8):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.18.0
-Release:	2
+Version:	2.20.0
+Release:	1
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gnome-media/2.18/%{name}-%{version}.tar.bz2
-# Source0-md5:	a472d8c7733b119376bc6127ee55a82d
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.20/%{name}-%{version}.tar.bz2
+# Source0-md5:	d9206606050953a37bce61a3b1644137
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-configure.patch
 Patch2:		%{name}-glsink.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.18.0.1
-BuildRequires:	ORBit2-devel >= 1:2.14.7
+BuildRequires:	GConf2-devel >= 2.19.1
+BuildRequires:	ORBit2-devel >= 1:2.14.8
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-BuildRequires:	control-center-devel >= 1:2.18.0
+BuildRequires:	gnome-control-center-devel >= 1:2.19.92
 BuildRequires:	esound-devel >= 1:0.2.37
-BuildRequires:	gail-devel >= 1.18.0
+BuildRequires:	gail-devel >= 1.19.6
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-common >= 2.12.0
-BuildRequires:	gnome-vfs2-devel >= 2.18.0
+BuildRequires:	gnome-common >= 2.18.0
+BuildRequires:	gnome-vfs2-devel >= 2.19.91
 BuildRequires:	gstreamer-devel >= 0.10.11
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.11
-BuildRequires:	gtk+2-devel >= 2:2.10.10
-BuildRequires:	intltool >= 0.35.5
-BuildRequires:	libbonobo-devel >= 2.18.0
-BuildRequires:	libglade2-devel >= 1:2.6.0
-BuildRequires:	libgnomeui-devel >= 2.18.0
+BuildRequires:	gtk+2-devel >= 2:2.10.14
+BuildRequires:	intltool >= 0.36.1
+BuildRequires:	libbonobo-devel >= 2.19.6
+BuildRequires:	libglade2-devel >= 1:2.6.2
+BuildRequires:	libgnomeui-devel >= 2.19.1
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 1:2.6.27
-BuildRequires:	nautilus-cd-burner-devel >= 2.17.8
+BuildRequires:	libxml2-devel >= 1:2.6.29
+BuildRequires:	nautilus-cd-burner-devel >= 2.19.6
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.3.11
 Requires(post,postun):	scrollkeeper
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
-Requires:	gail >= 1.18.0
+Requires:	gail >= 1.19.6
 Requires:	gstreamer-GConf
 Requires:	gstreamer-audiosink
-Requires:	libgnomeui >= 2.18.0
-Requires:	nautilus-cd-burner-libs >= 2.17.8
+Requires:	libgnomeui >= 2.19.1
+Requires:	nautilus-cd-burner-libs >= 2.19.6
 Obsoletes:	gnome
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -70,7 +70,7 @@ Programy multimedialne dla GNOME.
 Summary:	gnome-media library
 Summary(pl.UTF-8):	Biblioteka gnome-media
 Group:		Development/Libraries
-Requires:	libgnomeui >= 2.18.0
+Requires:	libgnomeui >= 2.19.1
 
 %description libs
 This package contains gnome-media library.
@@ -159,6 +159,7 @@ Requires:	gstreamer-audio-effects-base >= 0.10.11
 Requires:	gstreamer-audiosink
 Obsoletes:	grecord
 Conflicts:	gnome-media <= 0:2.8.0-5
+Suggests:	gnome-media-volume-control
 
 %description sound-recorder
 Sound recorder.
@@ -237,15 +238,14 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.{la,a}
 %find_lang gnome-cd --with-gnome
 %find_lang gnome-sound-recorder --with-gnome
 %find_lang gnome-volume-control --with-gnome
-%find_lang grecord --with-gnome
 %find_lang gstreamer-properties --with-gnome
 cat gstreamer-properties.lang >> %{name}-2.0.lang
-cat grecord.lang >> gnome-sound-recorder.lang
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
+%update_icon_cache hicolor
 %scrollkeeper_update_post
 %gconf_schema_install gnome-audio-profiles.schemas
 
@@ -253,6 +253,7 @@ rm -rf $RPM_BUILD_ROOT
 %gconf_schema_uninstall gnome-audio-profiles.schemas
 
 %postun
+%update_icon_cache hicolor
 %scrollkeeper_update_postun
 
 %post	libs -p /sbin/ldconfig
@@ -270,30 +271,34 @@ rm -rf $RPM_BUILD_ROOT
 
 %post cddb
 /sbin/ldconfig
+%update_icon_cache hicolor
 %gconf_schema_install CDDB-Slave2.schemas
 
 %preun cddb
 %gconf_schema_uninstall CDDB-Slave2.schemas
 
-%postun cddb -p /sbin/ldconfig
+%postun cddb
+/sbin/ldconfig
+%update_icon_cache hicolor
 
 %post sound-recorder
+%update_icon_cache hicolor
 %scrollkeeper_update_post
 %gconf_schema_install gnome-sound-recorder.schemas
-%banner %{name} -e << EOF
-For full functionality, you need to install gnome-media-volume-control.
-EOF
 
 %preun sound-recorder
 %gconf_schema_install gnome-sound-recorder.schemas
 
 %postun sound-recorder
+%update_icon_cache hicolor
 %scrollkeeper_update_postun
 
 %post volume-control
+%update_icon_cache hicolor
 %scrollkeeper_update_post
 
 %postun volume-control
+%update_icon_cache hicolor
 %scrollkeeper_update_postun
 
 %files -f %{name}-2.0.lang
@@ -307,10 +312,7 @@ EOF
 %dir %{_datadir}/gnome-media/pixmaps
 %{_datadir}/gnome-media/glade
 %{_datadir}/gstreamer-properties
-%dir %{_omf_dest_dir}/%{name}
-%{_omf_dest_dir}/%{name}/gstreamer-properties-C.omf
-%lang(uk) %{_omf_dest_dir}/%{name}/gstreamer-properties-uk.omf
-%{_pixmapsdir}/gstreamer-properties.png
+%{_iconsdir}/hicolor/*/*/gstreamer-properties.*
 %{_sysconfdir}/gconf/schemas/gnome-audio-profiles.schemas
 
 %files libs
@@ -332,20 +334,7 @@ EOF
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gnome-cd
 %{_desktopdir}/gnome-cd.desktop
-%{_omf_dest_dir}/%{name}/gnome-cd-C.omf
-%lang(de) %{_omf_dest_dir}/%{name}/gnome-cd-de.omf
-%lang(es) %{_omf_dest_dir}/%{name}/gnome-cd-es.omf
-%lang(fr) %{_omf_dest_dir}/%{name}/gnome-cd-fr.omf
-%lang(it) %{_omf_dest_dir}/%{name}/gnome-cd-it.omf
-%lang(ja) %{_omf_dest_dir}/%{name}/gnome-cd-ja.omf
-%lang(ko) %{_omf_dest_dir}/%{name}/gnome-cd-ko.omf
-%lang(nl) %{_omf_dest_dir}/%{name}/gnome-cd-nl.omf
-%lang(sv) %{_omf_dest_dir}/%{name}/gnome-cd-sv.omf
-%lang(uk) %{_omf_dest_dir}/%{name}/gnome-cd-uk.omf
-%lang(zh_CN) %{_omf_dest_dir}/%{name}/gnome-cd-zh_CN.omf
-%lang(zh_TW) %{_omf_dest_dir}/%{name}/gnome-cd-zh_TW.omf
 %{_pixmapsdir}/gnome-cd/*
-%exclude %{_pixmapsdir}/gnome-cd/cd.png
 %{_sysconfdir}/gconf/schemas/gnome-cd.schemas
 
 %files cddb
@@ -358,8 +347,7 @@ EOF
 %{_desktopdir}/cddb-slave.desktop
 %{_libdir}/bonobo/servers/GNOME_Media_CDDBSlave2.server
 %dir %{_pixmapsdir}/gnome-cd
-%{_pixmapsdir}/gnome-cd/cd.png
-%{_pixmapsdir}/gnome-cd.png
+%{_iconsdir}/hicolor/*/*/gnome-cd.*
 %{_sysconfdir}/gconf/schemas/CDDB-Slave2.schemas
 
 %files cddb-devel
@@ -377,28 +365,14 @@ EOF
 %attr(755,root,root) %{_bindir}/gnome-sound-recorder
 %{_datadir}/gnome-sound-recorder
 %{_desktopdir}/gnome-sound-recorder.desktop
-%{_pixmapsdir}/gnome-grecord.png
+%{_iconsdir}/hicolor/*/*/gnome-grecord.*
 %{_sysconfdir}/gconf/schemas/gnome-sound-recorder.schemas
-%{_omf_dest_dir}/%{name}/grecord-C.omf
-%lang(de) %{_omf_dest_dir}/%{name}/grecord-de.omf
-%lang(es) %{_omf_dest_dir}/%{name}/grecord-es.omf
-%lang(fr) %{_omf_dest_dir}/%{name}/grecord-fr.omf
-%lang(it) %{_omf_dest_dir}/%{name}/grecord-it.omf
-%lang(ja) %{_omf_dest_dir}/%{name}/grecord-ja.omf
-%lang(ko) %{_omf_dest_dir}/%{name}/grecord-ko.omf
-%lang(sv) %{_omf_dest_dir}/%{name}/grecord-sv.omf
-%lang(uk) %{_omf_dest_dir}/%{name}/grecord-uk.omf
-%lang(zh_CN) %{_omf_dest_dir}/%{name}/grecord-zh_CN.omf
-%lang(zh_TW) %{_omf_dest_dir}/%{name}/grecord-zh_TW.omf
 
 %files volume-control -f gnome-volume-control.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gnome-volume-control
 %{_datadir}/gnome-media/pixmaps/*
 %{_desktopdir}/gnome-volume-control.desktop
-%{_omf_dest_dir}/%{name}/gnome-volume-control-C.omf
-%lang(uk) %{_omf_dest_dir}/%{name}/gnome-volume-control-uk.omf
-%{_pixmapsdir}/gnome-mixer.png
 %{_sysconfdir}/gconf/schemas/gnome-volume-control.schemas
 
 %files vumeter
@@ -406,5 +380,5 @@ EOF
 %attr(755,root,root) %{_bindir}/vumeter
 %{_desktopdir}/reclevel.desktop
 %{_desktopdir}/vumeter.desktop
-%{_pixmapsdir}/gnome-reclevel.png
-%{_pixmapsdir}/gnome-vumeter.png
+%{_iconsdir}/hicolor/*/*/gnome-reclevel.*
+%{_iconsdir}/hicolor/*/*/gnome-vumeter.*

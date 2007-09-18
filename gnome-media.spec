@@ -13,38 +13,38 @@ Patch1:		%{name}-configure.patch
 Patch2:		%{name}-glsink.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.19.1
-BuildRequires:	ORBit2-devel >= 1:2.14.8
+BuildRequires:	ORBit2-devel >= 1:2.14.9
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-BuildRequires:	gnome-control-center-devel >= 1:2.19.92
+BuildRequires:	gnome-control-center-devel >= 1:2.20.0
 BuildRequires:	esound-devel >= 1:0.2.37
-BuildRequires:	gail-devel >= 1.19.6
+BuildRequires:	gail-devel >= 1.20.0
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-common >= 2.18.0
-BuildRequires:	gnome-vfs2-devel >= 2.19.91
+BuildRequires:	gnome-common >= 2.20.0
+BuildRequires:	gnome-vfs2-devel >= 2.20.0
 BuildRequires:	gstreamer-devel >= 0.10.11
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.11
-BuildRequires:	gtk+2-devel >= 2:2.10.14
-BuildRequires:	intltool >= 0.36.1
-BuildRequires:	libbonobo-devel >= 2.19.6
+BuildRequires:	gtk+2-devel >= 2:2.12.0
+BuildRequires:	intltool >= 0.36.2
+BuildRequires:	libbonobo-devel >= 2.20.0
 BuildRequires:	libglade2-devel >= 1:2.6.2
 BuildRequires:	libgnomeui-devel >= 2.19.1
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 1:2.6.29
-BuildRequires:	nautilus-cd-burner-devel >= 2.19.6
+BuildRequires:	libxml2-devel >= 1:2.6.30
+BuildRequires:	nautilus-cd-burner-devel >= 2.20.0
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.3.11
 Requires(post,postun):	scrollkeeper
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
-Requires:	gail >= 1.19.6
+Requires:	gail >= 1.20.0
 Requires:	gstreamer-GConf
 Requires:	gstreamer-audiosink
 Requires:	libgnomeui >= 2.19.1
-Requires:	nautilus-cd-burner-libs >= 2.19.6
+Requires:	nautilus-cd-burner-libs >= 2.20.0
 Obsoletes:	gnome
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

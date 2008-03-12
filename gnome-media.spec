@@ -2,39 +2,39 @@ Summary:	GNOME media programs
 Summary(fr.UTF-8):	Programmes multimédia de GNOME
 Summary(pl.UTF-8):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.20.1
-Release:	2
+Version:	2.22.0
+Release:	1
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.20/%{name}-%{version}.tar.bz2
-# Source0-md5:	75036a6990725c4323812afd4cd734f5
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.22/%{name}-%{version}.tar.bz2
+# Source0-md5:	e3fabb87abd2731d7f345d724b40333a
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-configure.patch
 Patch2:		%{name}-glsink.patch
 URL:		http://www.gnome.org/
-BuildRequires:	GConf2-devel >= 2.19.1
+BuildRequires:	GConf2-devel >= 2.22.0
 BuildRequires:	ORBit2-devel >= 1:2.14.9
 %ifnarch sparc sparc64
 BuildRequires:	alsa-lib-devel
 %endif
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-BuildRequires:	gnome-control-center-devel >= 1:2.20.0
+BuildRequires:	gnome-control-center-devel >= 1:2.22.0
 BuildRequires:	esound-devel >= 1:0.2.37
 BuildRequires:	gail-devel >= 1.20.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.20.0
-BuildRequires:	gnome-vfs2-devel >= 2.20.0
+BuildRequires:	gnome-vfs2-devel >= 2.22.0
 BuildRequires:	gstreamer-devel >= 0.10.11
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.11
 BuildRequires:	gtk+2-devel >= 2:2.12.0
 BuildRequires:	intltool >= 0.36.2
-BuildRequires:	libbonobo-devel >= 2.20.0
+BuildRequires:	libbonobo-devel >= 2.22.0
 BuildRequires:	libglade2-devel >= 1:2.6.2
 BuildRequires:	libgnomeui-devel >= 2.19.1
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.30
-BuildRequires:	nautilus-cd-burner-devel >= 2.20.0
+BuildRequires:	nautilus-cd-burner-devel >= 2.22.0
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.3.11
 Requires(post,postun):	scrollkeeper
@@ -44,7 +44,7 @@ Requires:	gail >= 1.20.0
 Requires:	gstreamer-GConf
 Requires:	gstreamer-audiosink
 Requires:	libgnomeui >= 2.19.1
-Requires:	nautilus-cd-burner-libs >= 2.20.0
+Requires:	nautilus-cd-burner-libs >= 2.22.0
 Obsoletes:	gnome
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7

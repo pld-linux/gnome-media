@@ -2,15 +2,13 @@ Summary:	GNOME media programs
 Summary(fr.UTF-8):	Programmes multimédia de GNOME
 Summary(pl.UTF-8):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.22.0
+Version:	2.23.1.1
 Release:	1
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.22/%{name}-%{version}.tar.bz2
-# Source0-md5:	e3fabb87abd2731d7f345d724b40333a
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.23/%{name}-%{version}.tar.bz2
+# Source0-md5:	368544fe513459dac61564c191f43393
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-configure.patch
-Patch2:		%{name}-glsink.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.22.0
 BuildRequires:	ORBit2-devel >= 1:2.14.9
@@ -34,7 +32,6 @@ BuildRequires:	libglade2-devel >= 1:2.6.2
 BuildRequires:	libgnomeui-devel >= 2.19.1
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.30
-BuildRequires:	nautilus-cd-burner-devel >= 2.22.0
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.3.11
 Requires(post,postun):	scrollkeeper
@@ -44,8 +41,11 @@ Requires:	gail >= 1.20.0
 Requires:	gstreamer-GConf
 Requires:	gstreamer-audiosink
 Requires:	libgnomeui >= 2.19.1
-Requires:	nautilus-cd-burner-libs >= 2.22.0
 Obsoletes:	gnome
+Obsoletes:	gnome-media-cd <= 2.23.1.1-1
+Obsoletes:	gnome-media-cddb <= 2.23.1.1-1
+Obsoletes:	gnome-media-cddb-devel <= 2.23.1.1-1
+Obsoletes:	gnome-media-cddb-static <= 2.23.1.1-1
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -79,64 +79,6 @@ This package contains gnome-media library.
 
 %description libs -l pl.UTF-8
 Pakiet ten zawiera bibliotekę gnome-media.
-
-%package cd
-Summary:	CD player
-Summary(pl.UTF-8):	Odtwarzacz CD
-Group:		X11/Applications/Multimedia
-Requires(post):	GConf2
-Requires(post):	scrollkeeper
-Requires:	%{name}-cddb = %{epoch}:%{version}-%{release}
-Requires:	gstreamer-audio-effects-base >= 0.10.11
-Requires:	gstreamer-audiosink
-Requires:	gstreamer-cdparanoia >= 0.10.11
-Conflicts:	gnome-media <= 0:2.8.0-5
-
-%description cd
-CD player.
-
-%description cd -l pl.UTF-8
-Odtwarzacz CD.
-
-%package cddb
-Summary:	CD database server
-Summary(pl.UTF-8):	Serwer bazy danych płyt CD
-Group:		X11/Applications/Multimedia
-Requires(post):	GConf2
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Conflicts:	gnome-media <= 0:2.8.0-5
-
-%description cddb
-CD database server.
-
-%description cddb -l pl.UTF-8
-Serwer bazy danych płyt CD.
-
-%package cddb-devel
-Summary:	gnome-media-cddb devel file
-Summary(pl.UTF-8):	Pliki nagłówkowe gnome-media-cddb
-Group:		X11/Development/Libraries
-Requires:	%{name}-cddb = %{epoch}:%{version}-%{release}
-Conflicts:	gnome-media-devel <= 0:2.8.0-5
-
-%description cddb-devel
-gnome-media-cddb devel files.
-
-%description cddb-devel -l pl.UTF-8
-Pliki nagłówkowe gnome-media-cddb.
-
-%package cddb-static
-Summary:	gnome-media-cddb static libraries
-Summary(pl.UTF-8):	Biblioteki statyczne gnome-media-cddb
-Group:		X11/Development/Libraries
-Requires:	%{name}-cddb-devel = %{epoch}:%{version}-%{release}
-Conflicts:	gnome-media-static <= 0:2.8.0-5
-
-%description cddb-static
-gnome-media-cddb static libraries.
-
-%description cddb-static -l pl.UTF-8
-Biblioteki statyczne gnome-media-cddb.
 
 %package devel
 Summary:	gnome-media devel files
@@ -213,8 +155,6 @@ Monitor głośności.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
 %{__gnome_doc_common}
@@ -239,10 +179,9 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.{la,a}
 [ -d $RPM_BUILD_ROOT%{_datadir}/locale/sr@latin ] || \
 	mv -f $RPM_BUILD_ROOT%{_datadir}/locale/sr@{Latn,latin}
 %find_lang %{name}-2.0
-%find_lang gnome-cd --with-gnome
-%find_lang gnome-sound-recorder --with-gnome
-%find_lang gnome-volume-control --with-gnome
-%find_lang gstreamer-properties --with-gnome
+%find_lang gnome-sound-recorder --with-gnome --with-omf
+%find_lang gnome-volume-control --with-gnome --with-omf
+%find_lang gstreamer-properties --with-gnome --with-omf
 cat gstreamer-properties.lang >> %{name}-2.0.lang
 
 %clean
@@ -262,28 +201,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %post	libs -p /sbin/ldconfig
 %postun	libs -p /sbin/ldconfig
-
-%post cd
-%scrollkeeper_update_post
-%gconf_schema_install gnome-cd.schemas
-
-%preun cd
-%gconf_schema_uninstall gnome-cd.schemas
-
-%postun cd
-%scrollkeeper_update_postun
-
-%post cddb
-/sbin/ldconfig
-%update_icon_cache hicolor
-%gconf_schema_install CDDB-Slave2.schemas
-
-%preun cddb
-%gconf_schema_uninstall CDDB-Slave2.schemas
-
-%postun cddb
-/sbin/ldconfig
-%update_icon_cache hicolor
 
 %post sound-recorder
 %update_icon_cache hicolor
@@ -322,6 +239,7 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnome-media-profiles.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnome-media-profiles.so.0
 
 %files devel
 %defattr(644,root,root,755)
@@ -334,55 +252,28 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libgnome-media-profiles.a
 
-%files cd -f gnome-cd.lang
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/gnome-cd
-%{_desktopdir}/gnome-cd.desktop
-%{_pixmapsdir}/gnome-cd/*
-%{_sysconfdir}/gconf/schemas/gnome-cd.schemas
-
-%files cddb
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/cddb-slave2-properties
-%attr(755,root,root) %{_libdir}/CDDBSlave2
-%attr(755,root,root) %{_libdir}/cddb-track-editor
-%attr(755,root,root) %{_libdir}/libcddb-slave2.so.*.*
-%{_datadir}/idl/GNOME_Media_CDDBSlave2.idl
-%{_desktopdir}/cddb-slave.desktop
-%{_libdir}/bonobo/servers/GNOME_Media_CDDBSlave2.server
-%dir %{_pixmapsdir}/gnome-cd
-%{_iconsdir}/hicolor/*/*/gnome-cd.*
-%{_sysconfdir}/gconf/schemas/CDDB-Slave2.schemas
-
-%files cddb-devel
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libcddb-slave2.so
-%{_libdir}/libcddb-slave2.la
-%{_includedir}/cddb-slave2
-
-%files cddb-static
-%defattr(644,root,root,755)
-%{_libdir}/libcddb-slave2.a
-
 %files sound-recorder -f gnome-sound-recorder.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gnome-sound-recorder
 %{_datadir}/gnome-sound-recorder
 %{_desktopdir}/gnome-sound-recorder.desktop
-%{_iconsdir}/hicolor/*/*/gnome-grecord.*
+%{_iconsdir}/hicolor/*/*/gnome-sound-recorder.*
 %{_sysconfdir}/gconf/schemas/gnome-sound-recorder.schemas
 
 %files volume-control -f gnome-volume-control.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gnome-volume-control
+%{_datadir}/gnome-media/gnome-volume-control-ui.xml
 %{_datadir}/gnome-media/pixmaps/*
 %{_desktopdir}/gnome-volume-control.desktop
+%{_iconsdir}/hicolor/*/devices/gvc-*.png
+%{_iconsdir}/hicolor/*/status/audio-input-microphone-muted.png
 %{_sysconfdir}/gconf/schemas/gnome-volume-control.schemas
 
-%files vumeter
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/vumeter
-%{_desktopdir}/reclevel.desktop
-%{_desktopdir}/vumeter.desktop
-%{_iconsdir}/hicolor/*/*/gnome-reclevel.*
-%{_iconsdir}/hicolor/*/*/gnome-vumeter.*
+#%files vumeter
+#%defattr(644,root,root,755)
+#%attr(755,root,root) %{_bindir}/vumeter
+#%{_desktopdir}/reclevel.desktop
+#%{_desktopdir}/vumeter.desktop
+#%{_iconsdir}/hicolor/*/*/gnome-reclevel.*
+#%{_iconsdir}/hicolor/*/*/gnome-vumeter.*

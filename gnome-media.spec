@@ -2,12 +2,12 @@ Summary:	GNOME media programs
 Summary(fr.UTF-8):	Programmes multimédia de GNOME
 Summary(pl.UTF-8):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.23.1.1
+Version:	2.23.3
 Release:	1
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.23/%{name}-%{version}.tar.bz2
-# Source0-md5:	368544fe513459dac61564c191f43393
+# Source0-md5:	b1b57dc3470cbd19ee4a64acd97deaf0
 Patch0:		%{name}-desktop.patch
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.22.0
@@ -138,20 +138,6 @@ Volume control.
 %description volume-control -l pl.UTF-8
 Regulator głośności.
 
-%package vumeter
-Summary:	Volume monitor
-Summary(pl.UTF-8):	Monitor głośności
-Group:		X11/Applications/Multimedia
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	gstreamer-audiosink
-Conflicts:	gnome-media <= 0:2.8.0-5
-
-%description vumeter
-Volume monitor.
-
-%description vumeter -l pl.UTF-8
-Monitor głośności.
-
 %prep
 %setup -q
 %patch0 -p1
@@ -263,17 +249,8 @@ rm -rf $RPM_BUILD_ROOT
 %files volume-control -f gnome-volume-control.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gnome-volume-control
-%{_datadir}/gnome-media/gnome-volume-control-ui.xml
 %{_datadir}/gnome-media/pixmaps/*
 %{_desktopdir}/gnome-volume-control.desktop
 %{_iconsdir}/hicolor/*/devices/gvc-*.png
 %{_iconsdir}/hicolor/*/status/audio-input-microphone-muted.png
 %{_sysconfdir}/gconf/schemas/gnome-volume-control.schemas
-
-#%files vumeter
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/vumeter
-#%{_desktopdir}/reclevel.desktop
-#%{_desktopdir}/vumeter.desktop
-#%{_iconsdir}/hicolor/*/*/gnome-reclevel.*
-#%{_iconsdir}/hicolor/*/*/gnome-vumeter.*

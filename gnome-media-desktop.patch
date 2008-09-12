@@ -1,15 +1,3 @@
-diff -urN gnome-media-2.18.0/cddb-slave2/cddb-slave.desktop.in.in gnome-media-2.18.0.new/cddb-slave2/cddb-slave.desktop.in.in
---- gnome-media-2.18.0/cddb-slave2/cddb-slave.desktop.in.in	2007-03-12 06:05:16.000000000 +0100
-+++ gnome-media-2.18.0.new/cddb-slave2/cddb-slave.desktop.in.in	2007-03-13 12:43:02.000000000 +0100
-@@ -7,7 +7,7 @@
- StartupNotify=true
- Terminal=false
- Type=Application
--Categories=GNOME;GTK;Settings;
-+Categories=GNOME;GTK;Settings;X-Capplet;
- OnlyShowIn=GNOME;
- NoDisplay=true
- X-GNOME-Bugzilla-Bugzilla=GNOME
 diff -urN gnome-media-2.18.0/grecord/gnome-sound-recorder.desktop.in.in gnome-media-2.18.0.new/grecord/gnome-sound-recorder.desktop.in.in
 --- gnome-media-2.18.0/grecord/gnome-sound-recorder.desktop.in.in	2007-01-06 19:16:58.000000000 +0100
 +++ gnome-media-2.18.0.new/grecord/gnome-sound-recorder.desktop.in.in	2007-03-13 12:43:27.000000000 +0100
@@ -22,15 +10,3 @@ diff -urN gnome-media-2.18.0/grecord/gnome-sound-recorder.desktop.in.in gnome-me
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=gnome-media
  X-GNOME-Bugzilla-Component=Gnome-Sound-Recorder
-diff -urN gnome-media-2.18.0/gstreamer-properties/gstreamer-properties.desktop.in.in gnome-media-2.18.0.new/gstreamer-properties/gstreamer-properties.desktop.in.in
---- gnome-media-2.18.0/gstreamer-properties/gstreamer-properties.desktop.in.in	2007-03-12 06:05:16.000000000 +0100
-+++ gnome-media-2.18.0.new/gstreamer-properties/gstreamer-properties.desktop.in.in	2007-03-13 12:44:31.000000000 +0100
-@@ -8,7 +8,7 @@
- Terminal=false
- NoDisplay=true
- Type=Application
--Categories=GNOME;GTK;Settings;HardwareSettings;
-+Categories=GNOME;GTK;Settings;HardwareSettings;X-Capplet;
- X-GNOME-Bugzilla-Bugzilla=GNOME
- X-GNOME-Bugzilla-Product=gnome-media
- X-GNOME-Bugzilla-Component=gstreamer-properties

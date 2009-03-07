@@ -2,12 +2,12 @@ Summary:	GNOME media programs
 Summary(fr.UTF-8):	Programmes multimédia de GNOME
 Summary(pl.UTF-8):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.25.5
+Version:	2.25.92
 Release:	1
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.25/%{name}-%{version}.tar.bz2
-# Source0-md5:	03985c7331f53c283286bc46962f702b
+# Source0-md5:	0d58bb8e1b9efd1e6b79d75cedb040fb
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.25.0
 BuildRequires:	ORBit2-devel >= 1:2.14.9
@@ -125,6 +125,7 @@ Biblioteki statyczne gnome-media.
 Summary:	Volume controler
 Summary(pl.UTF-8):	Regulator głośności
 Group:		X11/Applications/Multimedia
+Requires(post,postun):	gtk+2
 Requires:	%{name} = %{version}-%{release}
 Requires:	pulseaudio
 Conflicts:	gnome-media <= 0:2.8.0-5
@@ -193,6 +194,12 @@ rm -rf $RPM_BUILD_ROOT
 %update_icon_cache hicolor
 %scrollkeeper_update_postun
 
+%post volume-control
+%update_icon_cache hicolor
+
+%postun volume-control
+%update_icon_cache hicolor
+
 %files -f %{name}-2.0.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
@@ -242,4 +249,5 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/sounds/gnome/default
 %dir %{_datadir}/sounds/gnome/default/alerts
 %{_datadir}/sounds/gnome/default/alerts/*.ogg
-%{_datadir}/gnome/autostart/gnome-volume-control-applet.desktop
+%{_sysconfdir}/xdg/autostart/gnome-volume-control-applet.desktop
+%{_iconsdir}/hicolor/*/*/gnome-volume-control.*

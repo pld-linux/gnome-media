@@ -2,31 +2,34 @@ Summary:	GNOME media programs
 Summary(fr.UTF-8):	Programmes multimédia de GNOME
 Summary(pl.UTF-8):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.24.0.1
-Release:	2
+Version:	2.26.0
+Release:	1
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.24/%{name}-%{version}.tar.bz2
-# Source0-md5:	d0a9b0784872cecd09038aceea22e16f
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.26/%{name}-%{version}.tar.bz2
+# Source0-md5:	3d519bc7d812aed8f6e4288b6d3cdf26
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	ORBit2-devel >= 1:2.14.9
 BuildRequires:	autoconf >= 2.60
-BuildRequires:	automake
+BuildRequires:	automake >= 1:1.9
+BuildRequires:	dbus-glib-devel >= 0.76
 BuildRequires:	esound-devel >= 1:0.2.37
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common >= 2.24.0
 BuildRequires:	gnome-doc-utils
 BuildRequires:	gstreamer-devel >= 0.10.11
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.11
-BuildRequires:	gtk+2-devel >= 2:2.14.0
+BuildRequires:	gtk+2-devel >= 2:2.16.0
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libbonobo-devel >= 2.24.0
+BuildRequires:	libcanberra-gtk-devel >= 0.9
 BuildRequires:	libglade2-devel >= 1:2.6.2
 BuildRequires:	libgnomeui-devel >= 2.24.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	pkgconfig
+BuildRequires:	pulseaudio-devel >= 0.9.12
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.3.11
 Requires(post,postun):	scrollkeeper
@@ -64,7 +67,7 @@ Programy multimedialne dla GNOME.
 %package libs
 Summary:	gnome-media library
 Summary(pl.UTF-8):	Biblioteka gnome-media
-Group:		Development/Libraries
+Group:		X11/Libraries
 
 %description libs
 This package contains gnome-media library.
@@ -76,7 +79,10 @@ Pakiet ten zawiera bibliotekę gnome-media.
 Summary:	gnome-media devel files
 Summary(pl.UTF-8):	Pliki nagłówkowe gnome-media
 Group:		X11/Development/Libraries
-Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
+Requires:	GConf2-devel >= 2.24.0
+Requires:	gtk+2-devel >= 2:2.16.0
+Requires:	libglade2-devel >= 1:2.6.2
 
 %description devel
 gnome-media devel files.
@@ -90,7 +96,7 @@ Summary(pl.UTF-8):	Rejestrator dźwięku
 Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	gstreamer-audio-effects-base >= 0.10.11
 Requires:	gstreamer-audiosink
 Suggests:	gnome-media-volume-control
@@ -107,7 +113,7 @@ Rejestrator dźwięku.
 Summary:	gnome-media static libraries
 Summary(pl.UTF-8):	Biblioteki statyczne gnome-media
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 gnome-media static libraries.
@@ -119,9 +125,9 @@ Biblioteki statyczne gnome-media.
 Summary:	Volume controler
 Summary(pl.UTF-8):	Regulator głośności
 Group:		X11/Applications/Multimedia
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	gstreamer-audio-effects-base >= 0.10.11
-Requires:	gstreamer-audiosink
+Requires(post,postun):	gtk+2
+Requires:	%{name} = %{version}-%{release}
+Requires:	pulseaudio
 Conflicts:	gnome-media <= 0:2.8.0-5
 
 %description volume-control
@@ -155,7 +161,6 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.{la,a}
 
 %find_lang %{name}-2.0
 %find_lang gnome-sound-recorder --with-gnome --with-omf
-%find_lang gnome-volume-control --with-gnome --with-omf
 %find_lang gstreamer-properties --with-gnome --with-omf
 cat gstreamer-properties.lang >> %{name}-2.0.lang
 
@@ -191,11 +196,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %post volume-control
 %update_icon_cache hicolor
-%scrollkeeper_update_post
 
 %postun volume-control
 %update_icon_cache hicolor
-%scrollkeeper_update_postun
 
 %files -f %{name}-2.0.lang
 %defattr(644,root,root,755)
@@ -205,7 +208,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libglade/2.0/*.so
 %{_desktopdir}/gstreamer-properties.desktop
 %dir %{_datadir}/gnome-media
-%dir %{_datadir}/gnome-media/pixmaps
 %{_datadir}/gnome-media/glade
 %{_datadir}/gstreamer-properties
 %{_iconsdir}/hicolor/*/*/gstreamer-properties.*
@@ -235,11 +237,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/*/gnome-sound-recorder.*
 %{_sysconfdir}/gconf/schemas/gnome-sound-recorder.schemas
 
-%files volume-control -f gnome-volume-control.lang
+%files volume-control
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gnome-volume-control
-%{_datadir}/gnome-media/pixmaps/*
+%attr(755,root,root) %{_bindir}/gnome-volume-control-applet
+%{_datadir}/gnome-media/icons
+%dir %{_datadir}/gnome-media/sounds
+%{_datadir}/gnome-media/sounds/gnome-sounds-default.xml
 %{_desktopdir}/gnome-volume-control.desktop
-%{_iconsdir}/hicolor/*/devices/gvc-*.png
-%{_iconsdir}/hicolor/*/status/audio-input-microphone-muted.png
-%{_sysconfdir}/gconf/schemas/gnome-volume-control.schemas
+%dir %{_datadir}/sounds/gnome
+%dir %{_datadir}/sounds/gnome/default
+%dir %{_datadir}/sounds/gnome/default/alerts
+%{_datadir}/sounds/gnome/default/alerts/*.ogg
+%{_sysconfdir}/xdg/autostart/gnome-volume-control-applet.desktop
+%{_iconsdir}/hicolor/*/*/gnome-volume-control.*

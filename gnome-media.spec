@@ -2,12 +2,12 @@ Summary:	GNOME media programs
 Summary(fr.UTF-8):	Programmes multimédia de GNOME
 Summary(pl.UTF-8):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.26.0
+Version:	2.27.1
 Release:	1
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.26/%{name}-%{version}.tar.bz2
-# Source0-md5:	3d519bc7d812aed8f6e4288b6d3cdf26
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.27/%{name}-%{version}.tar.bz2
+# Source0-md5:	9ead033bbd104f78384488efde91015e
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	ORBit2-devel >= 1:2.14.9
@@ -202,7 +202,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}-2.0.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS NEWS README
 %attr(755,root,root) %{_bindir}/gnome-audio-profiles-properties
 %attr(755,root,root) %{_bindir}/gstreamer-properties
 %attr(755,root,root) %{_libdir}/libglade/2.0/*.so

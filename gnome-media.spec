@@ -3,7 +3,7 @@ Summary(fr.UTF-8):	Programmes multimédia de GNOME
 Summary(pl.UTF-8):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.26.0
-Release:	1
+Release:	2
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.26/%{name}-%{version}.tar.bz2
@@ -127,7 +127,12 @@ Summary(pl.UTF-8):	Regulator głośności
 Group:		X11/Applications/Multimedia
 Requires(post,postun):	gtk+2
 Requires:	%{name} = %{version}-%{release}
+Requires:	gstreamer-pulseaudio
 Requires:	pulseaudio
+Requires:	pulseaudio-alsa
+Requires:	pulseaudio-gconf
+Suggests:	alsa-plugins-pulse
+Suggests:	pulseaudio-hal
 Conflicts:	gnome-media <= 0:2.8.0-5
 
 %description volume-control

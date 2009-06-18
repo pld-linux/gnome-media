@@ -138,6 +138,8 @@ Regulator głośności.
 
 %prep
 %setup -q
+sed -i s#ca@valencia## po/LINGUAS
+rm po/ca@valencia.po
 
 %build
 %{__gnome_doc_common}

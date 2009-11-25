@@ -24,6 +24,7 @@ BuildRequires:	libglade2-devel >= 1:2.6.2
 BuildRequires:	libtool
 BuildRequires:	libunique-devel
 BuildRequires:	libxml2-devel >= 1:2.6.30
+BuildRequires:	libxml2-progs
 BuildRequires:	pkgconfig
 BuildRequires:	pulseaudio-devel >= 0.9.15
 BuildRequires:	rpmbuild(macros) >= 1.197

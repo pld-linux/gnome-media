@@ -2,12 +2,12 @@ Summary:	GNOME media programs
 Summary(fr.UTF-8):	Programmes multimédia de GNOME
 Summary(pl.UTF-8):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.28.5
+Version:	2.29.91
 Release:	1
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.28/%{name}-%{version}.tar.bz2
-# Source0-md5:	8dbdd10388f1557da209d8aef7b85f0d
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.29/%{name}-%{version}.tar.bz2
+# Source0-md5:	93034f604179a37f2b45241fc13fb1fb
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf >= 2.60
@@ -21,7 +21,7 @@ BuildRequires:	gstreamer-plugins-base-devel >= 0.10.23
 BuildRequires:	gtk+2-devel >= 2:2.16.0
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libcanberra-gtk-devel >= 0.9
-BuildRequires:	libglade2-devel >= 1:2.6.2
+BuildRequires:	libgladeui-devel
 BuildRequires:	libtool
 BuildRequires:	libunique-devel
 BuildRequires:	libxml2-devel >= 1:2.6.30
@@ -80,7 +80,6 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	GConf2-devel >= 2.24.0
 Requires:	gtk+2-devel >= 2:2.16.0
-Requires:	libglade2-devel >= 1:2.6.2
 
 %description devel
 gnome-media devel files.
@@ -139,6 +138,18 @@ Volume control.
 %description volume-control -l pl.UTF-8
 Regulator głośności.
 
+%package -n glade3-gnome-media
+Summary:	gnome-media support for Glade 3
+Summary(pl.UTF-8):	Wsparcie dla gnome-media w Glade 3
+Group:		Development/Building
+Requires:	glade3
+
+%description -n glade3-gnome-media
+gnome-media support for Glade 3.
+
+%description -n glade3-gnome-media -l pl.UTF-8
+Wsparcie dla gnome-media w Glade 3.
+
 %prep
 %setup -q
 
@@ -163,7 +174,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/libglade/2.0/*.{la,a}
+rm -f $RPM_BUILD_ROOT%{_libdir}/glade3/modules/*.{a,la}
 
 %find_lang %{name}-2.0
 %find_lang gnome-audio-profiles --with-gnome --with-omf
@@ -213,17 +224,16 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS NEWS README
 %attr(755,root,root) %{_bindir}/gnome-audio-profiles-properties
 %attr(755,root,root) %{_bindir}/gstreamer-properties
-%attr(755,root,root) %{_libdir}/libglade/2.0/*.so
 %{_desktopdir}/gstreamer-properties.desktop
 %dir %{_datadir}/gnome-media
-%{_datadir}/gnome-media/glade
+%{_datadir}/gnome-media/*.ui
 %{_datadir}/gstreamer-properties
 %{_iconsdir}/hicolor/*/*/gstreamer-properties.*
 %{_sysconfdir}/gconf/schemas/gnome-audio-profiles.schemas
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgnome-media-profiles.so.*.*
+%attr(755,root,root) %{_libdir}/libgnome-media-profiles.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgnome-media-profiles.so.0
 
 %files devel
@@ -259,3 +269,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/sounds/gnome/default/alerts/*.ogg
 %{_sysconfdir}/xdg/autostart/gnome-volume-control-applet.desktop
 %{_iconsdir}/hicolor/*/*/gnome-volume-control.*
+
+%files -n glade3-gnome-media
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/glade3/modules/libgnome-media-profiles.so
+%{_datadir}/glade3/catalogs/gnome-media-profiles.xml

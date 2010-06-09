@@ -125,7 +125,7 @@ Group:		X11/Applications/Multimedia
 Requires(post,postun):	gtk+2
 Requires:	%{name} = %{version}-%{release}
 Requires:	gstreamer-pulseaudio
-Requires:	pulseaudio
+Requires:	pulseaudio >= 0.9.20-2
 Requires:	pulseaudio-alsa
 Requires:	pulseaudio-gconf
 Suggests:	alsa-plugins-pulse

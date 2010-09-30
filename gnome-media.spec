@@ -2,12 +2,12 @@ Summary:	GNOME media programs
 Summary(fr.UTF-8):	Programmes multimédia de GNOME
 Summary(pl.UTF-8):	Programy multimedialne dla GNOME
 Name:		gnome-media
-Version:	2.30.0
-Release:	2
+Version:	2.32.0
+Release:	1
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.30/%{name}-%{version}.tar.bz2
-# Source0-md5:	027b11fb8b126ab1b25def6b9e121bd3
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.32/%{name}-%{version}.tar.bz2
+# Source0-md5:	06fc8c67add34c98bc484e0dbc404d41
 URL:		http://www.gnome.org/
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf >= 2.60
@@ -18,16 +18,16 @@ BuildRequires:	gnome-common >= 2.24.0
 BuildRequires:	gnome-doc-utils
 BuildRequires:	gstreamer-devel >= 0.10.23
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.23
-BuildRequires:	gtk+2-devel >= 2:2.16.0
+BuildRequires:	gtk+2-devel >= 2:2.18.0
 BuildRequires:	intltool >= 0.40.0
-BuildRequires:	libcanberra-gtk-devel >= 0.9
+BuildRequires:	libcanberra-gtk-devel >= 0.13
 BuildRequires:	libgladeui-devel
 BuildRequires:	libtool
 BuildRequires:	libunique-devel
 BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	libxml2-progs
 BuildRequires:	pkgconfig
-BuildRequires:	pulseaudio-devel >= 0.9.15
+BuildRequires:	pulseaudio-devel >= 0.9.16
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.3.11
 BuildRequires:	sed >= 4.0
@@ -268,7 +268,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/sounds/gnome/default/alerts
 %{_datadir}/sounds/gnome/default/alerts/*.ogg
 %{_sysconfdir}/xdg/autostart/gnome-volume-control-applet.desktop
-%{_iconsdir}/hicolor/*/*/gnome-volume-control.*
+%{_iconsdir}/hicolor/*/*/multimedia-volume-control.*
 
 %files -n glade3-gnome-media
 %defattr(644,root,root,755)

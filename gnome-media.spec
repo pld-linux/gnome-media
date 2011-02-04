@@ -3,7 +3,7 @@ Summary(fr.UTF-8):	Programmes multimédia de GNOME
 Summary(pl.UTF-8):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.32.0
-Release:	1
+Release:	2
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.32/%{name}-%{version}.tar.bz2
@@ -31,6 +31,8 @@ BuildRequires:	pulseaudio-devel >= 0.9.16
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.3.11
 BuildRequires:	sed >= 4.0
+Requires(post,postun):	gtk-update-icon-cache
+Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	scrollkeeper
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
@@ -93,6 +95,8 @@ Summary(pl.UTF-8):	Rejestrator dźwięku
 Group:		X11/Applications/Multimedia
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
+Requires(post,postun):	gtk-update-icon-cache
+Requires(post,postun):	hicolor-icon-theme
 Requires:	%{name} = %{version}-%{release}
 Requires:	gstreamer-audio-effects-base >= 0.10.11
 Requires:	gstreamer-audiosink
@@ -122,7 +126,8 @@ Biblioteki statyczne gnome-media.
 Summary:	Volume controler
 Summary(pl.UTF-8):	Regulator głośności
 Group:		X11/Applications/Multimedia
-Requires(post,postun):	gtk+2
+Requires(post,postun):	gtk-update-icon-cache
+Requires(post,postun):	hicolor-icon-theme
 Requires:	%{name} = %{version}-%{release}
 Requires:	gstreamer-pulseaudio
 Requires:	pulseaudio >= 0.9.20-2

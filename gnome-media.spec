@@ -30,7 +30,6 @@ BuildRequires:	pkgconfig
 BuildRequires:	pulseaudio-devel >= 0.9.16
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.3.11
-BuildRequires:	sed >= 4.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 Requires(post,postun):	scrollkeeper
@@ -49,17 +48,10 @@ Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-GNOME media programs. GNOME is the GNU Network Object Model
-Environment. That's a fancy name but really GNOME is a nice GUI
-desktop environment. It makes using your computer easy, powerful, and
-easy to configure.
+GNOME media programs.
 
 %description -l fr.UTF-8
 Programmes multimédia GNOME.
-
-GNOME (GNU Network Object Model Environment) est un environnement
-graphique de type bureau. Il rends l'utilisation de votre ordinateur
-plus facile, agréable et eficace, et est facile à configurer.
 
 %description -l pl.UTF-8
 Programy multimedialne dla GNOME.
@@ -89,6 +81,18 @@ gnome-media devel files.
 %description devel -l pl.UTF-8
 Pliki nagłówkowe gnome-media.
 
+%package static
+Summary:	gnome-media static libraries
+Summary(pl.UTF-8):	Biblioteki statyczne gnome-media
+Group:		X11/Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+gnome-media static libraries.
+
+%description static -l pl.UTF-8
+Biblioteki statyczne gnome-media.
+
 %package sound-recorder
 Summary:	Sound recorder
 Summary(pl.UTF-8):	Rejestrator dźwięku
@@ -109,18 +113,6 @@ Sound recorder.
 
 %description sound-recorder -l pl.UTF-8
 Rejestrator dźwięku.
-
-%package static
-Summary:	gnome-media static libraries
-Summary(pl.UTF-8):	Biblioteki statyczne gnome-media
-Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
-
-%description static
-gnome-media static libraries.
-
-%description static -l pl.UTF-8
-Biblioteki statyczne gnome-media.
 
 %package volume-control
 Summary:	Volume controler
@@ -157,9 +149,6 @@ Wsparcie dla gnome-media w Glade 3.
 %prep
 %setup -q
 
-%{__sed} -i -e 's/en@shaw//' po/LINGUAS
-rm -f po/en@shaw.po
-
 %build
 %{__gnome_doc_common}
 %{__intltoolize}
@@ -179,7 +168,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/glade3/modules/*.{a,la}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/glade3/modules/*.{a,la}
 
 %find_lang %{name}-2.0
 %find_lang gnome-audio-profiles --with-gnome --with-omf

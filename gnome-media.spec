@@ -3,7 +3,7 @@ Summary(fr.UTF-8):	Programmes multimédia de GNOME
 Summary(pl.UTF-8):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	2.32.0
-Release:	2
+Release:	3
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/2.32/%{name}-%{version}.tar.bz2
@@ -177,6 +177,8 @@ rm -rf $RPM_BUILD_ROOT
 cat gstreamer-properties.lang >> %{name}-2.0.lang
 cat gnome-audio-profiles.lang >> %{name}-2.0.lang
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -233,9 +235,8 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnome-media-profiles.so
-%{_libdir}/libgnome-media-profiles.la
 %{_includedir}/gnome-media
-%{_pkgconfigdir}/*
+%{_pkgconfigdir}/gnome-media-profiles.pc
 
 %files static
 %defattr(644,root,root,755)

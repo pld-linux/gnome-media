@@ -3,7 +3,7 @@ Summary(fr.UTF-8):	Programmes multimédia de GNOME
 Summary(pl.UTF-8):	Programy multimedialne dla GNOME
 Name:		gnome-media
 Version:	3.4.0
-Release:	1
+Release:	2
 License:	GPL v2+/LGPL v2+
 Group:		X11/Applications/Multimedia
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-media/3.4/%{name}-%{version}.tar.xz
@@ -21,6 +21,7 @@ BuildRequires:	gstreamer-plugins-base-devel >= 0.10.23
 BuildRequires:	gtk+3-devel >= 3.0.0
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libcanberra-gtk3-devel >= 0.13
+BuildRequires:	libgnome-media-profiles-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	libxml2-progs
